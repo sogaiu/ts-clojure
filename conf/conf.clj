@@ -33,7 +33,7 @@
 ;; tree-sitter-clojure
 
 (def tsclj-ref
-  "71f44b21dec13f533c5c81f0cc87f86f225c4b56")
+  "pre-0.0.12")
 
 (def tsclj-dir
   "tree-sitter-clojure")
