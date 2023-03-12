@@ -42,9 +42,8 @@
 
 (defn -main
   [& _args]
-  ;; XXX: which dir(s) should this be done for here?
-  (when (not (fs/exists? cnf/clojars-repos-root))
-    (fs/create-dir cnf/clojars-repos-root))
+  (when (not (fs/exists? cnf/clojars-jars-root))
+    (fs/create-dir cnf/clojars-jars-root))
   (when (fs/exists? cnf/clojars-jars-root)
     (let [start-time (System/currentTimeMillis)
           jar-paths (atom [])]
@@ -70,6 +69,7 @@
           (when-let [[subpath jar-name] (parse-jar-path (str jar-path))]
             (let [dest-dir (str cnf/clojars-repos-root "/" subpath)]
               (when-not (fs/exists? dest-dir)
+                (fs/create-dirs dest-dir)
                 (try
                   (extract-files (fs/file jar-path) dest-dir
                                  ;; XXX: premature to be filtering?
