@@ -29,16 +29,6 @@
          gen-clru-list
          {:doc "Make Clojars release jars list"
           :task gen-clru-list/-main}
-         fetch-clojars-code
-         {:doc "Retrieve Clojars code samples"
-          :depends [gen-clru-list]
-          :task fetch-clojars-code/-main}
-         parse-clojars-code
-         {:doc "Parse Clojars code samples"
-          :depends [ensure-tree-sitter
-                    fetch-clojars-code]
-          :task parse-clojars-code/-main}
-         ;; alternative fetching / extracting
          batch-fetch-clojars-jars
          {:doc "Batch fetch some Clojars jars"
           :depends [gen-clru-list]
@@ -46,6 +36,13 @@
          extract-clojars-jars
          {:doc "Extract content from Clojars jars"
           :task extract-clojars-jars/-main}
+         parse-clojars-code
+         {:doc "Parse Clojars code samples"
+          :depends [ensure-tree-sitter
+                    gen-clru-list
+                    batch-fetch-clojars-jars
+                    extract-clojars-jars]
+          :task parse-clojars-code/-main}
          count-clojars-files
          {:doc "Count Clojars files with various extensions"
           :task count-clojars-files/-main}
