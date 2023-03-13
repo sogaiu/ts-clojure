@@ -37,6 +37,18 @@ Once prerequisites have been installed and this repository cloned, try
 `bb tasks` to get a list of tasks.  Looking through `bb.edn` might
 also be helpful.
 
+The file `conf/conj.clj` contains various somewhat configurable things
+such as:
+
+* `ts-ref` - commit ref for which version of the `tree-sitter` cli to
+  use (can be SHA, branch name, tag name)
+* `abi` - ABI number to use when generating `parser.c` from
+  `grammar.js`
+* `tsclj-ref` - commit ref for which version of `tree-sitter-clojure`
+  to use (can be SHA, branch name, tag name)
+* `c-compiler` - name of C compiler to invoke (e.g. `cc`, `gcc`,
+  `clang`)
+
 ## Windows Support
 
 Have not tested yet but might work via mingw-w64 / msys2 or similar.
