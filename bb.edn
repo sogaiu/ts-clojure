@@ -39,7 +39,6 @@
          corpus-test
          {:doc "Perform corpus test"
           :depends [ensure-tree-sitter
-                    ensure-tree-sitter-clojure
                     ensure-dynamic-library]
           :task corpus-test/-main}
          clean
@@ -63,7 +62,6 @@
          {:doc "Parse Clojars code samples"
           :depends [ensure-tree-sitter
                     ensure-dynamic-library
-                    gen-clru-list
                     batch-fetch-clojars-jars
                     extract-clojars-jars]
           :task parse-clojars-code/-main}
