@@ -9,7 +9,7 @@
 ;; tree-sitter
 
 (def ts-ref
-  "c51896d32dcc11a38e41f36e3deb1a6a9c4f4b14")
+  "v0.20.7")
 
 (def ts-repo-url
   "https://github.com/tree-sitter/tree-sitter")
