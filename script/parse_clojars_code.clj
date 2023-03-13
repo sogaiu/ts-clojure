@@ -11,6 +11,7 @@
           files (atom [])]
       ;; find all relevant clojure-related files
       (print "Looking for files" (sort cnf/clojars-extensions) "... ")
+      (flush)
       (fs/walk-file-tree cnf/clojars-repos-root
                          {:visit-file
                           (fn [path _]
@@ -25,6 +26,7 @@
                       (map str @files))
       ;; parse with tree-sitter via the paths file
       (print "Invoking tree-sitter to parse files ... ")
+      (flush)
       (try
         (let [start-time (System/currentTimeMillis)
               out-file-path (fs/create-temp-file)
@@ -39,20 +41,28 @@
               duration (- (System/currentTimeMillis) start-time)]
           (when (= 1 exit-code)
             (println))
-          ;; save and print error file info
-          (fs/write-lines cnf/clojars-error-file-paths
-                          (keep (fn [line]
-                                  (if-let [[path-ish time message]
-                                           (cs/split line #"\t")]
-                                    (let [path (cs/trim path-ish)]
-                                      (println message path)
-                                      path)
-                                    (println "Did not parse:" line)))
-                                (fs/read-all-lines (fs/file out-file-path))))
+          (let [errors (atom 0)]
+            ;; save and print error file info
+            (fs/write-lines cnf/clojars-error-file-paths
+                            (keep (fn [line]
+                                    (if-let [[path-ish time message]
+                                             (cs/split line #"\t")]
+                                      (let [path (cs/trim path-ish)]
+                                        (when cnf/verbose
+                                          (println message path))
+                                        (swap! errors inc)
+                                        path)
+                                      (println "Did not parse:" line)))
+                                  (fs/read-all-lines (fs/file out-file-path))))
+            (when (pos? @errors)
+              (println "Counted" @errors "paths with parse issues.")
+              (println "See" cnf/clojars-error-file-paths
+                       "for details or rerun verbosely.")))
           (when-not (#{0 1} exit-code)
-            (println "tree-sitter exited with unexpected exit-code:" exit-code)
+            (println "tree-sitter parse exited with unexpected exit-code:"
+                     exit-code)
             (System/exit 1))
-          (println "took" duration "ms"))
+          (println "Took" duration "ms"))
         (catch Exception e
           (println "Exception:" (.getMessage e))
           (System/exit 1))))))
