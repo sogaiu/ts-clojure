@@ -31,7 +31,13 @@ that earlier / later versions may also work.
 
 * Babashka (tested with 1.2.174)
 
-### Windows Support
+## Getting Started
+
+Once prerequisites have been installed and this repository cloned, try
+`bb tasks` to get a list of tasks.  Looking through `bb.edn` might
+also be helpful.
+
+## Windows Support
 
 Have not tested yet but might work via mingw-w64 / msys2 or similar.
 No idea about WSL, not a fan and haven't tested.
