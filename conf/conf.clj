@@ -1,5 +1,6 @@
 (ns conf
-  (:require [babashka.fs :as fs]))
+  (:require [babashka.fs :as fs]
+            [clojure.string :as cs]))
 
 (def verbose
   (System/getenv "VERBOSE"))
@@ -43,6 +44,51 @@
 
 (def grammar-js
   (str proj-root "/" tsclj-dir "/grammar.js"))
+
+(def tsclj-src-dir
+  (str proj-root "/" tsclj-dir "/src"))
+
+(def parser-c-name
+  "parser.c")
+
+(def parser-c
+  (str tsclj-src-dir "/" parser-c-name))
+
+(def grammar-json
+  (str tsclj-src-dir "/grammar.json"))
+
+(def node-types-json
+  (str tsclj-src-dir "/node-types.json"))
+
+(def tree-sitter-headers-dir
+  (str tsclj-src-dir "/tree_sitter"))
+
+(def generated-source-paths
+  [parser-c grammar-json node-types-json tree-sitter-headers-dir])
+
+(def dynamic-library-extension
+  (let [os (cs/lower-case (System/getProperty "os.name"))]
+    (cond
+      (cs/starts-with? os "win")
+      "dll"
+      ;;
+      (cs/starts-with? os "mac")
+      "dylib"
+      ;; XXX: probably works most of the time?
+      :else
+      "so")))
+
+(def tsclj-lib-name
+  (str "clojure." dynamic-library-extension))
+
+(def tsclj-dynamic-library-path
+  (str (fs/xdg-cache-home)
+       "/tree-sitter/lib"
+       "/"
+       tsclj-lib-name))
+
+(def c-compiler
+  "cc")
 
 ;; clojars
 

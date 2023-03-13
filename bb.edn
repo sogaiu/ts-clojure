@@ -1,6 +1,8 @@
 {:min-bb-version "0.4.0"
  :paths ["script" "conf"]
- :tasks {
+ :tasks {:requires ([babashka.fs :as fs]
+                    [conf :as cnf])
+         ;;
          :enter (when (System/getenv "VERBOSE")
                   (println "Entering:" (:name (current-task))))
          :leave (when (System/getenv "VERBOSE")
@@ -21,10 +23,31 @@
          {:doc "Generate tree-sitter parser.c and friends"
           :depends [ensure-tree-sitter ensure-tree-sitter-clojure]
           :task gen-parser-src/-main}
+         build-dynamic-library
+         {:doc "Build dynamic library"
+          :depends [gen-parser-src]
+          :task build-dynamic-library/-main}
+         install-dynamic-library
+         {:doc "Install dynamic library"
+          :depends [build-dynamic-library]
+          :task install-dynamic-library/-main}
+         ensure-dynamic-library
+         {:doc "Ensure dynamic library is installed"
+          :task (when-not (fs/exists? cnf/tsclj-dynamic-library-path)
+                  (println "Dynamic library not installed...installing")
+                  (run 'install-dynamic-library))}
          corpus-test
          {:doc "Perform corpus test"
-          :depends [ensure-tree-sitter ensure-tree-sitter-clojure]
+          :depends [ensure-tree-sitter
+                    ensure-tree-sitter-clojure
+                    ensure-dynamic-library]
           :task corpus-test/-main}
+         clean
+         {:doc "Remove generated and compiled bits"
+          :task clean/-main}
+         uninstall-dynamic-library
+         {:doc "Uninstall dynamic library"
+          :task uninstall-dynamic-library/-main}
          ;; Clojars
          gen-clru-list
          {:doc "Make Clojars release jars list"
@@ -39,6 +62,7 @@
          parse-clojars-code
          {:doc "Parse Clojars code samples"
           :depends [ensure-tree-sitter
+                    ensure-dynamic-library
                     gen-clru-list
                     batch-fetch-clojars-jars
                     extract-clojars-jars]
@@ -60,15 +84,18 @@
          parse-cljd-code
          {:doc "Parse ClojureDart code samples"
           :depends [ensure-tree-sitter
+                    ensure-dynamic-library
                     fetch-cljd-code]
           :task parse-cljd-code/-main}
          ;; expected issues
          show-expected-failures
          {:doc "Show expected failure examples"
-          :depends [ensure-tree-sitter]
+          :depends [ensure-tree-sitter
+                    ensure-dynamic-library]
           :task show-expected-failures/-main}
          show-expected-misparses
          {:doc "Show expected misparsing examples"
-          :depends [ensure-tree-sitter]
+          :depends [ensure-tree-sitter
+                    ensure-dynamic-library]
           :task show-expected-misparses/-main}
          }}
