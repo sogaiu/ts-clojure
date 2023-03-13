@@ -3,5 +3,7 @@
 
 (defn -main
   [& _args]
-  (or (not (fs/which "rustc"))
-      (not (fs/which "cargo"))))
+  (when-not (and (fs/which "rustc")
+                 (fs/which "cargo"))
+    (println "Did not find both rustc and cargo.")
+    (System/exit 1)))
