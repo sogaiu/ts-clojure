@@ -18,7 +18,7 @@
          ensure-tree-sitter-clojure
          {:doc "Ensure tree-sitter-clojure is available"
           :task ensure-tree-sitter-clojure/-main}
-         ;; tree-sitter parser source generation and corpus test
+         ;; tree-sitter grammar / parser / dynamic library tasks
          gen-parser-src
          {:doc "Generate tree-sitter parser.c and friends"
           :depends [ensure-tree-sitter ensure-tree-sitter-clojure]
