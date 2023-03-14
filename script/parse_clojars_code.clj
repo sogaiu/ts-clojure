@@ -31,7 +31,7 @@
         (let [start-time (System/currentTimeMillis)
               out-file-path (fs/create-temp-file)
               _ (fs/delete-on-exit out-file-path)
-              p (proc/process {:dir cnf/tsclj-dir
+              p (proc/process {:dir (cnf/grammar :dir)
                                :out :write
                                :out-file (fs/file out-file-path)}
                               (str cnf/ts-bin-path

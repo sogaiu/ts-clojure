@@ -7,10 +7,11 @@
 (defn -main
   [& _args]
   ;; remove generated / compiled tree-sitter-clojure/src content
-  (doseq [fs-path (concat cnf/generated-source-paths
+  (doseq [fs-path (concat (cnf/gen-source-paths cnf/grammar)
                           ;; XXX: hard-wired parser.o
-                          [(str cnf/tsclj-src-dir "/parser.o")
-                           (str cnf/tsclj-src-dir "/" cnf/tsclj-lib-name)])]
+                          [(str (cnf/grammar :src-dir) "/parser.o")
+                           (str (cnf/grammar :src-dir) "/"
+                                (cnf/grammar :lib-name))])]
     (when (fs/exists? fs-path)
       (cond
         (fs/directory? fs-path)

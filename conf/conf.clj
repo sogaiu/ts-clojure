@@ -7,6 +7,18 @@
 
 (def proj-root (fs/cwd))
 
+(def dynamic-library-extension
+  (let [os (cs/lower-case (System/getProperty "os.name"))]
+    (cond
+      (cs/starts-with? os "win")
+      "dll"
+      ;;
+      (cs/starts-with? os "mac")
+      "dylib"
+      ;; XXX: probably works most of the time?
+      :else
+      "so")))
+
 ;; tree-sitter
 
 (def ts-ref
@@ -31,64 +43,90 @@
 (def ts-cli-link-path
   "bin/tree-sitter")
 
-;; tree-sitter-clojure
-
-(def tsclj-ref
-  "pre-0.0.12")
-
-(def tsclj-dir
-  "tree-sitter-clojure")
-
-(def tsclj-repo-url
-  "https://github.com/sogaiu/tree-sitter-clojure")
-
-(def grammar-js
-  (str proj-root "/" tsclj-dir "/grammar.js"))
-
-(def tsclj-src-dir
-  (str proj-root "/" tsclj-dir "/src"))
-
 (def parser-c-name
   "parser.c")
 
-(def parser-c
-  (str tsclj-src-dir "/" parser-c-name))
-
-(def grammar-json
-  (str tsclj-src-dir "/grammar.json"))
-
-(def node-types-json
-  (str tsclj-src-dir "/node-types.json"))
-
-(def tree-sitter-headers-dir
-  (str tsclj-src-dir "/tree_sitter"))
-
-(def generated-source-paths
-  [parser-c grammar-json node-types-json tree-sitter-headers-dir])
-
-(def dynamic-library-extension
-  (let [os (cs/lower-case (System/getProperty "os.name"))]
-    (cond
-      (cs/starts-with? os "win")
-      "dll"
-      ;;
-      (cs/starts-with? os "mac")
-      "dylib"
-      ;; XXX: probably works most of the time?
-      :else
-      "so")))
-
-(def tsclj-lib-name
-  (str "clojure." dynamic-library-extension))
-
-(def tsclj-dynamic-library-path
-  (str (fs/xdg-cache-home)
-       "/tree-sitter/lib"
-       "/"
-       tsclj-lib-name))
-
 (def c-compiler
   "cc")
+
+(defn repo-path-to
+  [root path]
+  (str proj-root "/" root "/" path))
+
+(defn src-path-to
+  [root path]
+  (str proj-root "/" root "/src/" path))
+
+(defn make-inner-name
+  [name]
+  (cs/replace name "-" "_"))
+
+(defn gen-source-paths
+  [grammar]
+  (reduce (fn [acc i]
+            (conj acc (i grammar)))
+          []
+          [:parser-c :grammar-json :node-types-json :ts-headers-dir]))
+
+;; tree-sitter-clojure
+
+(def ts-clj
+  (let [name "clojure"
+        repo-name (str "tree-sitter-" name)
+        dir-name repo-name
+        inner-name (make-inner-name name)
+        lib-name (str inner-name "." dynamic-library-extension)]
+    {:name name
+     :inner-name inner-name
+     ;;
+     :repo-url (str "https://github.com/sogaiu/" repo-name)
+     :ref "pre-0.0.12"
+     ;;
+     :dir dir-name
+     :grammar-js (repo-path-to dir-name "grammar.js")
+     ;;
+     :src-dir (str proj-root "/" dir-name "/src")
+     :parser-c (src-path-to dir-name parser-c-name)
+     :grammar-json (src-path-to dir-name "grammar.json")
+     :node-types-json (src-path-to dir-name "node-types-json")
+     :ts-headers-dir (src-path-to dir-name "tree_sitter")
+     ;;
+     :lib-name lib-name
+     :lib-path (str (fs/xdg-cache-home)
+                    "/tree-sitter/lib"
+                    "/" lib-name)}))
+
+;; tree-sitter-clojure-def
+
+(def ts-clj-def
+  (let [name "clojure-def"
+        repo-name (str "tree-sitter-" name)
+        dir-name repo-name
+        inner-name (make-inner-name name)
+        lib-name (str inner-name "." dynamic-library-extension)]
+    {:name name
+     :inner-name inner-name
+     ;;
+     :repo-url (str "https://github.com/sogaiu/" repo-name)
+     :ref "default"
+     ;;
+     :dir dir-name
+     :grammar-js (repo-path-to dir-name "grammar.js")
+     ;;
+     :src-dir (str proj-root "/" dir-name "/src")
+     :parser-c (src-path-to dir-name parser-c-name)
+     :grammar-json (src-path-to dir-name "grammar.json")
+     :node-types-json (src-path-to dir-name "node-types-json")
+     :ts-headers-dir (src-path-to dir-name "tree_sitter")
+     ;;
+     :lib-name lib-name
+     :lib-path (str (fs/xdg-cache-home)
+                    "/tree-sitter/lib"
+                    "/" lib-name)}))
+
+;; choose which grammar
+
+(def ^:dynamic grammar ts-clj)
 
 ;; clojars
 

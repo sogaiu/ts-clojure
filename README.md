@@ -44,10 +44,14 @@ such as:
   use (can be SHA, branch name, tag name)
 * `abi` - ABI number to use when generating `parser.c` from
   `grammar.js`
-* `tsclj-ref` - commit ref for which version of `tree-sitter-clojure`
-  to use (can be SHA, branch name, tag name)
 * `c-compiler` - name of C compiler to invoke (e.g. `cc`, `gcc`,
   `clang`)
+
+Inside the maps `ts-clj` and `ts-clj-def`, the values for the keys
+`:repo-url` and `:ref` might be of interest too.
+
+The value of `grammar` can be changed to select which grammar is the
+"current" one.  It can be set to `ts-clj` or `ts-clj-def`.
 
 ## Windows Support
 

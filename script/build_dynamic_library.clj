@@ -5,7 +5,7 @@
 (defn -main
   [& _args]
   ;; compile
-  (let [p (proc/process {:dir cnf/tsclj-src-dir
+  (let [p (proc/process {:dir (cnf/grammar :src-dir)
                          :out :string
                          :err :string}
                         (str cnf/c-compiler
@@ -20,13 +20,13 @@
       (println (:err @p))
       (System/exit 1))
     ;; link
-    (let [p (proc/process {:dir cnf/tsclj-src-dir
+    (let [p (proc/process {:dir (cnf/grammar :src-dir)
                            :out :string
                            :err :string}
                           (str cnf/c-compiler
                                " -fPIC"
                                " -shared parser.o" ;; XXX: hard-wired
-                               " -o " cnf/tsclj-lib-name))
+                               " -o " (cnf/grammar :lib-name)))
           exit-code (:exit @p)]
       (when (not (zero? exit-code))
         (println "Problem linking:" exit-code)

@@ -4,7 +4,7 @@
 
 (defn -main
   [& _args]
-  (let [p (proc/process {:dir cnf/tsclj-dir
+  (let [p (proc/process {:dir (cnf/grammar :dir)
                          :out :string}
                         (str cnf/ts-bin-path " test"))
         exit-code (:exit @p)]

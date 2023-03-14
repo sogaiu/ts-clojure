@@ -1,4 +1,4 @@
-(ns ensure-tree-sitter-clojure
+(ns ensure-tree-sitter-grammar
   (:require [babashka.fs :as fs]
             [babashka.process :as proc]
             [babashka.tasks :as t]
@@ -6,17 +6,17 @@
 
 (defn -main
   [& _args]
-  (when-not (fs/exists? cnf/tsclj-dir)
+  (when-not (fs/exists? (cnf/grammar :dir))
     (try
-      (t/shell (str "git clone " cnf/tsclj-repo-url))
+      (t/shell (str "git clone " (cnf/grammar :repo-url)))
       (catch Exception e
-        (println "Problem cloning tree-sitter-clojure:" (.getMessage e))
+        (println "Problem cloning tree-sitter grammar:" (.getMessage e))
         (System/exit 1)))
-    ;; check out commit tsclj-ref
+    ;; check out commit
     (try
-      (println "Checking out commit:" cnf/tsclj-ref)
-      (let [p (proc/process {:dir cnf/tsclj-dir}
-                            "git" "checkout" cnf/tsclj-ref)
+      (println "Checking out commit:" (cnf/grammar :ref))
+      (let [p (proc/process {:dir (cnf/grammar :dir)}
+                            "git" "checkout" (cnf/grammar :ref))
               exit-code (:exit @p)]
         (when-not (zero? exit-code)
           (println "git checkout exited non-zero:" exit-code)

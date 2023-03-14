@@ -4,7 +4,7 @@
 
 (defn -main
   [& _args]
-  (when (fs/exists? cnf/tsclj-dynamic-library-path)
-    (fs/delete cnf/tsclj-dynamic-library-path)))
+  (when (fs/exists? (cnf/grammar :lib-path))
+    (fs/delete (cnf/grammar :lib-path))))
 
 

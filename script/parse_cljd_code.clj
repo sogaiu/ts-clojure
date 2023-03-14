@@ -24,7 +24,7 @@
                       (map str @files))
       ;; parse via the paths file
       (try
-        (proc/process {:dir cnf/tsclj-dir}
+        (proc/process {:dir (cnf/grammar :dir)}
                       (str cnf/ts-bin-path " parse --quiet --paths " paths-file))
         (catch Exception e
           (println "Exception:" (.getMessage e))))

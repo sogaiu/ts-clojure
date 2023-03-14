@@ -19,13 +19,28 @@
           :depends [check-rust-bits
                     check-js-bits]
           :task ensure-tree-sitter/-main}
+         ensure-tree-sitter-grammar
+         {:doc "Ensure tree-sitter grammar is available"
+          :task ensure-tree-sitter-grammar/-main}
          ensure-tree-sitter-clojure
          {:doc "Ensure tree-sitter-clojure is available"
-          :task ensure-tree-sitter-clojure/-main}
+          :task (binding [cnf/grammar cnf/ts-clj]
+                  (run 'ensure-tree-sitter-grammar))}
+         ensure-tree-sitter-clojure-def
+         {:doc "Ensure tree-sitter-clojure-def is available"
+          :depends [ensure-tree-sitter-clojure]
+          :task (binding [cnf/grammar cnf/ts-clj-def]
+                  (run 'ensure-tree-sitter-grammar))}
+         show-current-grammar
+         {:doc "Show current grammar name"
+          :task (println (cnf/grammar :name))}
+         dump-current-grammar
+         {:doc "Dump current grammar"
+          :task (clojure.pprint/pprint cnf/grammar)}
          ;; tree-sitter grammar / parser / dynamic library tasks
          gen-parser-src
          {:doc "Generate tree-sitter parser.c and friends"
-          :depends [ensure-tree-sitter ensure-tree-sitter-clojure]
+          :depends [ensure-tree-sitter ensure-tree-sitter-grammar]
           :task gen-parser-src/-main}
          build-dynamic-library
          {:doc "Build dynamic library"
@@ -37,7 +52,7 @@
           :task install-dynamic-library/-main}
          ensure-dynamic-library
          {:doc "Ensure dynamic library is installed"
-          :task (when-not (fs/exists? cnf/tsclj-dynamic-library-path)
+          :task (when-not (fs/exists? (cnf/grammar :lib-path))
                   (println "Dynamic library not installed...installing")
                   (run 'install-dynamic-library))}
          corpus-test
