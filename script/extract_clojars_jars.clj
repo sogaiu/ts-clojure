@@ -49,6 +49,7 @@
           jar-paths (atom [])]
       ;; find all jar files
       (print "Looking for jar files ... ")
+      (flush)
       (fs/walk-file-tree cnf/clojars-jars-root
                          {:visit-file
                           (fn [path _]
@@ -63,6 +64,7 @@
       ;;                (map str @jar-paths))
       ;; unzip jar files
       (print "Unzipping jar files ... ")
+      (flush)
       (let [start-time (System/currentTimeMillis)
             counter (atom 0)]
         (doseq [jar-path @jar-paths]
