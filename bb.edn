@@ -66,6 +66,16 @@
          uninstall-dynamic-library
          {:doc "Uninstall dynamic library"
           :task uninstall-dynamic-library/-main}
+         ;; repos
+         count-repos-files
+         {:doc "Show repos content statistics"
+          :task count-repos-files/-main}
+         show-current-repos
+         {:doc "Show current repos name"
+          :task (println (cnf/repos :name))}
+         dump-current-repos
+         {:doc "Dump current repos"
+          :task (clojure.pprint/pprint cnf/repos)}
          ;; Clojars
          gen-clru-list
          {:doc "Make Clojars release jars list"
@@ -87,7 +97,7 @@
          count-clojars-files
          {:doc "Count Clojars files with various extensions"
           :task count-clojars-files/-main}
-         ;; Dewey
+         ;; Dewey / GitHub
          fetch-dewey-all-repos-file
          {:doc "Fetch and uncompress dewey's all-repos.edn file"
           :task fetch-dewey-all-repos-file/-main}

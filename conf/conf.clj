@@ -49,6 +49,8 @@
 (def c-compiler
   "cc")
 
+;; helper bits
+
 (defn repo-path-to
   [root path]
   (str proj-root "/" root "/" path))
@@ -60,6 +62,18 @@
 (defn make-inner-name
   [name]
   (cs/replace name "-" "_"))
+
+(defn make-lib-name
+  [name]
+  (let [inner-name (make-inner-name name)]
+    (str inner-name "." dynamic-library-extension)))
+
+(defn make-lib-path
+  [name]
+  (let [lib-name (make-lib-name name)]
+    (str (fs/xdg-cache-home)
+         "/tree-sitter/lib"
+         "/" lib-name)))
 
 (defn gen-source-paths
   [grammar]
@@ -73,11 +87,9 @@
 (def ts-clj
   (let [name "clojure"
         repo-name (str "tree-sitter-" name)
-        dir-name repo-name
-        inner-name (make-inner-name name)
-        lib-name (str inner-name "." dynamic-library-extension)]
+        dir-name repo-name]
     {:name name
-     :inner-name inner-name
+     :inner-name (make-inner-name name)
      ;;
      :repo-url (str "https://github.com/sogaiu/" repo-name)
      :ref "pre-0.0.12"
@@ -91,21 +103,17 @@
      :node-types-json (src-path-to dir-name "node-types-json")
      :ts-headers-dir (src-path-to dir-name "tree_sitter")
      ;;
-     :lib-name lib-name
-     :lib-path (str (fs/xdg-cache-home)
-                    "/tree-sitter/lib"
-                    "/" lib-name)}))
+     :lib-name (make-lib-name name)
+     :lib-path (make-lib-path name)}))
 
 ;; tree-sitter-clojure-def
 
 (def ts-clj-def
   (let [name "clojure-def"
         repo-name (str "tree-sitter-" name)
-        dir-name repo-name
-        inner-name (make-inner-name name)
-        lib-name (str inner-name "." dynamic-library-extension)]
+        dir-name repo-name]
     {:name name
-     :inner-name inner-name
+     :inner-name (make-inner-name name)
      ;;
      :repo-url (str "https://github.com/sogaiu/" repo-name)
      :ref "default"
@@ -119,22 +127,25 @@
      :node-types-json (src-path-to dir-name "node-types-json")
      :ts-headers-dir (src-path-to dir-name "tree_sitter")
      ;;
-     :lib-name lib-name
-     :lib-path (str (fs/xdg-cache-home)
-                    "/tree-sitter/lib"
-                    "/" lib-name)}))
+     :lib-name (make-lib-name name)
+     :lib-path (make-lib-path name)}))
 
-;; choose which grammar
+;; current grammar setting
 
-(def ^:dynamic grammar ts-clj)
+(def ^:dynamic grammar
+  ts-clj)
 
 ;; clojars
 
+(def clojars
+  {:name "clojars"
+   :root (str proj-root "/data/clojars-repos")
+   :extensions #{"clj" "cljc" "cljd" "cljr" "cljs" "cljx"
+                 "dtm" "edn" "bb" "nbb"}
+   :file-exts-path (str proj-root "/data/clojars-file-exts.txt")})
+
 (def clojars-extensions
   #{"clj" "cljc" "cljd" "cljr" "cljs" "cljx" "dtm" "edn" "bb" "nbb"})
-
-(def clojars-file-exts-path
-  (str proj-root "/data/clojars-file-exts.txt"))
 
 (def feed-clj-path
   (str proj-root "/data/feed.clj"))
@@ -163,7 +174,17 @@
 (def clojars-error-file-paths
   (str proj-root "/data/clojars-error-files.txt"))
 
-;; dewey
+;; dewey / github
+
+(def github
+  {:name "github"
+   :root (str proj-root "/data/github-repos")
+   :extensions #{;;"clj" "cljc"
+                 "cljd" "cljr"
+                 ;;"cljs"
+                 "cljx"
+                 "dtm" "edn" "bb" "nbb"}
+   :file-exts-path (str proj-root "/data/github-file-exts.txt")})
 
 (def dewey-all-repos-edn-url
   (str "https://github.com/phronmophobic/dewey/releases/download/"
@@ -178,6 +199,13 @@
 
 ;; clojuredart
 
+(def clojuredart
+  {:name "clojuredart"
+   :root (str proj-root "/data/clojuredart-repos")
+   :extensions #{"clj" "cljc" "cljd"
+                 "edn"}
+   :file-exts-path (str proj-root "/data/clojuredart-file-exts.txt")})
+
 (def cljd-repos-root
   (str proj-root "/data/clojuredart-repos"))
 
@@ -186,6 +214,11 @@
 
 (def cljd-extensions
   #{"cljd"})
+
+;; current repos setting
+
+(def ^:dynamic repos
+  clojars)
 
 ;; failures
 
