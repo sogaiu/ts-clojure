@@ -38,6 +38,10 @@
          {:doc "Dump current grammar"
           :task (clojure.pprint/pprint cnf/grammar)}
          ;; tree-sitter grammar / parser / dynamic library tasks
+         gen-grammar-json
+         {:doc "Generate grammar.json"
+          :depends [ensure-tree-sitter ensure-tree-sitter-grammar]
+          :task gen-grammar-json/-main}
          gen-parser-src
          {:doc "Generate tree-sitter parser.c and friends"
           :depends [ensure-tree-sitter ensure-tree-sitter-grammar]
