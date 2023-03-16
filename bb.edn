@@ -83,12 +83,12 @@
          {:doc "Deduplicate a repos dir"
           :task deduplicate/-main}
          ;; Clojars
-         gen-clru-list
+         -gen-clru-list
          {:doc "Make Clojars release jars list"
           :task gen-clru-list/-main}
          batch-fetch-clojars-jars
          {:doc "Batch fetch some Clojars jars"
-          :depends [gen-clru-list]
+          :depends [-gen-clru-list]
           :task batch-fetch-clojars-jars/-main}
          extract-clojars-jars
          {:doc "Extract content from Clojars jars"
