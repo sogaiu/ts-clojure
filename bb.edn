@@ -76,6 +76,12 @@
          dump-current-repos
          {:doc "Dump current repos"
           :task (clojure.pprint/pprint cnf/repos)}
+         find-duplicates
+         {:doc "Find duplicates"
+          :task find-duplicates/-main}
+         deduplicate
+         {:doc "Deduplicate a repos dir"
+          :task deduplicate/-main}
          ;; Clojars
          gen-clru-list
          {:doc "Make Clojars release jars list"
