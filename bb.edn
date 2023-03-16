@@ -100,9 +100,6 @@
                     batch-fetch-clojars-jars
                     extract-clojars-jars]
           :task parse-clojars-code/-main}
-         count-clojars-files
-         {:doc "Count Clojars files with various extensions"
-          :task count-clojars-files/-main}
          ;; Dewey / GitHub
          fetch-dewey-all-repos-file
          {:doc "Fetch and uncompress dewey's all-repos.edn file"
