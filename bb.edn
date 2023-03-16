@@ -46,13 +46,13 @@
          {:doc "Generate tree-sitter parser.c and friends"
           :depends [ensure-tree-sitter ensure-tree-sitter-grammar]
           :task gen-parser-src/-main}
-         build-dynamic-library
+         -build-dynamic-library
          {:doc "Build dynamic library"
           :depends [gen-parser-src]
           :task build-dynamic-library/-main}
          install-dynamic-library
          {:doc "Install dynamic library"
-          :depends [build-dynamic-library]
+          :depends [-build-dynamic-library]
           :task install-dynamic-library/-main}
          ensure-dynamic-library
          {:doc "Ensure dynamic library is installed"
