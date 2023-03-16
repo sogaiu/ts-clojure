@@ -9,6 +9,6 @@
     (println "grammar.js not found")
     (let [p (proc/process {:dir (cnf/grammar :dir)} cnf/ts-generate-cmd)
           exit-code (:exit @p)]
-      (when (not (zero? exit-code))
+      (when-not (zero? exit-code)
         (println "Problem generating parser source:" exit-code)))))
 
