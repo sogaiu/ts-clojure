@@ -62,6 +62,7 @@
          corpus-test
          {:doc "Perform corpus test"
           :depends [ensure-tree-sitter
+                    ensure-tree-sitter-grammar
                     ensure-dynamic-library]
           :task corpus-test/-main}
          clean
