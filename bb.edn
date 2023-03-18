@@ -79,6 +79,11 @@
                     ensure-tree-sitter-grammar
                     ensure-dynamic-library]
           :task corpus-test/-main}
+         parse
+         {:doc "Parse source file"
+          :depends [ensure-tree-sitter
+                    ensure-dynamic-library]
+          :task parse/-main}
          clean
          {:doc "Remove generated and compiled bits"
           :task clean/-main}
