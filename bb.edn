@@ -8,16 +8,16 @@
          :leave (when (System/getenv "VERBOSE")
                   (println "Leaving:" (:name (current-task))))
          ;; underlying bits
-         check-rust-bits
+         -check-rust-bits
          {:doc "Check Rust capabilities"
           :task check-rust-bits/-main}
-         check-js-bits
+         -check-js-bits
          {:doc "Check JavaScript capabilities"
           :task check-js-bits/-main}
          ensure-tree-sitter
          {:doc "Ensure tree-sitter cli is available"
-          :depends [check-rust-bits
-                    check-js-bits]
+          :depends [-check-rust-bits
+                    -check-js-bits]
           :task ensure-tree-sitter/-main}
          ensure-tree-sitter-grammar
          {:doc "Ensure tree-sitter grammar is available"
