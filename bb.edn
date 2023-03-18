@@ -14,10 +14,14 @@
          -check-js-bits
          {:doc "Check JavaScript capabilities"
           :task check-js-bits/-main}
+         ensure-emsdk
+         {:doc "Ensure Emscripten SDK is available"
+          :task ensure-emsdk/-main}
          ensure-tree-sitter
          {:doc "Ensure tree-sitter cli is available"
           :depends [-check-rust-bits
-                    -check-js-bits]
+                    -check-js-bits
+                    ensure-emsdk]
           :task ensure-tree-sitter/-main}
          ensure-tree-sitter-grammar
          {:doc "Ensure tree-sitter grammar is available"
@@ -46,6 +50,16 @@
          {:doc "Generate tree-sitter parser.c and friends"
           :depends [ensure-tree-sitter ensure-tree-sitter-grammar]
           :task gen-parser-src/-main}
+         build-wasm
+         {:doc "Build .wasm file for grammar"
+          :depends [ensure-tree-sitter ensure-tree-sitter-grammar]
+          :task build-wasm/-main}
+         playground
+         {:doc "Start tree-sitter playground"
+          :depends [ensure-tree-sitter
+                    ensure-tree-sitter-grammar
+                    build-wasm]
+          :task playground/-main}
          -build-dynamic-library
          {:doc "Build dynamic library"
           :depends [gen-parser-src]

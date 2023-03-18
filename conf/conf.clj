@@ -19,6 +19,14 @@
       :else
       "so")))
 
+;; emsdk
+
+(def emsdk-repo-url
+  "https://github.com/emscripten-core/emsdk")
+
+(def emsdk-version
+  "3.1.29")
+
 ;; tree-sitter
 
 (def ts-ref
@@ -134,6 +142,11 @@
 
 (def ^:dynamic grammar
   ts-clj)
+
+(defn wasm-path
+  []
+  (str (grammar :dir) "/"
+       "tree-sitter-" (grammar :inner-name) ".wasm"))
 
 ;; clojars
 

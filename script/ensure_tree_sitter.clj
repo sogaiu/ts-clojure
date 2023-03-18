@@ -25,6 +25,26 @@
       (catch Exception e
         (println "Problem checking out commit:" (.getMessage e))
         (System/exit 1)))
+    ;; build wasm bits
+    (try
+      (println "Building wasm bits...")
+      ;; XXX: not platform-independent
+      ;; https://github.com/emscripten-core/emsdk/issues/1142 \
+      ;;         #issuecomment-1334065131
+      (let [path-with-emcc (str (fs/absolutize "emsdk")
+                                "/upstream/emscripten" ":"
+                                (System/getenv "PATH"))
+            p (proc/process {:dir "tree-sitter"
+                             :extra-env {"PATH" path-with-emcc}}
+                            "./script/build-wasm")
+            exit-code (:exit @p)]
+        (when-not (zero? exit-code)
+          (println "script/build-wasm exited non-zero:" exit-code)
+          (System/exit 1)))
+      (catch Exception e
+        (println "Problem building wasm bits for tree-sitter cli:"
+                 (.getMessage e))
+        (System/exit 1)))
     ;; build tree-sitter cli
     (try
       (println "Building tree-sitter cli...")
