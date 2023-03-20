@@ -1,5 +1,13 @@
 {:min-bb-version "0.4.0"
- :paths ["script" "conf"]
+ :paths ["conf"
+         "script"
+         "script/clojars"
+         "script/clojuredart"
+         "script/github"
+         "script/limits"
+         "script/repos"
+         "script/reqs"
+         "script/tree_sitter"]
  :tasks {:requires ([babashka.fs :as fs]
                     [conf :as cnf])
          ;;
