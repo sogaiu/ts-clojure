@@ -1,4 +1,4 @@
-(ns parse-cljd-code
+(ns parse-clojuredart-code
   (:require [babashka.fs :as fs]
             [babashka.process :as proc]
             [clojure.string :as cs]

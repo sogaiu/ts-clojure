@@ -125,15 +125,15 @@
                     extract-clojars-jars]
           :task parse-clojars-code/-main}
          ;; ClojureDart
-         fetch-cljd-code
+         fetch-clojuredart-code
          {:doc "Retrieve ClojureDart code samples"
-          :task fetch-cljd-code/-main}
-         parse-cljd-code
+          :task fetch-clojuredart-code/-main}
+         parse-clojuredart-code
          {:doc "Parse ClojureDart code samples"
           :depends [ensure-tree-sitter
                     ensure-dynamic-library
-                    fetch-cljd-code]
-          :task parse-cljd-code/-main}
+                    fetch-clojuredart-code]
+          :task parse-clojuredart-code/-main}
          ;; expected issues
          show-expected-failures
          {:doc "Show expected failure examples"
