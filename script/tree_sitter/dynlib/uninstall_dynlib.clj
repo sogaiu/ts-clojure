@@ -1,4 +1,4 @@
-(ns uninstall-dynamic-library
+(ns uninstall-dynlib
   (:require [babashka.fs :as fs]
             [conf :as cnf]))
 

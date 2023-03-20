@@ -7,7 +7,8 @@
          "script/limits"
          "script/repos"
          "script/reqs"
-         "script/tree_sitter"]
+         "script/tree_sitter"
+         "script/tree_sitter/dynlib"]
  :tasks {:requires ([babashka.fs :as fs]
                     [conf :as cnf])
          ;;
@@ -68,36 +69,36 @@
                     ensure-tree-sitter-grammar
                     build-wasm]
           :task playground/-main}
-         -build-dynamic-library
+         -build-dynlib
          {:doc "Build dynamic library"
           :depends [gen-parser-src]
-          :task build-dynamic-library/-main}
-         install-dynamic-library
+          :task build-dynlib/-main}
+         install-dynlib
          {:doc "Install dynamic library"
-          :depends [-build-dynamic-library]
-          :task install-dynamic-library/-main}
-         ensure-dynamic-library
+          :depends [-build-dynlib]
+          :task install-dynlib/-main}
+         ensure-dynlib
          {:doc "Ensure dynamic library is installed"
           :task (when-not (fs/exists? (cnf/grammar :lib-path))
                   (println "Dynamic library not installed...installing")
-                  (run 'install-dynamic-library))}
+                  (run 'install-dynlib))}
          corpus-test
          {:doc "Perform corpus test"
           :depends [ensure-tree-sitter
                     ensure-tree-sitter-grammar
-                    ensure-dynamic-library]
+                    ensure-dynlib]
           :task corpus-test/-main}
          parse
          {:doc "Parse source file"
           :depends [ensure-tree-sitter
-                    ensure-dynamic-library]
+                    ensure-dynlib]
           :task parse/-main}
          clean
          {:doc "Remove generated and compiled bits"
           :task clean/-main}
-         uninstall-dynamic-library
+         uninstall-dynlib
          {:doc "Uninstall dynamic library"
-          :task uninstall-dynamic-library/-main}
+          :task uninstall-dynlib/-main}
          ;; repos
          count-repos-files
          {:doc "Show repos content statistics"
@@ -128,7 +129,7 @@
          parse-clojars-code
          {:doc "Parse Clojars code samples"
           :depends [ensure-tree-sitter
-                    ensure-dynamic-library
+                    ensure-dynlib
                     batch-fetch-clojars-jars
                     extract-clojars-jars]
           :task parse-clojars-code/-main}
@@ -139,18 +140,18 @@
          parse-clojuredart-code
          {:doc "Parse ClojureDart code samples"
           :depends [ensure-tree-sitter
-                    ensure-dynamic-library
+                    ensure-dynlib
                     fetch-clojuredart-code]
           :task parse-clojuredart-code/-main}
          ;; expected issues
          show-expected-failures
          {:doc "Show expected failure examples"
           :depends [ensure-tree-sitter
-                    ensure-dynamic-library]
+                    ensure-dynlib]
           :task show-expected-failures/-main}
          show-expected-misparses
          {:doc "Show expected misparsing examples"
           :depends [ensure-tree-sitter
-                    ensure-dynamic-library]
+                    ensure-dynlib]
           :task show-expected-misparses/-main}
          }}

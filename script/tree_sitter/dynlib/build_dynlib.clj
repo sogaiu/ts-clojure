@@ -1,4 +1,4 @@
-(ns build-dynamic-library
+(ns build-dynlib
   (:require [babashka.process :as proc]
             [conf :as cnf]))
 

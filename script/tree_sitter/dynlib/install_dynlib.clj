@@ -1,4 +1,4 @@
-(ns install-dynamic-library
+(ns install-dynlib
   (:require [babashka.fs :as fs]
             [conf :as cnf]))
 
