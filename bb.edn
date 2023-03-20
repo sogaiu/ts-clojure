@@ -23,7 +23,7 @@
          -check-js-bits
          {:doc "Check JavaScript capabilities"
           :task check-js-bits/-main}
-         ensure-emsdk
+         -ensure-emsdk
          {:doc "Ensure Emscripten SDK is available"
           :task ensure-emsdk/-main}
          ensure-tree-sitter
