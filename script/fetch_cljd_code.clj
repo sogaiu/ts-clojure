@@ -12,6 +12,8 @@
       (when (uri? (java.net.URI. url))
         (when-let [[_ user name]
                    (re-matches #".*/([^/]+)/([^/]+)$" url)]
-          (let [dest-dir (str cnf/cljd-repos-root "/" name "." user)]
+          (let [user-dir (str cnf/cljd-repos-root "/" user)
+                dest-dir (str user-dir "/" name)]
             (when-not (fs/exists? dest-dir)
+              (fs/create-dirs user-dir)
               (t/shell (str "git clone --depth 1 " url " " dest-dir)))))))))
