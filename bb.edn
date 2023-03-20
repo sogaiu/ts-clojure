@@ -124,13 +124,6 @@
                     batch-fetch-clojars-jars
                     extract-clojars-jars]
           :task parse-clojars-code/-main}
-         ;; Dewey / GitHub
-         fetch-dewey-all-repos-file
-         {:doc "Fetch and uncompress dewey's all-repos.edn file"
-          :task fetch-dewey-all-repos-file/-main}
-         extract-dewey-git-urls
-         {:doc "Extract git repository urls from dewey's all-repos.edn"
-          :task extract-dewey-git-urls/-main}
          ;; ClojureDart
          fetch-cljd-code
          {:doc "Retrieve ClojureDart code samples"

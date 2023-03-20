@@ -187,7 +187,7 @@
 (def clojars-error-file-paths
   (str proj-root "/data/clojars-error-files.txt"))
 
-;; dewey / github
+;; github
 
 (def github
   {:name "github"
@@ -199,16 +199,8 @@
                  "dtm" "edn" "bb" "nbb"}
    :file-exts-path (str proj-root "/data/github-file-exts.txt")})
 
-(def dewey-all-repos-edn-url
-  (str "https://github.com/phronmophobic/dewey/releases/download/"
-       "2023-03-06"
-       "/all-repos.edn.gz"))
 
-(def dewey-all-repos-edn
-  (str proj-root "/data/all-repos.edn"))
 
-(def dewey-git-repos-urls
-  (str proj-root "/data/dewey-git-repos-urls.txt"))
 
 ;; clojuredart
 
