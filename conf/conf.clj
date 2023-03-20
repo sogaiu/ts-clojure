@@ -153,12 +153,10 @@
 (def clojars
   {:name "clojars"
    :root (str proj-root "/data/clojars-repos")
-   :extensions #{"clj" "cljc" "cljd" "cljr" "cljs" "cljx"
-                 "dtm" "edn" "bb" "nbb"}
+   :extensions #{"bb" "nbb"
+                 "clj" "cljc" "cljd" "cljr" "cljs" "cljx"
+                 "dtm" "edn"}
    :file-exts-path (str proj-root "/data/clojars-file-exts.txt")})
-
-(def clojars-extensions
-  #{"clj" "cljc" "cljd" "cljr" "cljs" "cljx" "dtm" "edn" "bb" "nbb"})
 
 (def feed-clj-path
   (str proj-root "/data/feed.clj"))
@@ -169,14 +167,14 @@
 (def clojars-jar-list-path
   (str proj-root "/data/clojars-jar-list.txt"))
 
-(def clojars-repos-root
-  (str proj-root "/data/clojars-repos"))
-
 (def clojars-jars-root
   (str proj-root "/data/clojars-jars"))
 
-(def clojars-jar-file-paths
-  (str proj-root "/data/clojars-jar-files.txt"))
+(def clojars-repos-root
+  (clojars :root))
+
+(def clojars-extensions
+  (clojars :extensions))
 
 (def clojars-file-paths
   (str proj-root "/data/clojars-files.txt"))
@@ -211,14 +209,14 @@
                  "edn"}
    :file-exts-path (str proj-root "/data/clojuredart-file-exts.txt")})
 
-(def cljd-repos-root
-  (str proj-root "/data/clojuredart-repos"))
-
 (def cljd-repos-list
   (str proj-root "/data/clojuredart-repos-list.txt"))
 
+(def cljd-repos-root
+  (clojuredart :root))
+
 (def cljd-extensions
-  #{"cljd"})
+  (clojuredart :extensions))
 
 ;; current repos setting
 

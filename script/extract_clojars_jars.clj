@@ -59,9 +59,6 @@
       (println "found"
                (count @jar-paths) "jar files"
                "in" (- (System/currentTimeMillis) start-time) "ms")
-      ;; XXX: save jar file paths to a file
-      ;;(fs/write-lines cnf/clojars-jar-file-paths
-      ;;                (map str @jar-paths))
       ;; unzip jar files
       (print "Unzipping jar files ... ")
       (flush)
