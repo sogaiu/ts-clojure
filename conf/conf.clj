@@ -166,8 +166,8 @@
 (def feed-clj-gz-path
   (str proj-root "/data/feed.clj.gz"))
 
-(def clru-list-path
-  (str proj-root "/data/latest-release-jar-urls.txt"))
+(def clojars-jar-list-path
+  (str proj-root "/data/clojars-jar-list.txt"))
 
 (def clojars-repos-root
   (str proj-root "/data/clojars-repos"))

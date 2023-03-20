@@ -1,4 +1,4 @@
-(ns gen-clru-list
+(ns gen-clojars-jar-list
   (:require [babashka.fs :as fs]
             [babashka.process :as proc]
             [clojure.edn :as ce]
@@ -355,7 +355,7 @@
         (System/exit 1))))
   ;; if there is a feed.clj, process it
   (when (and (fs/exists? cnf/feed-clj-path)
-             (not (fs/exists? cnf/clru-list-path)))
+             (not (fs/exists? cnf/clojars-jar-list-path)))
     (println "Writing latest release jars url list...")
     (let [out-file-path (fs/create-temp-file)]
       (fs/delete-on-exit out-file-path)
@@ -364,4 +364,4 @@
                             (ce/read-string
                              (str "[" (slurp (fs/file cnf/feed-clj-path)) "]"))))
       ;; XXX: not cross-platform...
-      (proc/process "sort" "--output" cnf/clru-list-path out-file-path))))
+      (proc/process "sort" "--output" cnf/clojars-jar-list-path out-file-path))))

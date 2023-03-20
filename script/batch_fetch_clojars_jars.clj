@@ -49,7 +49,7 @@
   [& _args]
   (when (not (fs/exists? cnf/clojars-jars-root))
     (fs/create-dir cnf/clojars-jars-root))
-  (with-open [rdr (cji/reader cnf/clru-list-path)]
+  (with-open [rdr (cji/reader cnf/clojars-jar-list-path)]
     ;; n = -1 means to fetch all remaining
     (let [n (if (empty? *command-line-args*)
               default-n
