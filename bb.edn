@@ -30,7 +30,7 @@
          {:doc "Ensure tree-sitter cli is available"
           :depends [-check-rust-bits
                     -check-js-bits
-                    ensure-emsdk]
+                    -ensure-emsdk]
           :task ensure-tree-sitter/-main}
          ensure-tree-sitter-grammar
          {:doc "Ensure tree-sitter grammar is available"
