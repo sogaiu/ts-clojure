@@ -1,11 +1,7 @@
 {:min-bb-version "0.4.0"
  :paths ["conf"
          "script"
-         "script/clojars"
-         "script/clojuredart"
-         "script/github"
          "script/limits"
-         "script/repos"
          "script/reqs"
          "script/tree_sitter"
          "script/tree_sitter/dynlib"]
@@ -100,49 +96,17 @@
          {:doc "Uninstall dynamic library"
           :task uninstall-dynlib/-main}
          ;; repos
-         count-repos-files
-         {:doc "Show repos content statistics"
-          :task count-repos-files/-main}
          show-current-repos
          {:doc "Show current repos name"
           :task (println (cnf/repos :name))}
          dump-current-repos
          {:doc "Dump current repos"
           :task (clojure.pprint/pprint cnf/repos)}
-         find-duplicates
-         {:doc "Find duplicates"
-          :task find-duplicates/-main}
-         deduplicate
-         {:doc "Deduplicate a repos dir"
-          :task deduplicate/-main}
-         ;; Clojars
-         -gen-clojars-jar-list
-         {:doc "Make Clojars jars list"
-          :task gen-clojars-jar-list/-main}
-         batch-fetch-clojars-jars
-         {:doc "Batch fetch some Clojars jars"
-          :depends [-gen-clojars-jar-list]
-          :task batch-fetch-clojars-jars/-main}
-         extract-clojars-jars
-         {:doc "Extract content from Clojars jars"
-          :task extract-clojars-jars/-main}
-         parse-clojars-code
-         {:doc "Parse Clojars code samples"
+         parse-samples
+         {:doc "Parse current repos code samples"
           :depends [ensure-tree-sitter
-                    ensure-dynlib
-                    batch-fetch-clojars-jars
-                    extract-clojars-jars]
-          :task parse-clojars-code/-main}
-         ;; ClojureDart
-         fetch-clojuredart-code
-         {:doc "Retrieve ClojureDart code samples"
-          :task fetch-clojuredart-code/-main}
-         parse-clojuredart-code
-         {:doc "Parse ClojureDart code samples"
-          :depends [ensure-tree-sitter
-                    ensure-dynlib
-                    fetch-clojuredart-code]
-          :task parse-clojuredart-code/-main}
+                    ensure-dynlib]
+          :task parse-samples/-main}
          ;; expected issues
          show-expected-failures
          {:doc "Show expected failure examples"

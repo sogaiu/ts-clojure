@@ -156,34 +156,7 @@
    :extensions #{"bb" "nbb"
                  "clj" "cljc" "cljd" "cljr" "cljs" "cljx"
                  "dtm" "edn"}
-   :file-exts-path (str proj-root "/data/clojars-file-exts.txt")})
-
-(def feed-clj-path
-  (str proj-root "/data/feed.clj"))
-
-(def feed-clj-gz-path
-  (str proj-root "/data/feed.clj.gz"))
-
-(def clojars-jar-list-path
-  (str proj-root "/data/clojars-jar-list.txt"))
-
-(def clojars-jars-root
-  (str proj-root "/data/clojars-jars"))
-
-(def clojars-repos-root
-  (clojars :root))
-
-(def clojars-extensions
-  (clojars :extensions))
-
-(def clojars-file-paths
-  (str proj-root "/data/clojars-files.txt"))
-
-(def clojars-skip-urls
-  (str proj-root "/data/clojars-skip-urls.txt"))
-
-(def clojars-error-file-paths
-  (str proj-root "/data/clojars-error-files.txt"))
+   :error-file-paths (str proj-root "/data/clojars-error-files.txt")})
 
 ;; github
 
@@ -195,10 +168,7 @@
                  ;;"cljs"
                  "cljx"
                  "dtm" "edn" "bb" "nbb"}
-   :file-exts-path (str proj-root "/data/github-file-exts.txt")})
-
-
-
+   :error-file-paths (str proj-root "/data/github-error-files.txt")})
 
 ;; clojuredart
 
@@ -207,20 +177,13 @@
    :root (str proj-root "/data/clojuredart-repos")
    :extensions #{"clj" "cljc" "cljd"
                  "edn"}
-   :file-exts-path (str proj-root "/data/clojuredart-file-exts.txt")})
-
-(def cljd-repos-list
-  (str proj-root "/data/clojuredart-repos-list.txt"))
-
-(def cljd-repos-root
-  (clojuredart :root))
-
-(def cljd-extensions
-  (clojuredart :extensions))
+   :error-file-paths (str proj-root "/data/clojuredart-error-files.txt")})
 
 ;; current repos setting
 
 (def ^:dynamic repos
+  #_ clojuredart
+  #_github
   clojars)
 
 ;; failures
