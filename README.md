@@ -14,19 +14,6 @@ that earlier / later versions may also work.
 * Node.js (tested with 12.x, 14.x, 16.x, 18.x)
 * Recent C compiler (tested with gcc 11.3.0, clang 14.0.0)
 
-### Repository and Code Sample Fetching
-
-* git (tested with 2.34.1)
-
-### Code Sample Fetching
-
-* curl (tested with 7.81.0)
-
-### Miscellaneous Tasks
-
-* gzip (tested with 1.10)
-* sort (tested with 8.32 from coreutils)
-
 ### Task Automation
 
 * Babashka (tested with 1.2.174)
