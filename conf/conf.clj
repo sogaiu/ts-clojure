@@ -101,6 +101,14 @@
      ;;
      :repo-url (str "https://github.com/sogaiu/" repo-name)
      :ref "pre-0.0.12"
+     ;;:repo-url (str "https://github.com/oakmac/" repo-name)
+     ;;:ref "master"
+     ;;:repo-url (str "https://github.com/Tavistock/" repo-name)
+     ;;:ref "master"
+     ;;:repo-url (str "https://github.com/Lancear/" repo-name)
+     ;;:ref "main"
+     ;;:repo-url (str "https://github.com/artarf/" repo-name)
+     ;;:ref "master"
      ;;
      :dir dir-name
      :grammar-js (repo-path-to dir-name "grammar.js")
