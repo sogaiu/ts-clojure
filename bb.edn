@@ -40,12 +40,9 @@
           :depends [ensure-tree-sitter-clojure]
           :task (binding [cnf/grammar cnf/ts-clj-def]
                   (run 'ensure-tree-sitter-grammar))}
-         show-current-grammar
-         {:doc "Show current grammar name"
-          :task (println (cnf/grammar :name))}
-         dump-current-grammar
+         show-grammar-info
          {:doc "Dump current grammar"
-          :task (clojure.pprint/pprint cnf/grammar)}
+          :task (clojure.pprint/pprint (into (sorted-map) cnf/grammar))}
          ;; tree-sitter grammar / parser / dynamic library tasks
          gen-grammar-json
          {:doc "Generate grammar.json"
@@ -96,11 +93,8 @@
          {:doc "Uninstall dynamic library"
           :task uninstall-dynlib/-main}
          ;; repos
-         show-current-repos
-         {:doc "Show current repos name"
-          :task (println (cnf/repos :name))}
-         dump-current-repos
-         {:doc "Dump current repos"
+         show-repos-info
+         {:doc "Show current repos info"
           :task (clojure.pprint/pprint cnf/repos)}
          parse-samples
          {:doc "Parse current repos code samples"
