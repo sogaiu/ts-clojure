@@ -25,12 +25,12 @@
   "https://github.com/emscripten-core/emsdk")
 
 (def emsdk-version
-  "3.1.29")
+  "3.1.35")
 
 ;; tree-sitter
 
 (def ts-ref
-  "1b1c3974f789a9bfaa31f493e6eaa212f13bdfb9")
+  "0c49d6745b3fc4822ab02e0018770cd6383a779c")
 
 (def ts-repo-url
   "https://github.com/tree-sitter/tree-sitter")
