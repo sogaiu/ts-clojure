@@ -1,0 +1,11 @@
+115 88.5% Invalid
+10 7.7% Modified-Clojure-Behavior
+4 3.1% Old-Clojure
+2 1.5% Tree-Sitter-Limitation
+131 100% Total
+
+59 51.3% Template
+43 37.3% Delimiter
+11 9.6% Malformed
+2 1.7% Not-Really-Clojure
+115 100% Invalid

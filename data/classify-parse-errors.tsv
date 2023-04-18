@@ -1,0 +1,131 @@
+a71d70b86a5430eae50fb226ca50c7c6	Missing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/babel/babel/3.2.9/babel/espanol/morphology/verbos/condicional.edn
+aa99ad0f073ab6d11cb93d3c05617c84	Missing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/babel/babel/3.2.9/babel/espanol/morphology/verbos/futuro.edn
+059722681d02404874f98181471c2c0d	Missing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/babel/babel/3.2.9/babel/espanol/morphology/verbos/imperfecto.edn
+e59bf75766a6ccc7bb0d7c97e5e4cba9	Missing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/babel/babel/3.2.9/babel/espanol/morphology/verbos/preterito.edn
+3196d70b2d46921483d0a4f0d8de293e	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/boot-reframe-10x/boot-template/0.1.0/boot/new/boot_reframe_10x/events.cljs
+67fe077930db7f45b5f6ef05ccf2cfb4	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/boxp/magic/0.0.1/leiningen/new/magic/system.clj
+96f04c2e3d533c9924f052e315488a86	Missing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/casyn/casyn/0.1.2/casyn/balancer/least_loaded.clj
+f8dec0cb8473eab79702c267be5e6362	Missing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/clj-contentful/clj-contentful/1.1.0/clj_contentful.clj
+a7201a082e79bb20839c5d7d68cf7e6d	Zero byte	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/clj-dbase/clj-dbase/0.1.0/clj_dbase/core.clj
+55af6875c91071d815c17ca2d15ee400	Reader macro magic	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/clj-integral/clj-integral/2.1.6/core_ext.clj
+67c6daa30f5654e8f93ec98ef0e82373	Use of mma clarity	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/clj-mma/clj-mma/0.1.0/mma/conversion.clj
+2a9fb00bd8ba6cc9f159b83da8c52ad7	Use of mma clarity	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/clj-mma/clj-mma/0.1.0/mma/core.clj
+12da609a3e3dbe18aece966dc38f4342	Use of mma $	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/clj-mma/clj-mma/0.1.0/mma/dictionary.clj
+cc437d0c132d54cc40e1eb12dc5fe53d	Use of mma clarity	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/clj-mma/clj-mma/0.1.0/primes.clj
+1221bf19326b5083accfbc168ed8edac	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/cljs-cloud-function/clj-template/0.1.1/clj/new/cljs_cloud_function/foo.cljs
+8b762a0487b05894b54faa25b7454647	Metadata with no metadatee	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/clojure-interop/com.amazonaws.internal/1.0.0/com/amazonaws/internal/ResettableInputStream.clj
+e6668f4ad777e90fb490cc60b52381d8	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/coast/coast/0.6.9/controller.clj
+148fb160767c385c1774ed1b347cd1f5	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/coast/coast/0.6.9/model.clj
+3480877ae4cba503a8e05e6a18b54e7d	Missing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/com/onekingslane/danger/jsonschema/1.2.2/jsonschema/example_data.clj
+dff4a1dd4757aeb71a37ade87ea565bb	Incomplete file	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/core/typed/core.typed/0.1.8/clojure/core/typed/alms_infer.clj
+1ddb2a407d41351601041f26a4b39797	Missing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dawcs/debug-repl/0.3.4/dawcs/debug_repl.clj
+6485a32e221e45eaf95781cde6db8369	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dorab-lib-template/clj-template/0.1.3/clj/new/dorab_lib_template/system.edn
+a5196ab022b21b4d9c98ac95ec30db25	Missing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/ds-utils/ds-utils/0.3.1/ds_utils/locality_sensitive_hashing.clj
+6e458b7803a12ba5cc766071aaa4ebe1	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2020.06.3/clj/new/dv.fulcro_template/deps.edn
+17df7dd3e7fa348bcccce2196ffc54fb	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2020.06.3/clj/new/dv.fulcro_template/shadow-cljs.edn
+685dae3a729a71684a73bfc26fdcf058	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2020.06.3/clj/new/dv.fulcro_template/src/main/app/auth/login.cljs
+58bd9dc9a7852b88cd32d8562c7f9ee8	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2020.06.3/clj/new/dv.fulcro_template/src/main/app/client/application.cljs
+d55530248cebc95383d906af58e3a2dc	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2020.06.3/clj/new/dv.fulcro_template/src/main/app/client/client_entry.cljs
+36dff798ca3e7089c0744299673275f1	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2020.06.3/clj/new/dv.fulcro_template/src/main/app/client/ui/root.cljs
+356fcb19415c6802dcbc306c53e28711	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2020.06.3/clj/new/dv.fulcro_template/src/main/app/client/ui/task_page.cljs
+429066e9767e3fc331a0768d85587d77	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2020.06.3/clj/new/dv.fulcro_template/src/main/config/defaults.edn
+60de60687ed5322cc037e5f8cc46aebf	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2020.06.3/clj/new/dv.fulcro_template/src/main/config/dev.edn
+0ab87c09e499f3d73f2236b7ed26f31c	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2020.06.3/clj/new/dv.fulcro_template/src/main/config/fe-config.edn
+72a2100ba629eb9ccab48cab53538eca	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2021-11-21.0.0/clj/new/dv.fulcro_template/deps.edn
+e57833005b1c8660dbbfd9ad5ecdd9b6	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2021-11-21.0.0/clj/new/dv.fulcro_template/shadow-cljs.edn
+e12e56dc77c42568ee1a33a72f023200	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2021-11-21.0.0/clj/new/dv.fulcro_template/src/main/app/auth/login.cljs
+9ead43075d7502e94fb3e303e68c5f5f	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2021-11-21.0.0/clj/new/dv.fulcro_template/src/main/app/client/application.cljs
+85a77fbfb6f7890dc31b036e9bcf8455	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2021-11-21.0.0/clj/new/dv.fulcro_template/src/main/app/client/client_entry.cljs
+51fb15f6ecb359646c6c3fc43c6f8143	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2021-11-21.0.0/clj/new/dv.fulcro_template/src/main/app/client/ui/root.cljs
+a7a3ebcef20ddd3a273da693d4bfb461	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2021-11-21.0.0/clj/new/dv.fulcro_template/src/main/app/task/ui/task_item.cljs
+c6e3f956de104d43841a4b8795a9c291	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2021-11-21.0.0/clj/new/dv.fulcro_template/src/main/app/task/ui/task_page.cljs
+8d7bc07abd7f7cefea8a2f19cd94ba73	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2021-11-21.0.0/clj/new/dv.fulcro_template/src/main/config/defaults.edn
+71e7729f83f1927a82fc5b876b019be0	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2021-11-21.0.0/clj/new/dv.fulcro_template/src/main/config/dev.edn
+658c0dceb6fd5df3b6bc701450155f85	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2021-11-21.0.0/clj/new/dv.fulcro_template/src/main/config/fe-config.edn
+a901f7c8c17a98b3e10d91682ebe224e	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2021-11-21.0.0/clj/new/dv.fulcro_template/src/main/config/prod.edn
+72803ed12f0615f9eb6ca6d2bb600291	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/dv/fulcro-template/clj-template/2021-11-21.0.0/clj/new/dv.fulcro_template/src/main/config/test.edn
+5289f47b0150aed732d1140019447f37	Missing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/funimage/funimage/0.1.90/funimage/imp/misc.clj
+d698f9e0976333df5c27d9fcbf8fff20	Bare colon	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/geocsv/geocsv/0.1.3/public/data/data.edn
+faee9a0c3a132ecb7cd6c58adfacbd02	Extra delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/glycogen/glycogen/0.1.0/glycogen/tutorial.cljc
+0f12e6ab6406ed391b5510c47db390a2	Extra delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/gov/nasa/earthdata/cmr-http-kit/0.3.0/config/cmr-http-kit/config.edn
+a5858178e24f8a449967bd21a0e7c249	Keyword with @	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/happygapi/happygapi/0.4.8/kgsearch_schema.edn
+0fdf039c286c45d0f3f25c4aecc6a14a	Template with angle brackets	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/hydrogen/cljs/duct-template/0.1.2/hydrogen/cljs/view.cljs
+02d121defd340d7d4571dc219986073e	Template with angle brackets	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/hydrogen/duct-template/0.5.15/core/api/example.clj
+c761cf3782da41bd9ea738e52b7e4ba7	Missing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/ibdknox/analyze/0.1.4/analyze/examples/infer.clj
+b156ab3332d381a23f428f400374d6ab	Incomplete file	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/incstats/incstats/0.1.4/incstats/merge.clj
+7a8184d739ecae25a1381f53e4787bab	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/io/dominic/juxt-wedge/clj-template/0.2.0/clj/new/io.dominic.juxt_wedge/deps.edn
+12ba9d34ef3e11a592066f32c88c3653	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/io/dominic/juxt-wedge/clj-template/0.2.0/clj/new/io.dominic.juxt_wedge/user.clj
+697fc0a1ae535ddcc8b27897a87d68f8	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/kapooya/kap/0.1.4/templates/create-index.clj
+20788387c24c7be4e72206f14d1eba5b	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/kapooya/kap/0.1.4/templates/create-table.clj
+1c19a4f08565c52d1eb06c101473239f	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/kapooya/kap/0.1.4/templates/custom.clj
+5402159512879e6ed3ba0a5a90287eae	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/kapooya/kap/0.1.4/templates/drop-index.clj
+2b65d34102bc5e5fe794ce263cdf6292	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/kapooya/kap/0.1.4/templates/drop-table.clj
+9bae3d7626b5deed09b187a7a1423952	Missing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/kibu/rawat/0.3.3/rawat/datomic.cljs
+90330ad054bce0b88f5b2637b63654c6	Extra delimiters	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/ksseono/duckling/0.0.1/languages/it/rules/cycles.clj
+c057c0e784962e30ff8e3032969d1f50	Commenting hid closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/lein-migae/lein-migae/0.2.1/leiningen/migae/gserver.clj
+4e12b192064c39977f6738b9886960f0	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/lein-noir-gen/lein-noir-gen/0.5.0/templates/entity_model.clj
+81a7a44524911b88afc25be3de8a79e2	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/lein-noir-gen/lein-noir-gen/0.5.0/templates/entity_pages.clj
+5deac93e5483e5e5d965bed01a04b69a	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/lein-noir-gen/lein-noir-gen/0.5.0/templates/entity_templates.clj
+579962e439ab2bfafbe5f2f6171aff55	Extra delimiters	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/lein-source/lein-source/0.3.0/leiningen/source.clj
+7b9b7710ad705e755794afbf15994636	Premature end of string by double quote	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/lein-write-git-sha/lein-write-git-sha/0.1.2/leiningen/write_git_sha.clj
+98cbd8b12b924685593a802883308577	Missing closing square bracket	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/lilactown/hx-frisk/0.0.1/hx_frisk/spec.cljs
+d450b0dee23e64830b9f542ffb379dbb	Missing closing delimiter for string	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/loco/loco/0.3.1/loco/problem.clj
+3755a9f34e61222c7f7f72a76e0975e9	Meant semi colon but used colon	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/moe/util/0.0.1/moe/util/validation.clj
+cd8bf0191220e5ff7e80a68cbe6a664e	Use of chiara - like mma clarity	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/mynx/mynx/2.0.0/reddit.clj
+edb7b1c260bc758ba7eb05bba939e813	Use of chiara - like mma clarity	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/mynx/mynx/2.0.0/reddit/core.clj
+d9cc6b76aafb4cfd9c40d1687bbb8618	Missing closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/natal-wrapper/natal-wrapper/0.0.1/natal_wrapper/core.cljs
+830ecd520054335520f6fd75551b0ae3	Extra delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/net/assum/lein-ver/1.3.0/lein_ver/version.clj
+c2db357ecdb4b2704a872a119c95314c	Extra delimiters	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/ongair/duckling/0.4.22.3/languages/it/rules/cycles.clj
+7cbd7afa8f050443d6935d3e26e7eb8b	Zero byte	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/ont-app/vocabulary/0.2.1/uri-escapes.edn
+1b812109dc2676b29cc2cec8b4b5e341	Commenting hid closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/arewaolakunle/overtone/0.10.1/overtone/examples/getting_started/pragpub-article.clj
+780724067c76897b38d4dce2948f66a0	Missing closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/bananaoomarang/ring-debug-logging/1.0.0/ring_debug_logging/core.clj
+49e64e8265b7fe59acc55a99687e6df7	Missing closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/bouzuya/google-reader/0.1.1/google_reader/api.clj
+5e2cece56cc9dbd6c137acce1a76a454	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/celeritas9/lein-droid/1.1.1/templates/library.project.clj
+7b529e6ef686fa70f96004ee74f2f9dd	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/dorian/lein-droid/0.4.6/templates/library.project.clj
+fceeefbc67e5e21835f68caa64f32ce0	Extra closing delimiters	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/guilespi/less-awful-ssl/0.1.3/less/awful/ssl.clj
+b27a5627105d6fcd1e84949a024a3846	Unescaped backslashes in string	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/jcsims/riemann/0.2.17/streams/pure.clj
+92ae02e2692840c3aec1e3f1ee301960	Metadata with no metadatee - old Clojure?	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/john/hello-world/0.1.0/clojure/core.clj
+b6dfa48f48355bcb3c05c023bca384f9	Metadata with no metadatee - old Clojure?	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/john/hello-world/0.1.0/clojure/genclass.clj
+3dce5c187f244128a7c67cec3d15f2e0	Metadata with no metadatee - old Clojure?	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/john/hello-world/0.1.0/clojure/zip.clj
+f36285f64e1d645c58ee955deb9a0155	Missing closing square bracket	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/karolisl/lein-npm/0.6.3/leiningen/npm.clj
+d09b03d4691d9e8c5c4a8954a3e19f8e	Missing closing delimiters	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/kriyative/clj2js/0.0.2/clj2js/tests.clj
+fe72b5311e4b81097ad1dc0827836709	Missing closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/kyleburton/clj-etl-utils/1.3.10/clj_etl_utils/cache_utils.clj
+5c8deddb5f381aa5b9a31a7c5a37ef32	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/nickbauman/npm-reagent/0.1.0/leiningen/new/npm_reagent/src/npm_reagent/state.cljs
+150e187265168366a85109db94cb3463	Mismatched number of discards	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/notid/pdfboxing/0.1.19/pdfboxing/form.clj
+e777260a4097fa52b57ed85fe5118276	Stray non-Clojure code	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/rutledgepaulv/semantic-reagent/0.1.0/semantic_reagent/icons.cljs
+2edfa7634981053a86f183ed2c7aba2a	Metadata with no metadatee - old Clojure?	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/tomo/compojure/0.3.1/compojure/control.clj
+4f4ad3d4ac8183c2ad7d56bf80619e9d	Extra closing square bracket	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/clojars/tristefigure/shuriken/0.14.49/shuriken/z_expression.clj
+03bdbd763b70c882da09537fae9d59af	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/cloudhoist/lein-pallet-new/0.1.0/leiningen/new/pallet/project.clj
+58269d136fcd481e2d017d63b6b64158	Commenting hid closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/cloudhoist/pallet-hadoop/0.3.3/pallet_hadoop/log_config.clj
+2651fb031bbb832edad49a28662e5ea8	Extra closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/pinkgorilla/gorilla-ui/0.3.49/snippets/gorilla-ui/html.edn
+6fca5f5d65bb2bc770bd56c54c3acdcd	Stray extra code at end of file	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/pinkgorilla/notebook-bundel/0.5.40/pinkgorilla/notebook_ui/datafy/test.edn
+17b9fcefd49bfd7b848fe989d77595ba	Partially converted file	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/org/pinkgorilla/ta/0.2.0/etf/equity-sector-industry.edn
+f292eb9fc81e40c5946ad754ae35bb98	Missing closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/oversampler/oversampler/0.3.0/oversampler/core.clj
+28454d5bbed779e0bc64794c3506c519	Extra closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/pdfa-core/pdfa-core/0.0.4/pdfa/unoapi.clj
+b38d7c2e33808285f21f0af9060b74ae	Incomplete defn	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/peloton/peloton/0.1.2/peloton/websocket.clj
+12aaa43f828cab24666ecfc48fddc095	Modified dispatch macros to handle #b	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/piplin/piplin/0.1.1/piplin/mips.clj
+319ead4d8b4493a71ab80134260ed7d7	Modified dispatch macros to handle #b	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/piplin/piplin/0.1.1/piplin/nexys6/sw_led.clj
+d6c4dc3f5c0de41af3878a3d5348fc74	Modified dispatch macros to handle #b	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/piplin/piplin/0.1.1/piplin/seven_segment_decoder.clj
+a2b3c4a7f3992ba5b990944f4890d129	Missing closing square bracket	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/prabhasp/osmtogeojson-cljs/2.2.5/deps.cljs
+d7390f76ce5ea3d86704e25a053cb50d	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/proud/boot-template/0.2.0/boot/new/proud/events_test.cljs
+447482c8a9a8f23d74ee4612ee7cc727	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/re-frame-template/clj-template/0.1.4/clj/new/re_frame_template/clj-kondo/config.edn
+b5294ffc2c2d96c3045a3dc202ba4d8d	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/re-frame-template/clj-template/0.1.4/clj/new/re_frame_template/dev/cljs/user.cljs
+3f33cf05ed666ea60c1432958a866a17	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/re-frame-template/clj-template/0.1.4/clj/new/re_frame_template/shadow-cljs.edn
+7d8756571ecd815211a133cc1a8f52b1	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/re-frame-template/clj-template/0.1.4/clj/new/re_frame_template/src/core.cljs
+2f617b57e8f1f2e7febb6d8e5e7c804e	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/re-frame-template/clj-template/0.1.4/clj/new/re_frame_template/src/events.cljs
+5b8310397af563cb420ae27a48d54b15	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/re-frame-template/clj-template/0.1.4/clj/new/re_frame_template/src/routes.cljs
+6f99bf5195fd8571823b65ece62ea0d9	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/re-frame-template/clj-template/0.1.4/clj/new/re_frame_template/src/subs.cljs
+60ed35ec58d77305b9c774821c1ebd3d	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/re-frame-template/clj-template/0.1.4/clj/new/re_frame_template/src/views.cljs
+3ef173e88c127eac49675fa607c124f0	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/re-frame-template/clj-template/0.1.4/clj/new/re_frame_template/src/views_recom.cljs
+e9b0c25102953fa29f3e219cdf34de86	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/re-frame-template/clj-template/0.1.4/clj/new/re_frame_template/src/views_recom_routes.cljs
+994b995590c47d20abc25b7834a49cfa	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/re-frame-template/clj-template/0.1.4/clj/new/re_frame_template/src/views_routes.cljs
+ea02d2ea7efe4f5ec88fa288a0f8745c	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/rosado/processing/rosado.processing/1.1.0/rosado/processing/applet.clj
+ddfe1f46d17071fab38a529b1e5c4e53	Commenting hid closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/ru/fl00r/clj-kafka/0.4.17/ru/prepor/clj_kafka/tracers/metrics.clj
+c32b74440fe70bb22198e59a588a1840	Extra closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/ruminate/ruminate/0.5.0/ruminate/berkeley.clj
+a4bd45deccafa1305457d941a3025e64	Template	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/system-template/boot-template/0.1.0/boot/new/system_template/app.cljs
+f5ee588447d69a7107cfd291343eb75c	Missing closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/tandem/support/0.0.7/tandem/error_handling.clj
+c7ffb80bca64714f50dc19f96cd632cb	Incomplete code	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/tcrayford_parsley/parsley/0.1.0/net/cgrand/parsley/demo.clj
+536c57190a40aef5417e1f567c1c2298	Missing closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/travesedo/travesedo/0.1.2/travesedo/transaction.clj
+49996c31c14a9e77b7cc5d684be55de8	Extra closing curly brace	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/wangxiaoyu/poppy/0.0.1/poppy/core.clj
+83ad8f7ae30e62ffb00eee83c71a50f4	Missing closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/wangxiaoyu/poppy/0.0.1/poppy/node.clj
+1c1b7a40440e5e30911c01da856a59c2	Missing closing delimiter	$HOME/src/ts-clojure/clojars-samples/data/clojars-repos/zvs/onyx-java/0.1.9/onyx_java/main.clj
