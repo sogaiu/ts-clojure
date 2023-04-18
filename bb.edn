@@ -96,6 +96,7 @@
           :_tags [:grammar :test]
           :depends [-ensure-tree-sitter
                     -ensure-tree-sitter-grammar
+                    gen-parser-src ;; grammar.json
                     -ensure-dynlib]
           :task corpus-test/-main}
          parse
