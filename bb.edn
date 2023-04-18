@@ -15,100 +15,123 @@
          ;; underlying bits
          -check-rust-bits
          {:doc "Check Rust capabilities"
+          :_tags [:dependency :rust]
           :task check-rust-bits/-main}
          -check-js-bits
          {:doc "Check JavaScript capabilities"
+          :_tags [:dependency :js]
           :task check-js-bits/-main}
          -ensure-emsdk
          {:doc "Ensure Emscripten SDK is available"
+          :_tags [:dependency :wasm]
           :task ensure-emsdk/-main}
          -ensure-tree-sitter
          {:doc "Ensure tree-sitter cli is available"
+          :_tags [:dependency :rust :wasm]
           :depends [-check-rust-bits
                     -check-js-bits
                     -ensure-emsdk]
           :task ensure-tree-sitter/-main}
          -ensure-tree-sitter-grammar
          {:doc "Ensure tree-sitter grammar is available"
+          :_tags [:grammar]
           :task ensure-tree-sitter-grammar/-main}
          -ensure-tree-sitter-clojure
          {:doc "Ensure tree-sitter-clojure is available"
+          :_tags [:grammar]
           :task (binding [cnf/grammar cnf/ts-clj]
                   (run 'ensure-tree-sitter-grammar))}
          -ensure-tree-sitter-clojure-def
          {:doc "Ensure tree-sitter-clojure-def is available"
+          :_tags [:grammar]
           :depends [-ensure-tree-sitter-clojure]
           :task (binding [cnf/grammar cnf/ts-clj-def]
                   (run 'ensure-tree-sitter-grammar))}
          show-grammar-info
          {:doc "Dump current grammar"
+          :_tags [:grammar]
           :task (clojure.pprint/pprint (into (sorted-map) cnf/grammar))}
          ;; tree-sitter grammar / parser / dynamic library tasks
          gen-grammar-json
          {:doc "Generate grammar.json"
+          :_tags [:grammar]
           :depends [-ensure-tree-sitter -ensure-tree-sitter-grammar]
           :task gen-grammar-json/-main}
          gen-parser-src
          {:doc "Generate tree-sitter parser.c and friends"
+          :_tags [:grammar]
           :depends [-ensure-tree-sitter -ensure-tree-sitter-grammar]
           :task gen-parser-src/-main}
          build-wasm
          {:doc "Build .wasm file for grammar"
+          :_tags [:grammar :wasm]
           :depends [-ensure-tree-sitter -ensure-tree-sitter-grammar]
           :task build-wasm/-main}
          playground
          {:doc "Start tree-sitter playground"
+          :_tags [:grammar :wasm]
           :depends [-ensure-tree-sitter
                     -ensure-tree-sitter-grammar
                     build-wasm]
           :task playground/-main}
          -build-dynlib
          {:doc "Build dynamic library"
+          :_tags [:grammar]
           :depends [gen-parser-src]
           :task build-dynlib/-main}
          install-dynlib
          {:doc "Install dynamic library"
+          :_tags [:grammar]
           :depends [-build-dynlib]
           :task install-dynlib/-main}
          -ensure-dynlib
          {:doc "Ensure dynamic library is installed"
+          :_tags [:grammar]
           :task (when-not (fs/exists? (cnf/grammar :lib-path))
                   (println "Dynamic library not installed...installing")
                   (run 'install-dynlib))}
          corpus-test
          {:doc "Perform corpus test"
+          :_tags [:grammar :test]
           :depends [-ensure-tree-sitter
                     -ensure-tree-sitter-grammar
                     -ensure-dynlib]
           :task corpus-test/-main}
          parse
          {:doc "Parse source file"
+          :_tags [:grammar :test]
           :depends [-ensure-tree-sitter
                     -ensure-dynlib]
           :task parse/-main}
          clean
          {:doc "Remove generated and compiled bits"
+          :_tags [:grammar]
           :task clean/-main}
          uninstall-dynlib
          {:doc "Uninstall dynamic library"
+          :_tags [:grammar]
           :task uninstall-dynlib/-main}
          ;; repos
          show-repos-info
          {:doc "Show current repos info"
+          :_tags [:repos]
           :task (clojure.pprint/pprint cnf/repos)}
          parse-samples
          {:doc "Parse current repos code samples"
+          :_tags [:repos :test]
           :depends [-ensure-tree-sitter
                     -ensure-dynlib]
           :task parse-samples/-main}
          ;; expected issues
          show-expected-failures
          {:doc "Show expected failure examples"
+          :_tags [:test]
           :depends [-ensure-tree-sitter
                     -ensure-dynlib]
           :task show-expected-failures/-main}
          show-expected-misparses
          {:doc "Show expected misparsing examples"
+          :_tags [:test]
           :depends [-ensure-tree-sitter
                     -ensure-dynlib]
           :task show-expected-misparses/-main}
