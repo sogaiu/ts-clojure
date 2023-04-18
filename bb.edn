@@ -22,22 +22,22 @@
          -ensure-emsdk
          {:doc "Ensure Emscripten SDK is available"
           :task ensure-emsdk/-main}
-         ensure-tree-sitter
+         -ensure-tree-sitter
          {:doc "Ensure tree-sitter cli is available"
           :depends [-check-rust-bits
                     -check-js-bits
                     -ensure-emsdk]
           :task ensure-tree-sitter/-main}
-         ensure-tree-sitter-grammar
+         -ensure-tree-sitter-grammar
          {:doc "Ensure tree-sitter grammar is available"
           :task ensure-tree-sitter-grammar/-main}
-         ensure-tree-sitter-clojure
+         -ensure-tree-sitter-clojure
          {:doc "Ensure tree-sitter-clojure is available"
           :task (binding [cnf/grammar cnf/ts-clj]
                   (run 'ensure-tree-sitter-grammar))}
-         ensure-tree-sitter-clojure-def
+         -ensure-tree-sitter-clojure-def
          {:doc "Ensure tree-sitter-clojure-def is available"
-          :depends [ensure-tree-sitter-clojure]
+          :depends [-ensure-tree-sitter-clojure]
           :task (binding [cnf/grammar cnf/ts-clj-def]
                   (run 'ensure-tree-sitter-grammar))}
          show-grammar-info
@@ -46,20 +46,20 @@
          ;; tree-sitter grammar / parser / dynamic library tasks
          gen-grammar-json
          {:doc "Generate grammar.json"
-          :depends [ensure-tree-sitter ensure-tree-sitter-grammar]
+          :depends [-ensure-tree-sitter -ensure-tree-sitter-grammar]
           :task gen-grammar-json/-main}
          gen-parser-src
          {:doc "Generate tree-sitter parser.c and friends"
-          :depends [ensure-tree-sitter ensure-tree-sitter-grammar]
+          :depends [-ensure-tree-sitter -ensure-tree-sitter-grammar]
           :task gen-parser-src/-main}
          build-wasm
          {:doc "Build .wasm file for grammar"
-          :depends [ensure-tree-sitter ensure-tree-sitter-grammar]
+          :depends [-ensure-tree-sitter -ensure-tree-sitter-grammar]
           :task build-wasm/-main}
          playground
          {:doc "Start tree-sitter playground"
-          :depends [ensure-tree-sitter
-                    ensure-tree-sitter-grammar
+          :depends [-ensure-tree-sitter
+                    -ensure-tree-sitter-grammar
                     build-wasm]
           :task playground/-main}
          -build-dynlib
@@ -70,21 +70,21 @@
          {:doc "Install dynamic library"
           :depends [-build-dynlib]
           :task install-dynlib/-main}
-         ensure-dynlib
+         -ensure-dynlib
          {:doc "Ensure dynamic library is installed"
           :task (when-not (fs/exists? (cnf/grammar :lib-path))
                   (println "Dynamic library not installed...installing")
                   (run 'install-dynlib))}
          corpus-test
          {:doc "Perform corpus test"
-          :depends [ensure-tree-sitter
-                    ensure-tree-sitter-grammar
-                    ensure-dynlib]
+          :depends [-ensure-tree-sitter
+                    -ensure-tree-sitter-grammar
+                    -ensure-dynlib]
           :task corpus-test/-main}
          parse
          {:doc "Parse source file"
-          :depends [ensure-tree-sitter
-                    ensure-dynlib]
+          :depends [-ensure-tree-sitter
+                    -ensure-dynlib]
           :task parse/-main}
          clean
          {:doc "Remove generated and compiled bits"
@@ -98,18 +98,18 @@
           :task (clojure.pprint/pprint cnf/repos)}
          parse-samples
          {:doc "Parse current repos code samples"
-          :depends [ensure-tree-sitter
-                    ensure-dynlib]
+          :depends [-ensure-tree-sitter
+                    -ensure-dynlib]
           :task parse-samples/-main}
          ;; expected issues
          show-expected-failures
          {:doc "Show expected failure examples"
-          :depends [ensure-tree-sitter
-                    ensure-dynlib]
+          :depends [-ensure-tree-sitter
+                    -ensure-dynlib]
           :task show-expected-failures/-main}
          show-expected-misparses
          {:doc "Show expected misparsing examples"
-          :depends [ensure-tree-sitter
-                    ensure-dynlib]
+          :depends [-ensure-tree-sitter
+                    -ensure-dynlib]
           :task show-expected-misparses/-main}
          }}
