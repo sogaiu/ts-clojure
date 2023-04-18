@@ -66,14 +66,14 @@
          build-wasm
          {:doc "Build .wasm file for grammar"
           :_tags [:grammar :wasm]
-          :depends [-ensure-tree-sitter -ensure-tree-sitter-grammar]
+          :depends [-ensure-emsdk
+                    -ensure-tree-sitter
+                    gen-parser-src]
           :task build-wasm/-main}
          playground
          {:doc "Start tree-sitter playground"
           :_tags [:grammar :wasm]
-          :depends [-ensure-tree-sitter
-                    -ensure-tree-sitter-grammar
-                    build-wasm]
+          :depends [build-wasm]
           :task playground/-main}
          -build-dynlib
          {:doc "Build dynamic library"
