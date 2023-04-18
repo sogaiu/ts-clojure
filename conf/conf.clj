@@ -160,7 +160,7 @@
 
 (def clojars
   {:name "clojars"
-   :root (str proj-root "/data/clojars-repos")
+   :root (str proj-root "/clojars-samples/data/clojars-repos")
    :extensions #{"bb" "nbb"
                  "clj" "cljc" "cljd" "cljr" "cljs" "cljx"
                  "dtm" "edn"}
@@ -170,7 +170,7 @@
 
 (def github
   {:name "github"
-   :root (str proj-root "/data/github-repos")
+   :root (str proj-root "/github-samples/data/github-repos")
    :extensions #{;;"clj" "cljc"
                  "cljd" "cljr"
                  ;;"cljs"
@@ -182,7 +182,7 @@
 
 (def clojuredart
   {:name "clojuredart"
-   :root (str proj-root "/data/clojuredart-repos")
+   :root (str proj-root "/clojuredart-samples/data/clojuredart-repos")
    :extensions #{"clj" "cljc" "cljd"
                  "edn"}
    :error-file-paths (str proj-root "/data/clojuredart-error-files.txt")})
