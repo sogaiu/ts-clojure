@@ -40,6 +40,21 @@ Inside the maps `ts-clj` and `ts-clj-def`, the values for the keys
 The value of `grammar` can be changed to select which grammar is the
 "current" one.  It can be set to `ts-clj` or `ts-clj-def`.
 
+## Non-trivial Tests
+
+To test the parser on real-world code, one can use the `parse-samples`
+task.  However, first it's necessary to get some samples.  To do this:
+
+* Clone the
+  [clojars-samples](https://github.com/sogaiu/clojars-samples) or
+  [clojuredart-samples](https://github.com/sogaiu/clojuredart-samples)
+  repositories as subdirectories.
+* Edit the `repos` value in `conf/conf.clj` appropriately, choosing
+  either `clojars` or `clojuredart` for the value.
+* Examine the babashka tasks in the cloned subdirectory and execute
+  the necessary tasks to obtain and prepare the samples.  (Sorry, this
+  is vague at the moment.)
+
 ## Windows Support
 
 Have not tested yet but might work via mingw-w64 / msys2 or similar.
