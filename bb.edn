@@ -2,6 +2,7 @@
  :paths ["conf"
          "script"
          "script/limits"
+         "script/repos"
          "script/reqs"
          "script/tree_sitter"
          "script/tree_sitter/dynlib"]
@@ -122,6 +123,18 @@
           :depends [-ensure-tree-sitter
                     -ensure-dynlib]
           :task parse-samples/-main}
+         count-repos-files
+         {:doc "Show repos content statistics"
+          :_tags [:repos]
+          :task count-repos-files/-main}
+         find-duplicates
+         {:doc "Find duplicates"
+          :_tags [:repos]
+          :task find-duplicates/-main}
+         deduplicate
+         {:doc "Deduplicate a repos dir"
+          :_tags [:repos]
+          :task deduplicate/-main}
          ;; expected issues
          show-expected-failures
          {:doc "Show expected failure examples"
