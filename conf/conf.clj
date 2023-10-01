@@ -57,6 +57,22 @@
 (def c-compiler
   "cc")
 
+(def ts-conf-dir
+  (let [dot-ts-dir (str proj-root "/.tree-sitter")]
+    (if (fs/exists? dot-ts-dir)
+      dot-ts-dir
+      ;; XXX: windows?
+      (str (fs/xdg-config-home)
+           "/tree-sitter"))))
+
+(def ts-lib-dir
+  (let [dot-ts-dir (str proj-root "/.tree-sitter")]
+    (if (fs/exists? dot-ts-dir)
+      (str dot-ts-dir "/lib")
+      ;; XXX: windows?
+      (str (fs/xdg-cache-home)
+           "/tree-sitter/lib"))))
+
 ;; helper bits
 
 (defn repo-path-to
@@ -79,9 +95,11 @@
 (defn make-lib-path
   [name]
   (let [lib-name (make-lib-name name)]
-    (str (fs/xdg-cache-home)
-         "/tree-sitter/lib"
-         "/" lib-name)))
+    (if ts-lib-dir
+      (str ts-lib-dir "/" lib-name)
+      (str (fs/xdg-cache-home)
+           "/tree-sitter/lib"
+           "/" lib-name))))
 
 (defn gen-source-paths
   [grammar]

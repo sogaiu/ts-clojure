@@ -12,6 +12,8 @@
              (map fs/absolutize)
              (cs/join " "))
         p (proc/process {:dir (cnf/grammar :dir)
+                         :extra-env {"TREE_SITTER_DIR" cnf/ts-conf-dir
+                                     "TREE_SITTER_LIBDIR" cnf/ts-lib-dir}
                          :out :string}
                         (str cnf/ts-bin-path " parse " args-as-string))
         exit-code (:exit @p)]

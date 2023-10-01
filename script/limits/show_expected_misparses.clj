@@ -20,7 +20,9 @@
         (println "Expecting misparsing for:" (fs/file-name path))
         (let [p
               (try
-                (proc/shell {:out :string}
+                (proc/shell {:extra-env {"TREE_SITTER_DIR" cnf/ts-conf-dir
+                                         "TREE_SITTER_LIBDIR" cnf/ts-lib-dir}
+                             :out :string}
                             (str cnf/ts-bin-path " parse " path))
                 (catch Exception e
                   (println "Unexpected result:" (.getMessage e))))

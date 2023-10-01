@@ -13,7 +13,9 @@
         (println "Expecting ERROR for:" (fs/file-name path))
         ;; https://github.com/babashka/process#shell
         (let [exit-code
-              (-> (proc/shell {:continue true}
+              (-> (proc/shell {:continue true
+                               :extra-env {"TREE_SITTER_DIR" cnf/ts-conf-dir
+                                           "TREE_SITTER_LIBDIR" cnf/ts-lib-dir}}
                               (str cnf/ts-bin-path " parse --quiet " path))
                   :exit)]
           (if (= exit-code 1)

@@ -5,6 +5,8 @@
 (defn -main
   [& _args]
   (let [p (proc/process {:dir (cnf/grammar :dir)
+                         :extra-env {"TREE_SITTER_DIR" cnf/ts-conf-dir
+                                     "TREE_SITTER_LIBDIR" cnf/ts-lib-dir}
                          :out :string}
                         (str cnf/ts-bin-path " test"))
         exit-code (:exit @p)]
