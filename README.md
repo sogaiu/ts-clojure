@@ -10,13 +10,13 @@ that earlier / later versions may also work.
 
 ### Tree-sitter CLI Building and Capabilities
 
-* Rust Tooling (tested with rustc 1.67 and cargo 1.67)
+* Rust Tooling (tested with rustc 1.67, 1.72.1 and cargo 1.67, 1.72.1)
 * Node.js (tested with 12.x, 14.x, 16.x, 18.x)
-* Recent C compiler (tested with gcc 11.3.0, clang 14.0.0)
+* Recent C compiler (tested with gcc 11.3.0, 12.2.0 clang 14.0.0)
 
 ### Task Automation
 
-* Babashka (tested with 1.2.174)
+* Babashka (tested with 1.2.174, 1.3.182)
 
 ## Getting Started
 
