@@ -137,6 +137,10 @@
          {:doc "Deduplicate a repos dir"
           :_tags [:repos]
           :task deduplicate/-main}
+         prune
+         {:doc "Prune a repos dir"
+          :_tags [:repos]
+          :task prune/-main}
          ;; expected issues
          show-expected-failures
          {:doc "Show expected failure examples"
