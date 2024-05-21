@@ -18,7 +18,8 @@
                           (fn [path _]
                             (when ((cnf/repos :extensions) (fs/extension path))
                               (swap! files conj path))
-                            :continue)})
+                            :continue)
+                          :follow-links true})
       (println "found"
                (count @files) "files"
                "in" (- (System/currentTimeMillis) start-time) "ms")
@@ -34,8 +35,6 @@
                 out-file-path (fs/create-temp-file)
                 _ (fs/delete-on-exit out-file-path)
                 p (proc/process {:dir (cnf/grammar :dir)
-                                 :extra-env {"TREE_SITTER_DIR" cnf/ts-conf-dir
-                                             "TREE_SITTER_LIBDIR" cnf/ts-lib-dir}
                                  :out :write
                                  :out-file (fs/file out-file-path)}
                                 (str cnf/ts-bin-path
