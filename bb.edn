@@ -42,12 +42,6 @@
           :_tags [:grammar]
           :task (binding [cnf/grammar cnf/ts-clj]
                   (run 'ensure-tree-sitter-grammar))}
-         -ensure-tree-sitter-clojure-def
-         {:doc "Ensure tree-sitter-clojure-def is available"
-          :_tags [:grammar]
-          :depends [-ensure-tree-sitter-clojure]
-          :task (binding [cnf/grammar cnf/ts-clj-def]
-                  (run 'ensure-tree-sitter-grammar))}
          show-grammar-info
          {:doc "Dump current grammar"
           :_tags [:grammar]

@@ -34,11 +34,11 @@ such as:
 * `c-compiler` - name of C compiler to invoke (e.g. `cc`, `gcc`,
   `clang`)
 
-Inside the maps `ts-clj` and `ts-clj-def`, the values for the keys
-`:repo-url` and `:ref` might be of interest too.
+Inside the map `ts-clj`, the values for the keys `:repo-url` and
+`:ref` might be of interest too.
 
 The value of `grammar` can be changed to select which grammar is the
-"current" one.  It can be set to `ts-clj` or `ts-clj-def`.
+"current" one.  Currently it can be set to `ts-clj`.
 
 ## Non-trivial Tests
 

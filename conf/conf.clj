@@ -118,39 +118,7 @@
      :inner-name (make-inner-name name)
      ;;
      :repo-url (str "https://github.com/sogaiu/" repo-name)
-     :ref "pre-0.0.12"
-     ;;:repo-url (str "https://github.com/oakmac/" repo-name)
-     ;;:ref "master"
-     ;;:repo-url (str "https://github.com/Tavistock/" repo-name)
-     ;;:ref "master"
-     ;;:repo-url (str "https://github.com/Lancear/" repo-name)
-     ;;:ref "main"
-     ;;:repo-url (str "https://github.com/artarf/" repo-name)
-     ;;:ref "master"
-     ;;
-     :dir dir-name
-     :grammar-js (repo-path-to dir-name "grammar.js")
-     ;;
-     :src-dir (str proj-root "/" dir-name "/src")
-     :parser-c (src-path-to dir-name parser-c-name)
-     :grammar-json (src-path-to dir-name "grammar.json")
-     :node-types-json (src-path-to dir-name "node-types-json")
-     :ts-headers-dir (src-path-to dir-name "tree_sitter")
-     ;;
-     :lib-name (make-lib-name name)
-     :lib-path (make-lib-path name)}))
-
-;; tree-sitter-clojure-def
-
-(def ts-clj-def
-  (let [name "clojure-def"
-        repo-name (str "tree-sitter-" name)
-        dir-name repo-name]
-    {:name name
-     :inner-name (make-inner-name name)
-     ;;
-     :repo-url (str "https://github.com/sogaiu/" repo-name)
-     :ref "default"
+     :ref "master"
      ;;
      :dir dir-name
      :grammar-js (repo-path-to dir-name "grammar.js")
