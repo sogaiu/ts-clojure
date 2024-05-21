@@ -19,11 +19,12 @@ which version of emscripten should be used for the playground for more
 details on appropriate versions and emsdk setup instructions.
 
 Node.js is currently required as part of `tree-sitter`'s `parser.c`
-generation process.  IIUC, some work is underway to make it possible
-to use some other JS option, but at the time of this writing, that has
-not come to pass.  Even if it did at some point, if it's important
-to use older versions of `tree-sitter`, those would require some
-version of Node.js...
+generation process.  IIUC, [some work is underway to make it possible
+to use some other JS
+option](https://github.com/tree-sitter/tree-sitter/pull/3355), but at
+the time of this writing, that has not come to pass.  Even if it did
+at some point, if it's important to use older versions of
+`tree-sitter`, those would require some version of Node.js...
 
 The C compiler is necessary to build the shared libary from
 `parser.c`.
