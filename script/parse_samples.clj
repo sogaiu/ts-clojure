@@ -13,7 +13,7 @@
     (println "Directory for" (cnf/repos :root) "not found")
     (System/exit 1))
   (let [start-time (System/currentTimeMillis)
-                   files (atom [])]
+        files (atom [])]
     ;; find all relevant clojure-related files
     (println "Looking in samples collection:" (cnf/repos :name))
     (print "Focusing on" (sort (cnf/repos :extensions)) "files ... ")
@@ -29,7 +29,7 @@
              (count @files) "files"
              "in" (- (System/currentTimeMillis) start-time) "ms")
     (let [to-be-parsed (fs/create-temp-file)
-                       _ (fs/delete-on-exit to-be-parsed)]
+          _ (fs/delete-on-exit to-be-parsed)]
       ;; save file paths to be parsed to a file
       (fs/write-lines to-be-parsed (map str @files))
       ;; parse with tree-sitter via the paths file
@@ -37,16 +37,16 @@
       (flush)
       (try
         (let [start-time (System/currentTimeMillis)
-                         out-file-path (fs/create-temp-file)
-                         _ (fs/delete-on-exit out-file-path)
-                         p (proc/process {:dir cnf/grammar-dir
-                                          :out :write
-                                          :out-file (fs/file out-file-path)}
-                                         (str cnf/ts-bin-path
-                                              " parse --quiet --paths "
-                                              to-be-parsed))
-                         exit-code (:exit @p)
-                         duration (- (System/currentTimeMillis) start-time)]
+              out-file-path (fs/create-temp-file)
+              _ (fs/delete-on-exit out-file-path)
+              p (proc/process {:dir cnf/grammar-dir
+                               :out :write
+                               :out-file (fs/file out-file-path)}
+                              (str cnf/ts-bin-path
+                                   " parse --quiet --paths "
+                                   to-be-parsed))
+              exit-code (:exit @p)
+              duration (- (System/currentTimeMillis) start-time)]
           (when (= 1 exit-code)
             (println))
           (let [errors (atom 0)]
