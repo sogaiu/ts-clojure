@@ -74,8 +74,8 @@ To build and install a shared library based on the generated
 bb corpus-test
 ```
 
-See [this document](doc/build-and-install-shared-library.md) for more
-details.
+No, `corpus-test` is not a typo.  See [this
+document](doc/build-and-install-shared-library.md) for more details.
 
 ## Run Real-World Code Tests
 
