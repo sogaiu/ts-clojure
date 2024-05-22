@@ -31,7 +31,7 @@ details.
 
 ### Tweak settings
 
-The file `conf.clj` contains a few somewhat configurable things to
+The file `conf/conf.clj` contains a few somewhat configurable things to
 tweak such as:
 
 * `abi` - ABI number to use when generating `parser.c` from
@@ -86,8 +86,8 @@ bb parse-samples
 ```
 
 Which set of samples is tested against is chosen by adjusting the
-`repos` value in `conf.clj` appropriately.  Assuming the samples have
-been obtained, the value can be one of:
+`repos` value in `conf/conf.clj` appropriately.  Assuming the samples
+have been obtained, the value can be one of:
 
 * `clojars`
 * `clojuredart`
