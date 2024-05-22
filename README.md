@@ -3,47 +3,30 @@
 Testing and development bits for
 [tree-sitter-clojure](https://github.com/sogaiu/tree-sitter-clojure)
 
+This repository houses bits to aid in performing tests on real-world
+Clojure code as well as some tree-sitter-clojure development details.
+
 ## Prerequisites
 
-There are specific versions listed below for reference.  It's possible
-that earlier / later versions may also work.
+Apart from the
+[tree-sitter](https://github.com/tree-sitter/tree-sitter) cli and its
+[dependencies](https://tree-sitter.github.io/tree-sitter/creating-parsers#dependencies),
+[babashka](https://github.com/babashka/babashka) is required for its
+task automation capabilities.
 
-* Node.js (tested with 12.x, 14.x, 16.x, 18.x)
-* Recent C compiler (tested with gcc 11.3.0, 12.2.0 clang 14.0.0)
-* Babashka (tested with 1.2.174, 1.3.182, 1.3.189)
-
-Note that an appropriate version of Node.js is available as part of
-emsdk and can be used instead of separately installing one.  See the
-[ts-questions](https://github.com/sogaiu/ts-questions) question about
-which version of emscripten should be used for the playground for more
-details on appropriate versions and emsdk setup instructions.
-
-Node.js is currently required as part of `tree-sitter`'s `parser.c`
-generation process.  IIUC, [some work is underway to make it possible
-to use some other JS
-option](https://github.com/tree-sitter/tree-sitter/pull/3355), but at
-the time of this writing, that has not come to pass.  Even if it did
-at some point, if it's important to use older versions of
-`tree-sitter`, those would require some version of Node.js...
-
-The C compiler is necessary to build the shared libary from
-`parser.c`.
-
-Babashka tasks are used to execute some common tasks.  The idea with
-using Babashka is that most people who might take an interest in
-tree-sitter-clojure and might consider joining in the maintenance fun
-(hah!) would likely be at least somewhat Clojure-proficient...so why
-choose Node, shell, or other things, right?
+See [this document](doc/prerequisites.md) for more details.
 
 ## Get Started
 
-### Putting the tree-sitter-clojure directory in place
+### Putting a tree-sitter-clojure directory in place
 
 Clone
 [tree-sitter-clojure](https://github.com/sogaiu/tree-sitter-clojure)
 to a location such that the `tree-sitter` cli can find the resulting
-directory.  Verification of this fact can be performed by running
-`tree-sitter dump-languages` and examining its output.
+directory.  Check out an appropriate branch, tag, or commit as
+desired.  Verification that `tree-sitter` knows about the cloned
+directory can be performed by running `tree-sitter dump-languages` and
+examining its output.
 
 Sample output:
 
@@ -67,9 +50,20 @@ is concerned because my `~/.config/tree-sitter/config.json` is:
 }
 ```
 
-It's a long story that I won't go into here (^^;  The important thing
-is that the value associated with `parser` is pointed at an
-appropriate directory that matches your setup.
+It's a long story that I won't go into here (^^;
+
+The important thing is that the value associated with `parser` is
+appropriate.
+
+For example, in the above output, it is `"./tree-sitter-clojure"`,
+which would match a setup where:
+
+* `~/.config/tree-sitter/config.json` had the content mentioned above
+* `tree-sitter dump-languages` was invoked from within this project's
+  root directory
+* tree-sitter-clojure was cloned to be a subdirectory of this project 
+
+I suspect most people don't set things up this way so YMMV.
 
 ### Tweak settings
 
@@ -78,19 +72,58 @@ tweak such as:
 
 * `abi` - ABI number to use when generating `parser.c` from
   `grammar.js`
-* `tree-sitter` - path to or name of `tree-sitter` cli binary
+* `ts-bin-path` - path to or name of `tree-sitter` cli binary
+* `repos` - which set of source samples to test against
+
+What number one can usefully specify for `abi` may depend on the
+version of the `tree-sitter` cli in use.  At the time of this writing
+(2024-05), it's likey that `14` is a good choice as it has been the
+default for a few years (so across a fair number of `tree-sitter` cli
+versions).
+
+The value associated with `ts-bin-path` can be adjusted to point at
+different versions of the `tree-sitter` cli.
+
+Which set of source samples to be tested against can be specificed via
+`repos`.  Note that this repository does not come with any samples.
+Instructions on fetching samples is provided below.
+
+### Retrieving source samples
+
+This repository does not contain source code samples.  To fetch some
+source code samples (so that tests can be performed across them):
+
+* Clone the
+  [clojars-samples](https://github.com/sogaiu/clojars-samples) and/or
+  [clojuredart-samples](https://github.com/sogaiu/clojuredart-samples)
+  repositories as subdirectories of the root of this project.
+
+* Examine the Babashka tasks (via `bb tasks`) in the cloned
+  subdirectories and execute the necessary tasks to obtain and prepare
+  the samples.  (Sorry, this is vague at the moment.)  Note that this
+  can take quite some time in the case of `clojars-samples` if all of
+  the samples are fetched.
 
 ## Generate `parser.c`
 
-Use the `generate-parser` Babashka task.
+To generate tree-sitter-clojure's `src/parser.c` file:
 
-## Install Shared Library for tree-sitter-clojure
+```
+bb generate-parser
+```
 
-To install a tree-sitter-clojure's shared library based on the
-generated `parser.c`, the `corpus-test` Babashka task can be used.
-(Yes, it's a bit of an odd method, but the `tree-sitter` cli doesn't
+## Build and Install Shared Library for tree-sitter-clojure
+
+To build and install a shared library based on the generated
+`parser.c`:
+
+```
+bb corpus-test
+```
+
+Yes, it's a bit of an odd method, but the `tree-sitter` cli doesn't
 appear to provide a direct way of building AND installing an
-appropriate library at the time of writing.)
+appropriate library at the time of writing.
 
 N.B. if there is already a shared object in place from before the
 generation of `parser.c`, it may need to be moved out of the way or
@@ -100,35 +133,43 @@ On a Linux system, the shared object might be found at
 `~/.cache/tree-sitter/lib/clojure.so` for relatively recent versions
 of `tree-sitter`.
 
-## Run Non-trivial Test
+## Run Real-World Code Test
 
-To test the parser on real-world code, one can use the `parse-samples`
-Babashka task.  However, first it's necessary to get some samples.
+To test the parser on real-world code:
 
-* Clone the
-  [clojars-samples](https://github.com/sogaiu/clojars-samples) or
-  [clojuredart-samples](https://github.com/sogaiu/clojuredart-samples)
-  repositories as subdirectories.
-* Edit the `repos` value in `conf.clj` appropriately, choosing
-  either `clojars` or `clojuredart` for the value.
-* Examine the Babashka tasks in the cloned subdirectory and execute
-  the necessary tasks to obtain and prepare the samples.  (Sorry, this
-  is vague at the moment.)  Note that this can take quite some time.
+```
+bb parse-samples
+```
+
+Which set of samples is tested against is chosen by adjusting the
+`repos` value in `conf.clj` appropriately.  Assuming the samples have
+been obtained, the value can be one of:
+
+* `clojars`
+* `clojuredart`
+
+### clojars
+
+The `clojars` tests typically takes longer than a minute if
+the full set of samples has been fetched.  It is also expected for
+there to be a certain number of errors.  Currently, 131 out of
+somewhat over 150,000 files parse with errors.
+
+Details about the expected errors can be seen in
+[here](data/classify-parse-errors-summary.txt) and
+[here](data/classify-parse-errors.tsv).
+
+### clojuredart
+
+The `clojuredart` tests don't take very long because there are not
+many samples to test against.  There should be no errors.
 
 ## Misc
 
-If for some reason building `tree-sitter` becomes necessary, the
-following info might be good to know:
-
-* Rust Tooling (tested with rustc 1.67, 1.72.1 and cargo 1.67, 1.72.1)
-* Recent C compiler (tested with gcc 11.3.0, 12.2.0 clang 14.0.0)
-
-To get a version of `tree-sitter` that can build `.wasm` files, emsdk
-is necessary.  Before running `cargo build`, it's important to run
-`bash script/build-wasm --debug`, but before that, an appropriate
-emsdk version needs to be activated.  More info about that is
-available at the aforementioned
-[ts-questions](https://github.com/sogaiu/ts-questions).
+`tree-sitter` cli subcommand backward compatibility does not appear to
+be a high priority so at various future points, it may be necessary to
+adjust some `tree-sitter` invocations (e.g. at the time of this
+writing, there are plans to phase out the `build-wasm` subcommand).
 
 ## Windows Support
 
