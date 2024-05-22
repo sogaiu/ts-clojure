@@ -1,7 +1,7 @@
 # Build and Install Shared Library
 
-It may seem a bit odd to be invoking the `test` subcommand of
-`tree-sitter` to build and install a shared library for
+It may seem a bit odd to be executing the corpus tests (i.e. invoking
+`tree-sitter test`) to build and install a shared library for
 tree-sitter-clojure, but the `tree-sitter` cli doesn't appear to
 provide a direct way of building AND installing an appropriate library
 at the time of writing.
