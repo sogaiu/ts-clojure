@@ -26,6 +26,10 @@ to a location such that the `tree-sitter` cli can find the resulting
 directory.  Check out an appropriate branch, tag, or commit as
 desired.
 
+Likely you'll need to change the `grammar-dir` setting in
+`conf/conf.clj` to a filesystem path for the tree-sitter-clojure
+directory.
+
 See [this document](doc/clone-tree-sitter-clojure.md) for more
 details.
 
@@ -36,8 +40,9 @@ tweak such as:
 
 * `abi` - ABI number to use when generating `parser.c` from
   `grammar.js`
-* `ts-bin-path` - path to or name of `tree-sitter` cli binary
+* `grammar-dir` - path to cloned tree-sitter-clojure directory
 * `repos` - which set of source samples to test against
+* `ts-bin-path` - path to or name of `tree-sitter` cli binary
 
 See [this document](doc/tweak-settings.md) for more details.
 

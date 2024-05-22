@@ -15,13 +15,15 @@ At the time of this writing (2024-05), it's likey that `14` is a good
 choice as it has been the default for a few years (so across a fair
 number of `tree-sitter` cli versions).
 
-## ts-bin-path
+## grammar-dir
 
-`ts-bin-path` specifies the command name or path to the `tree-sitter`
-cli used to execute the cli's subcommands.
+`grammar-dir` specifies a filesystem path to where tree-sitter-clojure
+has been cloned to.
 
-Adjusting this can be useful if one wants to use a different version
-of the cli.
+It's unlikely the default value will work for most folks' setups, but
+making a symlink with name `tree-sitter-clojure` from within this
+project's repository root to where tree-sitter-clojure has been cloned
+to may work.
 
 ## repos
 
@@ -29,3 +31,11 @@ of the cli.
 
 Note that this repository does not come with any samples.
 Instructions on fetching samples is provided elsewhere.
+
+## ts-bin-path
+
+`ts-bin-path` specifies the command name or path to the `tree-sitter`
+cli used to execute the cli's subcommands.
+
+Adjusting this can be useful if one wants to use a different version
+of the cli.

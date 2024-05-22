@@ -6,7 +6,13 @@
 
 (def proj-root (fs/cwd))
 
+;; tree-sitter-clojure
+
+(def grammar-dir "tree-sitter-clojure")
+
 ;; tree-sitter
+
+(def ts-bin-path "tree-sitter")
 
 ;; ABI   CLI ver  Date
 ;; ---   -------  ----
@@ -22,23 +28,6 @@
 ;; 14    0.22.6   2024-05
 
 (def abi 14)
-
-(def ts-bin-path "tree-sitter")
-
-(def ts-clj
-  (let [name "clojure"
-        repo-name (str "tree-sitter-" name)
-        dir-name repo-name]
-    {:name name
-     ;;
-     :repo-url (str "https://github.com/sogaiu/" repo-name)
-     ;;
-     :dir dir-name}))
-
-;; current grammar setting
-
-(def ^:dynamic grammar
-  ts-clj)
 
 ;; clojars
 

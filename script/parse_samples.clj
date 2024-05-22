@@ -6,8 +6,8 @@
 
 (defn -main
   [& _args]
-  (when-not (fs/exists? (cnf/grammar :dir))
-    (println "Directory for" (cnf/grammar :dir) "not found")
+  (when-not (fs/exists? cnf/grammar-dir)
+    (println "Directory for" cnf/grammar-dir "not found")
     (System/exit 1))
   (when-not (fs/exists? (cnf/repos :root))
     (println "Directory for" (cnf/repos :root) "not found")
@@ -39,7 +39,7 @@
         (let [start-time (System/currentTimeMillis)
                          out-file-path (fs/create-temp-file)
                          _ (fs/delete-on-exit out-file-path)
-                         p (proc/process {:dir (cnf/grammar :dir)
+                         p (proc/process {:dir cnf/grammar-dir
                                           :out :write
                                           :out-file (fs/file out-file-path)}
                                          (str cnf/ts-bin-path
