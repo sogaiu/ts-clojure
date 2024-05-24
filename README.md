@@ -55,9 +55,10 @@ to a location such that the `tree-sitter` cli can find the resulting
 directory.  Check out an appropriate branch, tag, or commit as
 desired.
 
-Likely you'll need to change the `grammar-dir` setting in
-`conf/conf.clj` to a filesystem path for the tree-sitter-clojure
-directory.
+Note that the `grammar-dir` setting in `conf/conf.clj` should be a
+filesystem path that resolves to or is the tree-sitter-clojure
+directory.  So either change the setting or make an appropriate
+symlink.
 
 See [this document](doc/clone-tree-sitter-clojure.md) for more
 details.

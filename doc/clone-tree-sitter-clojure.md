@@ -37,6 +37,8 @@ which would match a setup where:
 * `~/.config/tree-sitter/config.json` had the content mentioned above
 * `tree-sitter dump-languages` was invoked from within this project's
   root directory
-* tree-sitter-clojure was cloned to be a subdirectory of this project 
+* tree-sitter-clojure was cloned to be a subdirectory of this project
+  or it is a symlink in this project that resolves to a directory
+  containing tree-sitter-clojure
 
 I suspect most people don't set things up this way so YMMV.
