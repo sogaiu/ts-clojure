@@ -16,9 +16,9 @@ below for details.
 
 Babashka tasks are used to execute some common tasks.  The idea with
 using Babashka is that most people who might take an interest in
-tree-sitter-clojure and might consider joining in the maintenance fun
-(hah!) would likely be at least somewhat Clojure-proficient...so why
-choose Node, shell, or other things, right?
+tree-sitter-clojure and consider joining in the maintenance fun (hah!)
+would likely be at least somewhat Clojure-proficient...so why choose
+Node, shell, or other things, right?
 
 It's likely most recent version of Babashka will work, but for
 reference, the following versions have been used successfully:
