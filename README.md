@@ -8,7 +8,7 @@ Clojure code as well as some tree-sitter-clojure development details.
 
 ## Prerequisites
 
-Apart from the
+Apart from git, the
 [tree-sitter](https://github.com/tree-sitter/tree-sitter) cli and its
 [dependencies](https://tree-sitter.github.io/tree-sitter/creating-parsers#dependencies),
 [babashka](https://github.com/babashka/babashka) is required for its
