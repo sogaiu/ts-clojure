@@ -33,14 +33,14 @@ automation:
 * [tree-sitter dependencies](https://tree-sitter.github.io/tree-sitter/creating-parsers#dependencies)
 * [babashka](https://github.com/babashka/babashka)
 
-See [this document](doc/prerequisites.md) for more details.
+See [here](doc/prerequisites.md) for more details.
 
 ### Verify tree-sitter setup
 
 Verify what version of `tree-sitter` you have installed and confirm
 that you know where it looks to find parser repositories.
 
-See [this document](doc/verify-tree-sitter-setup.md) for more details.
+See [here](doc/verify-tree-sitter-setup.md) for more details.
 
 ### Clone ts-clojure
 
@@ -60,7 +60,7 @@ filesystem path that resolves to or is the tree-sitter-clojure
 directory.  So either change the setting or make an appropriate
 symlink.
 
-See [this document](doc/clone-tree-sitter-clojure.md) for more
+See [here](doc/clone-tree-sitter-clojure.md) for more
 details.
 
 ### Retrieving source samples
@@ -92,7 +92,7 @@ Some included settings are:
 * `repos` - which set of source samples to test against
 * `ts-bin-path` - path to or name of `tree-sitter` cli binary
 
-See [this document](doc/tweak-settings.md) for more details.
+See [here](doc/tweak-settings.md) for more details.
 
 ## Things You Can Do
 
@@ -104,6 +104,11 @@ To generate tree-sitter-clojure's `src/parser.c` file:
 bb generate-parser
 ```
 
+This will invoke `tree-sitter`'s `generate` subcommand:
+
+* using the ABI number specified in `conf/conf.clj` via `abi` and
+* using the `--no-bindings` argument to avoid generating binding code
+
 ### Build and Install Shared Library
 
 To build and install a shared library based on the generated
@@ -113,8 +118,11 @@ To build and install a shared library based on the generated
 bb corpus-test
 ```
 
-No, `corpus-test` is not a typo.  See [this
-document](doc/build-and-install-shared-library.md) for more details.
+This will run tree-sitter-clojure's corpus tests via `tree-sitter
+test`, which has a side-effect that achieves the desired aim.
+
+See [here](doc/build-and-install-shared-library.md) for more
+details.
 
 ### Run Real-World Code Tests
 
@@ -124,6 +132,9 @@ To test the parser on real-world code:
 bb parse-samples
 ```
 
+This will invoke `tree-sitter`'s `parse` command across a set of
+source code samples.
+
 Which set of samples is tested against is chosen by adjusting the
 `repos` value in `conf/conf.clj` appropriately.  Assuming the samples
 have been obtained, the value can be one of:
@@ -131,7 +142,7 @@ have been obtained, the value can be one of:
 * `clojars`
 * `clojuredart`
 
-See [this document](doc/run-real-world-code-tests.md) for more
+See [here](doc/run-real-world-code-tests.md) for more
 details.
 
 ## Misc Notes
