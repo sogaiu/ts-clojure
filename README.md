@@ -4,7 +4,7 @@ Testing and development bits for
 [tree-sitter-clojure](https://github.com/sogaiu/tree-sitter-clojure)
 
 This repository houses bits to aid in performing tests on real-world
-Clojure code as well as some tree-sitter-clojure development details.
+Clojure code along with some associated instructions.
 
 ## Prerequisites
 
