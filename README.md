@@ -163,4 +163,4 @@ compilation](https://github.com/tree-sitter/tree-sitter/issues/2017)
 (and my not understanding how it works in detail).  If you want to
 avoid some of that kind of thing, you might want to consider some kind
 of isolation / simplification mechanism such as using a fresh user
-account to perform the following steps.
+account when working with this repository.
