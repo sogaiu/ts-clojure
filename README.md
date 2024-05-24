@@ -18,6 +18,33 @@ See [this document](doc/prerequisites.md) for more details.
 
 ## Get Started
 
+### Verify tree-sitter setup
+
+Verify what version `tree-sitter` you have installed and make note of
+it for further activities:
+
+```
+tree-sitter --version
+```
+
+See if `tree-sitter` already knows about any parser repositories you
+may have lying around:
+
+```
+tree-sitter dump-languages
+```
+
+If you don't see any output and you aren't familiar with where your
+`tree-sitter` setup looks for parser repositories, you may want to
+have a look at [this
+document](https://github.com/sogaiu/ts-questions/blob/master/questions/what-paths-are-relevant/README.md).
+
+If you do see some output, study any values associated with `parser`.
+That should give you a clue regarding under which directories
+`tree-sitter` will look for parser repositories.  You might still want
+to see [the aforementioned
+document](https://github.com/sogaiu/ts-questions/blob/master/questions/what-paths-are-relevant/README.md) to confirm your ideas :)
+
 ### Clone ts-clojure
 
 Clone [ts-clojure](https://github.com/sogaiu/ts-clojure) (this
