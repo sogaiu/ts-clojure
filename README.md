@@ -18,6 +18,11 @@ See [this document](doc/prerequisites.md) for more details.
 
 ## Get Started
 
+### Clone ts-clojure
+
+Clone [ts-clojure](https://github.com/sogaiu/ts-clojure) (this
+repository) somewhere local.
+
 ### Clone tree-sitter-clojure
 
 Clone
