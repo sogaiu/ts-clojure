@@ -6,7 +6,19 @@ Testing and development bits for
 This repository houses bits to aid in performing tests on real-world
 Clojure code along with some associated instructions.
 
-## Prerequisites
+## One-time (Mostly) Setup
+
+There is some one-time (mostly) setup necessary before tests can be
+executed.  This includes:
+
+* Verifying / installing prerequisites
+* Verifying tree-sitter setup
+* Cloning this repository
+* Cloning tree-sitter-clojure
+* Fetching source code samples
+* Tweaking ts-clojure's settings
+
+### Prerequisites
 
 The prerequisites are what you typically need to work with
 tree-sitter, with the exception of Babashka which is used for task
@@ -19,11 +31,9 @@ automation:
 
 See [this document](doc/prerequisites.md) for more details.
 
-## Get Started
-
 ### Verify tree-sitter setup
 
-Verify what version `tree-sitter` you have installed and confirm
+Verify what version of `tree-sitter` you have installed and confirm
 that you know where it looks to find parser repositories.
 
 See [this document](doc/verify-tree-sitter-setup.md) for more details.
@@ -48,19 +58,6 @@ directory.
 See [this document](doc/clone-tree-sitter-clojure.md) for more
 details.
 
-### Tweak settings
-
-The file `conf/conf.clj` contains a few somewhat configurable things to
-tweak such as:
-
-* `abi` - ABI number to use when generating `parser.c` from
-  `grammar.js`
-* `grammar-dir` - path to cloned tree-sitter-clojure directory
-* `repos` - which set of source samples to test against
-* `ts-bin-path` - path to or name of `tree-sitter` cli binary
-
-See [this document](doc/tweak-settings.md) for more details.
-
 ### Retrieving source samples
 
 This repository does not contain source code samples.  To fetch some
@@ -77,7 +74,24 @@ source code samples (so that tests can be performed across them):
   can take quite some time in the case of `clojars-samples` if all of
   the samples are fetched.
 
-## Generate `parser.c`
+### Tweak settings
+
+ts-clojure's scripts can be configured a bit via the file
+`conf/conf.clj`.
+
+Some included settings are:
+
+* `abi` - ABI number to use when generating `parser.c` from
+  `grammar.js`
+* `grammar-dir` - path to cloned tree-sitter-clojure directory
+* `repos` - which set of source samples to test against
+* `ts-bin-path` - path to or name of `tree-sitter` cli binary
+
+See [this document](doc/tweak-settings.md) for more details.
+
+## Things You Can Do
+
+### Generate `parser.c`
 
 To generate tree-sitter-clojure's `src/parser.c` file:
 
@@ -85,7 +99,7 @@ To generate tree-sitter-clojure's `src/parser.c` file:
 bb generate-parser
 ```
 
-## Build and Install Shared Library
+### Build and Install Shared Library
 
 To build and install a shared library based on the generated
 `parser.c`:
@@ -97,7 +111,7 @@ bb corpus-test
 No, `corpus-test` is not a typo.  See [this
 document](doc/build-and-install-shared-library.md) for more details.
 
-## Run Real-World Code Tests
+### Run Real-World Code Tests
 
 To test the parser on real-world code:
 
@@ -115,7 +129,9 @@ have been obtained, the value can be one of:
 See [this document](doc/run-real-world-code-tests.md) for more
 details.
 
-## Misc
+## Misc Notes
+
+### Not Future-Proof
 
 At this time, `tree-sitter` cli subcommand backward compatibility does
 not appear to be a high priority so at various future points, it may
@@ -126,7 +142,7 @@ As a specific example of a potential backward incompatibility, at the
 time of this writing, there are plans to phase out the `build-wasm`
 subcommand.
 
-## Windows Support
+### Windows Support
 
 Have not tested yet but might work via mingw-w64 / msys2 or similar.
 No idea about WSL, not a fan and haven't tested.
