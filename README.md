@@ -18,6 +18,17 @@ executed.  This includes:
 * Fetching source code samples
 * Tweaking ts-clojure's settings
 
+Note: I had trouble at various points with `tree-sitter` using things
+that I was unaware of.  I believe this was the result of a combination
+of testing with different versions of `tree-sitter` (various
+configuration and operation file paths changed between versions),
+having multiple versions of grammars under my home directory, along
+with `tree-sitter`'s automatic compilation (and my not understanding
+how it works in detail).  If you want to avoid some of that kind of
+thing, you might want to consider some kind of isolation /
+simplification mechanism such as using a fresh user account to perform
+the following steps.
+
 ### Prerequisites
 
 The prerequisites are what you typically need to work with
