@@ -8,11 +8,14 @@ Clojure code as well as some tree-sitter-clojure development details.
 
 ## Prerequisites
 
-Apart from git, the
-[tree-sitter](https://github.com/tree-sitter/tree-sitter) cli and its
-[dependencies](https://tree-sitter.github.io/tree-sitter/creating-parsers#dependencies),
-[babashka](https://github.com/babashka/babashka) is required for its
-task automation capabilities.
+The prerequisites are what you typically need to work with
+tree-sitter, with the exception of Babashka which is used for task
+automation:
+
+* git
+* [tree-sitter](https://github.com/tree-sitter/tree-sitter) cli
+* [tree-sitter dependencies](https://tree-sitter.github.io/tree-sitter/creating-parsers#dependencies)
+* [babashka](https://github.com/babashka/babashka)
 
 See [this document](doc/prerequisites.md) for more details.
 
