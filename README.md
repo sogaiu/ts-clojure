@@ -135,7 +135,7 @@ details.
 
 ## Misc Notes
 
-### Not Future-Proof
+### About Being Future-Proof
 
 At this time, `tree-sitter` cli subcommand backward compatibility does
 not appear to be a high priority so at various future points, it may
