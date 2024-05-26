@@ -167,10 +167,11 @@ details.
 
 ### About Being Future-Proof
 
-At this time, `tree-sitter` cli subcommand backward compatibility does
-not appear to be a high priority so at various future points, it may
-be necessary to adjust some `tree-sitter` invocations in the various
-Babashka (`.clj`) scripts.
+At this time, [`tree-sitter` cli subcommand backward compatibility
+does not appear to be a high
+priority](https://github.com/tree-sitter/tree-sitter/blob/fc146ad5101334cb316f905657e79fe5e4fe7876/cli/src/main.rs#L522)
+so at various future points, it may be necessary to adjust some
+`tree-sitter` invocations in the various Babashka (`.clj`) scripts.
 
 As a specific example of a potential backward incompatibility, at the
 time of this writing, there are plans to phase out the `build-wasm`
