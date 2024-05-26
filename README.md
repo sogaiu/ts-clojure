@@ -6,7 +6,7 @@ Testing and development bits for
 This repository houses bits to aid in performing tests on real-world
 Clojure code along with some associated instructions.
 
-See [here](doc/background.md) for more details.
+See [here](doc/background.md) for some background.
 
 ## One-time (Mostly) Setup
 
