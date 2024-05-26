@@ -30,10 +30,11 @@ The prerequisites are what you typically need to work with
 tree-sitter, with the exception of Babashka which is used for task
 automation:
 
-* git
 * [tree-sitter](https://github.com/tree-sitter/tree-sitter) cli
 * [tree-sitter dependencies](https://tree-sitter.github.io/tree-sitter/creating-parsers#dependencies)
 * [babashka](https://github.com/babashka/babashka)
+
+Strictly speaking, `git` is also necessary and likely `curl` as well.
 
 See [here](doc/prerequisites.md) for more details.
 
