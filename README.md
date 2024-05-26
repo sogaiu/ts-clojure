@@ -91,6 +91,9 @@ To fetch some source code samples:
 Change the value of `repos` in `conf/conf.clj` to specify which set of
 samples to test against.
 
+Note that in the case of clojars, if you are serious about testing,
+please consider getting more jars.
+
 See [here](doc/prepare-source-samples.md) for more details.
 
 ### Tweak settings
