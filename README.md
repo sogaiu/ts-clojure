@@ -6,6 +6,8 @@ Testing and development bits for
 This repository houses bits to aid in performing tests on real-world
 Clojure code along with some associated instructions.
 
+See [here](doc/background.md) for more details.
+
 ## One-time (Mostly) Setup
 
 There is some one-time (mostly) setup necessary before tests can be
@@ -63,21 +65,33 @@ symlink.
 See [here](doc/clone-tree-sitter-clojure.md) for more
 details.
 
-### Retrieving source samples
+### Prepare source samples
 
-This repository does not contain source code samples.  To fetch some
-source code samples (so that tests can be performed across them):
+This repository does not contain source code samples.  To get
+meaningful testing over real-world code, it's necessary to arrange for
+some samples.
 
-* Clone the
-  [clojars-samples](https://github.com/sogaiu/clojars-samples) and/or
-  [clojuredart-samples](https://github.com/sogaiu/clojuredart-samples)
-  repositories as subdirectories of the root of this project.
+To fetch some source code samples:
 
-* Examine the Babashka tasks (via `bb tasks`) in the cloned
-  subdirectories and execute the necessary tasks to obtain and prepare
-  the samples.  (Sorry, this is vague at the moment.)  Note that this
-  can take quite some time in the case of `clojars-samples` if all of
-  the samples are fetched.
+* For clojars:
+  * Clone the
+    [clojars-samples](https://github.com/sogaiu/clojars-samples)
+    repository as a subdirectory of the root of this project.
+  * Change working directory to the `clojars-samples` subdirectory
+  * Fetch 11 jars by: `bb batch-fetch-clojars-jars 11`
+  * Extract the jars by: `bb extract-clojars-jars`
+
+* For clojuredart samples:
+  * Clone the
+    [clojuredart-samples](https://github.com/sogaiu/clojuredart-samples)
+    repository as a subdirectory of the root of this project.
+  * Change working directory to the `clojuredart-samples` subdirectory
+  * Fetch some clojuredart code by: `bb fetch-clojuredart-code`
+
+Change the value of `repos` in `conf/conf.clj` to specify which set of
+samples to test against.
+
+See [here](doc/prepare-source-samples.md) for more details.
 
 ### Tweak settings
 

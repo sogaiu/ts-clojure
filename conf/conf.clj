@@ -37,8 +37,7 @@
    :extensions #{"bb" "nbb"
                  "clj" "cljc" "cljd" "cljr" "cljs" "cljx"
                  "dtm" "edn"}
-   :error-file-paths (str proj-root "/data/clojars-error-files.txt")
-   :file-exts-path (str proj-root "/data/clojars-file-exts.txt")})
+   :error-file-paths (str proj-root "/data/clojars-error-files.txt")})
 
 ;; clojuredart
 
@@ -47,8 +46,7 @@
    :root (str proj-root "/clojuredart-samples/data/clojuredart-repos")
    :extensions #{"clj" "cljc" "cljd"
                  "edn"}
-   :error-file-paths (str proj-root "/data/clojuredart-error-files.txt")
-   :file-exts-path (str proj-root "/data/clojuredart-file-exts.txt")})
+   :error-file-paths (str proj-root "/data/clojuredart-error-files.txt")})
 
 ;; current repos setting
 
