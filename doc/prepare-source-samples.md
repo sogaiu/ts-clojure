@@ -63,7 +63,7 @@ To make a new list, first remove:
 then execute:
 
 ```
-bb gen-clojars-jar-list
+bb make-jars-list
 ```
 
 ### Example Invocations
@@ -71,20 +71,20 @@ bb gen-clojars-jar-list
 To fetch 1000 jars, execute:
 
 ```
-bb batch-fetch-clojars-jars 1000
+bb fetch-jars 1000
 ```
 
 To fetch the maximum number of jars that makes sense to [2], try:
 
 ```
-bb batch-fetch-clojars-jars -1
+bb fetch-jars -1
 ```
 
 Note that after fetching jars, the content needs to be extracted.
 This can be done manually, but it's likely more convenient to do:
 
 ```
-bb extract-clojars-jars
+bb extract-jars
 ```
 
 ### Misc Info

@@ -79,15 +79,15 @@ To fetch some source code samples:
     [clojars-samples](https://github.com/sogaiu/clojars-samples)
     repository as a subdirectory of the root of this project.
   * Change working directory to the `clojars-samples` subdirectory
-  * Fetch 11 jars by: `bb batch-fetch-clojars-jars 11`
-  * Extract the jars by: `bb extract-clojars-jars`
+  * Fetch 11 jars by: `bb fetch-jars 11`
+  * Extract the jars by: `bb extract-jars`
 
 * For clojuredart samples:
   * Clone the
     [clojuredart-samples](https://github.com/sogaiu/clojuredart-samples)
     repository as a subdirectory of the root of this project.
   * Change working directory to the `clojuredart-samples` subdirectory
-  * Fetch some clojuredart code by: `bb fetch-clojuredart-code`
+  * Fetch some clojuredart code by: `bb fetch-samples`
 
 Change the value of `repos` in `conf/conf.clj` to specify which set of
 samples to test against.
