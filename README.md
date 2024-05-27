@@ -34,7 +34,7 @@ automation:
 * [tree-sitter dependencies](https://tree-sitter.github.io/tree-sitter/creating-parsers#dependencies)
 * [babashka](https://github.com/babashka/babashka)
 
-Strictly speaking, `git` is also necessary and likely `curl` as well.
+Strictly speaking, `git` is also necessary.
 
 See [here](doc/prerequisites.md) for more details.
 

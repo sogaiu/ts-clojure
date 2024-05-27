@@ -27,24 +27,18 @@ set of files / directories, and then point `repos` at it.
 
 ### On the subject of speed...
 
-Retrieving jars from Clojars is a slow process.  At the time of this
-writing, it took about 11 hours to retrieve somewhat over 20,000 jars.
-It's likely this depends a bit on where one is located though.
-
-The retrieval process was designed to avoid taxing Clojars [1].
-Trying to make it go faster by tweaking values in the scripts may not
-work so well as you may get throttled or temporarily blocked.  It
-might be possible to get it to go somewhat faster without issue but
-this has not really been attempted.
-
-Be nice...and patient (^^;
+Retrieving jars from Clojars can be a slow process.  Durations ranging
+from 4.5 to 11 hours have been observed for fetching somewhat over
+20,000 jars.  It's likely this depends a bit on where one is located
+though.
 
 ### Which Jars Exactly?
 
-The jars are retrieved using `curl`, indirectly based on a list in
-`data/clojars-jar-list.txt`.  This list already lives in this
-repository, but a new one (which may end up with different content)
-can be generated via a Babashka task.
+The jars are retrieved using Babashka's
+[http-client](https://github.com/babashka/http-client/) library, based
+on a list in `data/clojars-jar-list.txt`.  This list already lives in
+this repository, but a new one (which may end up with different
+content) can be generated via a Babashka task.
 
 The Babashka task fetches `data/feed.clj` from Clojars and creates a
 list of URLs of "latest release" jars and saves this in the
@@ -74,7 +68,7 @@ To fetch 1000 jars, execute:
 bb fetch-jars 1000
 ```
 
-To fetch the maximum number of jars that makes sense to [2], try:
+To fetch the maximum number of jars that makes sense to [1], try:
 
 ```
 bb fetch-jars -1
@@ -94,10 +88,8 @@ extracted jars.  You may be able to speed up the testing process (and
 reduce local storage usage) by deduplicating.  There used to be code
 to do this, but it has been removed for maintenance reasons.  Likely
 some existing deduplication program will work fine.
+[rdfind](https://github.com/pauldreik/rdfind) is one option.
 
 ---
 
-[1] It's possible it's still too taxing.  If you know this to be the
-case, please mention it so appropriate measures might be considered.
-
-[2] For a certain defintion of "makes sense to" :)
+[1] For a certain defintions of "makes sense to" :)
