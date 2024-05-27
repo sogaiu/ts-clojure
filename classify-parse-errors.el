@@ -13,8 +13,11 @@
 (defvar cpe-data-dir-name
   "data")
 
+(defvar cpe-data-dir-path
+  (concat cpe-proj-root cpe-data-dir-name))
+
 (defvar cpe-file-path
-  (concat cpe-proj-root cpe-data-dir-name "/classify-parse-errors.tsv"))
+  (concat cpe-data-dir-path "/classify-parse-errors.tsv"))
 
 (defvar cpe-error-files-default-name
   "clojars-error-files.txt")
@@ -47,13 +50,19 @@ Optional argument PATH specifies a path to a file with paths in it."
     (when file-name
       ;; XXX
       (message "file name: %s" file-name)
-      (let ((checksum (md5 file-name)))
+      (let* ((checksum (md5 (find-file-noselect file-name)))
+             ;;(parent-path (expand-file-name (concat cpe-data-dir-path "/")))
+             (parent-path (file-truename (concat cpe-data-dir-path "/")))
+             (short-name (substring (file-truename file-name)
+                                    (length parent-path))))
         ;; XXX
         (message "md5: %s" checksum)
+        (message "parent-path: %s" parent-path)
+        (message "short-name: %s" short-name)
         (append-to-file (concat checksum "\t"
                                 reason "\t"
                                 ;; XXX: may be want jar / zip url?
-                                file-name "\n")
+                                short-name "\n")
                         nil cpe-file-path)))))
 
 (provide 'classify-parse-errors)
