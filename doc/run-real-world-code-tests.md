@@ -8,7 +8,6 @@ a certain number of errors.  Currently, 115 out of somewhat over
 150,000 files parse with errors.
 
 Details about the expected errors can be seen in
-[here](../data/classify-parse-errors-summary.txt) and
 [here](../data/classify-parse-errors.tsv).
 
 ## clojuredart
