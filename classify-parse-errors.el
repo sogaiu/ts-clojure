@@ -1,5 +1,13 @@
 ;;; classify-parse-errors --- classify tree-sitter parse errors
 
+;; consider tweaking split-width-threshold like:
+;;
+;;   (setq split-width-threshold 1000)
+;;
+;; so that when viewing the output of a session in a frame, its width
+;; can be made large and yet C-o display the related file in a buffer
+;; underneath instead of to the side.
+
 ;;; Commentary:
 
 (require 'dired-x)
