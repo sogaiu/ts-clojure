@@ -1,7 +1,7 @@
 checksum	description	path	location
 bab5c1a35673e0b4196698f0124c0a67	Bare colon	geocsv/geocsv/0.1.3/public/data/data.edn	7
-9d3b117a29fc5719e54868caa1f4493e	Caret meant wrap in meta call - old Clojure	org/clojars/ctdean/compojure/0.3.1/compojure/control.clj	60
-d3cda56ababa3731e68f1b69a73191f3	Caret meant wrap in meta call - old Clojure	rosado/processing/rosado.processing/1.1.0/rosado/processing/applet.clj	66
+9d3b117a29fc5719e54868caa1f4493e	Caret used to mean wrap in meta call	org/clojars/ctdean/compojure/0.3.1/compojure/control.clj	60
+d3cda56ababa3731e68f1b69a73191f3	Caret used to mean wrap in meta call	rosado/processing/rosado.processing/1.1.0/rosado/processing/applet.clj	66
 ea9bc4b4c9da0bd672c62e3d541d489a	Colon instead of semi colon	moe/util/0.0.1/moe/util/validation.clj	10
 f068bac5024ae40e563613cd05c46720	Commenting hid closing paren(s)	overtone/overtone/0.10.6/overtone/examples/getting_started/pragpub-article.clj	161
 e11261ce370fe77e858d90f8d89eb4d1	Commenting hid closing paren(s)	com/palletops/pallet-hadoop/0.3.4/pallet_hadoop/log_config.clj	27
