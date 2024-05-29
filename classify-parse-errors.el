@@ -1,5 +1,12 @@
 ;;; classify-parse-errors --- classify tree-sitter parse errors
 
+;;; Commentary:
+
+;; issues:
+;;
+;; * File path computation by `cpe-open-current-file' is on the
+;;   hard-wired side.
+
 ;; consider tweaking split-width-threshold like:
 ;;
 ;;   (setq split-width-threshold 1000)
@@ -8,11 +15,11 @@
 ;; can be made large and yet C-o display the related file in a buffer
 ;; underneath instead of to the side.
 
-;;; Commentary:
+;;; Code:
 
 (require 'dired-x)
 
-;;; Code:
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defvar cpe-proj-root
   ;; XXX: is this good enough?
@@ -29,6 +36,8 @@
 
 (defvar cpe-error-files-default-name
   "clojars-error-files.txt")
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun cpe-new-session (path)
   "Start a new session.
@@ -73,6 +82,8 @@ Optional argument PATH specifies a path to a file with paths in it."
                                 short-name "\n")
                         nil cpe-file-path)))))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defun cpe--parse-current-row ()
   "Parse current row."
   (save-excursion
@@ -103,6 +114,8 @@ Optional argument PATH specifies a path to a file with paths in it."
                                  path)))
     (find-file file-path)
     (forward-line (1- (string-to-number first-line)))))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (provide 'classify-parse-errors)
 ;;; classify-parse-errors.el ends here
