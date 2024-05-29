@@ -31,7 +31,6 @@ e3ad3ffc694cd175d39ac096fea62176	Incomplete file	incstats/incstats/0.1.4/incstat
 f9c0fa6018b2b50d48455b341318d509	Keyword with @	happygapi/happygapi/0.4.8/kgsearch_schema.edn	4
 b835c212141dbf8646067e0f7e08aa08	Metadata with no metadatee	clojure-interop/com.amazonaws.internal/1.0.0/com/amazonaws/internal/ResettableInputStream.clj	75
 94eaaab7fb98b1d9505cb7e2ff00f2a5	Mismatched number of discards	org/clojars/notid/pdfboxing/0.1.19/pdfboxing/form.clj	43
-694f072fe8bfe3ab0428fa5a15195866	Missing closing delimiter	tandem/support/0.0.7/tandem/error_handling.clj	56
 511cf5b67ac36c75a0191ae10cfc086c	Missing closing delimiter for string	loco/loco/0.3.1/loco/problem.clj	11
 99eff8e252f1a74c786449ff1a90f8ea	Missing closing paren	casyn/casyn/0.1.2/casyn/balancer/least_loaded.clj	4
 14b7bdde3a476401a0acef95c3de038c	Missing closing paren	clj-contentful/clj-contentful/1.1.0/clj_contentful.clj	14
@@ -45,6 +44,7 @@ e3b6068ad16e69bd738112b5aa315525	Missing closing paren	natal-wrapper/natal-wrapp
 a4bed6e8350def0bebce436e9a6a52b8	Missing closing paren	org/clojars/bananaoomarang/ring-debug-logging/1.0.0/ring_debug_logging/core.clj	3
 689533bef0bf0c9b7a6c5a395a7e8209	Missing closing paren	org/clojars/kyleburton/clj-etl-utils/1.3.10/clj_etl_utils/cache_utils.clj	14
 24a54891f2db31a87fc9e28a6c8dc9f4	Missing closing paren	ru/fl00r/clj-kafka/0.4.17/ru/prepor/clj_kafka/tracers/metrics.clj	1
+694f072fe8bfe3ab0428fa5a15195866	Missing closing paren	tandem/support/0.0.7/tandem/error_handling.clj	56
 d5230f4fd9db14f8a82d6acc51b96797	Missing closing paren	travesedo/travesedo/0.1.2/travesedo/transaction.clj	30
 5e2eb460c8a91f1eddded1601b5346ee	Missing closing paren	wangxiaoyu/poppy/0.0.1/poppy/node.clj	2
 ad4b5156fc84eeedbe82350bdda43eb0	Missing closing paren	zvs/onyx-java/0.1.9/onyx_java/main.clj	37
@@ -65,7 +65,7 @@ b64df7ffca36f21946860c11c37dba51	Template	boxp/magic/0.0.1/leiningen/new/magic/s
 5a0d6fcba5ad0cfc9afec953385518bc	Template	cljs-cloud-function/clj-template/0.1.1/clj/new/cljs_cloud_function/foo.cljs	1
 dc6a6f2a773c0a1a3f4757e866ae703b	Template	coast/coast/0.6.9/controller.clj	1
 9b8ef8c10e364f8c3d0c294c6584db44	Template	coast/coast/0.6.9/model.clj	1
-1417da2eb4791ea2dae2cc91bb1c7534	Template	dorab-lib-template/clj-template/0.1.3/clj/new/dorab_lib_template/system.edn	2,4
+1417da2eb4791ea2dae2cc91bb1c7534	Template	dorab-lib-template/clj-template/0.1.3/clj/new/dorab_lib_template/system.edn	4
 95e20cabb756d12012f8c5a844a9f918	Template	dv/fulcro-template/clj-template/2020.06.3/clj/new/dv.fulcro_template/deps.edn	38
 4d5e3b14e9be329b2202179cf16ff0d5	Template	dv/fulcro-template/clj-template/2020.06.3/clj/new/dv.fulcro_template/shadow-cljs.edn	12
 be3873aef4eb2aa230b3fbd3a2bb132a	Template	dv/fulcro-template/clj-template/2020.06.3/clj/new/dv.fulcro_template/src/main/app/auth/login.cljs	1
@@ -103,8 +103,8 @@ e5b0b3319683f980c9ddd1e64e81a1a0	Template	re-frame-template/clj-template/0.1.4/c
 8a3852ec2aa0ae2cbeb7ed3e38798f3a	Template	re-frame-template/clj-template/0.1.4/clj/new/re_frame_template/src/views_routes.cljs	1
 574485176ecc74c02ae4c66784af6611	Template	re-frame-template/clj-template/0.1.4/clj/new/re_frame_template/src/views.cljs	1
 945cd3c3b30a59dbecbfb343f36778fc	Template	system-template/boot-template/0.1.0/boot/new/system_template/app.cljs	1
-50ae1459c938823fb02ff0aa1d064319	Template with angle brackets	hydrogen/cljs/duct-template/0.1.2/hydrogen/cljs/view.cljs	5
-1a84b6ba0c687a48852b455385505f34	Template with angle brackets	hydrogen/duct-template/0.5.15/core/api/example.clj	5
+50ae1459c938823fb02ff0aa1d064319	Template	hydrogen/cljs/duct-template/0.1.2/hydrogen/cljs/view.cljs	5
+1a84b6ba0c687a48852b455385505f34	Template	hydrogen/duct-template/0.5.15/core/api/example.clj	5
 6c9b6472e40adc1ee17e0c41ffb6f4a1	Unescaped backslashes in string	org/clojars/jcsims/riemann/0.2.17/streams/pure.clj	81,83
 d383d1116b3345359c99384c46e82939	Use of chiara - like mma clarity	mynx/mynx/2.0.0/reddit.clj	15
 0f2247b7948cd18347bc8d13ed00d664	Use of chiara - like mma clarity	mynx/mynx/2.0.0/reddit/core.clj	22
