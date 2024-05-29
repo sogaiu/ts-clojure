@@ -59,7 +59,7 @@ fdcfb75e3238a9f1d23ef6ed9eaec6bb	Missing closing square bracket	prabhasp/osmtoge
 bdb693a85023c63f688cf416aeefc148	Premature end of string by double quote	lein-write-git-sha/lein-write-git-sha/0.1.2/leiningen/write_git_sha.clj	25
 0f3d8fbfc401651e235d43d40accbee8	Reader macro magic	clj-integral/clj-integral/2.1.6/core_ext.clj	118
 0151d48466c8237e68ae70b7d34d17eb	Stray characters	semantic-reagent/semantic-reagent/0.1.1/semantic_reagent/icons.cljs	3
-4cb99e1179472f6339423340f1b0a615	Stray extra code at end of file	org/pinkgorilla/notebook-bundel/0.5.40/pinkgorilla/notebook_ui/datafy/test.edn	48
+4cb99e1179472f6339423340f1b0a615	Stray characters	org/pinkgorilla/notebook-bundel/0.5.40/pinkgorilla/notebook_ui/datafy/test.edn	48
 2102257b42984aca9b852d4f6d1f4ad6	Template	boot-reframe-10x/boot-template/0.1.0/boot/new/boot_reframe_10x/events.cljs	1
 b64df7ffca36f21946860c11c37dba51	Template	boxp/magic/0.0.1/leiningen/new/magic/system.clj	1
 5a0d6fcba5ad0cfc9afec953385518bc	Template	cljs-cloud-function/clj-template/0.1.1/clj/new/cljs_cloud_function/foo.cljs	1
