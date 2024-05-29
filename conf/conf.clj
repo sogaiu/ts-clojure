@@ -37,7 +37,8 @@
    :extensions #{"bb" "nbb"
                  "clj" "cljc" "cljd" "cljr" "cljs" "cljx"
                  "dtm" "edn"}
-   :error-file-paths (str proj-root "/data/clojars-error-files.txt")})
+   :error-file-paths (str proj-root "/data/clojars-error-files.txt")
+   :error-tsv-path (str proj-root "/data/classify-parse-errors.tsv")})
 
 ;; clojuredart
 
