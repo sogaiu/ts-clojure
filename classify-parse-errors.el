@@ -73,5 +73,36 @@ Optional argument PATH specifies a path to a file with paths in it."
                                 short-name "\n")
                         nil cpe-file-path)))))
 
+(defun cpe--parse-current-row ()
+  "Parse current row."
+  (save-excursion
+    (let ((start nil) (end nil)
+          (row nil))
+      (beginning-of-line)
+      (setq start (point))
+      (end-of-line)
+      (setq end (point))
+      (setq row (buffer-substring-no-properties start end))
+      (string-split row "\t"))))
+
+(defun cpe--first-number-from-location (location)
+  "Extract first number from LOCATION."
+  (string-match "^\\([0-9]+\\)" location)
+  (match-string 0 location))
+
+;; XXX: full path construction may be problematic
+(defun cpe-open-row-file ()
+  "Visit file for current row."
+  (interactive)
+  (when-let* ((row (cpe--parse-current-row))
+              (path (nth 2 row))
+              (location (nth 3 row))
+              (first-line (cpe--first-number-from-location location))
+              (file-path (concat cpe-data-dir-path
+                                 "/../clojars-samples/data/clojars-repos/"
+                                 path)))
+    (find-file file-path)
+    (forward-line (1- (string-to-number first-line)))))
+
 (provide 'classify-parse-errors)
 ;;; classify-parse-errors.el ends here
