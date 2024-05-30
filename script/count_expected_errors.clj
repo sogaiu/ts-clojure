@@ -18,6 +18,7 @@
                    #(if (nil? %) 1 (inc %)))))))
     @errors))
 
+;; $ tail -n +2 classify-parse-errors.tsv | cut -d$'\t' -f 2 | uniq -c | sort
 (defn -main
   [& _args]
   (when (cnf/repos :error-tsv-path)
