@@ -52,12 +52,12 @@ ad4b5156fc84eeedbe82350bdda43eb0	Missing closing paren(s)	zvs/onyx-java/0.1.9/on
 1dfd7111789cacfa73d0752734dac2c4	Missing closing square bracket(s)	lilactown/hx-frisk/0.0.1/hx_frisk/spec.cljs	4
 1348feafedac2f6d9c9ca16c6fda3080	Missing closing square bracket(s)	org/clojars/karolisl/lein-npm/0.6.3/leiningen/npm.clj	73
 fdcfb75e3238a9f1d23ef6ed9eaec6bb	Missing closing square bracket(s)	prabhasp/osmtogeojson-cljs/2.2.5/deps.cljs	3
-339b0fd7b8cea6e857316f0ab8101eed	Modified dispatch macros to handle #b	piplin/piplin/0.1.1/piplin/mips.clj	11
-02e9284d6d774b944e9df60881a6e642	Modified dispatch macros to handle #b	piplin/piplin/0.1.1/piplin/nexys6/sw_led.clj	85
-77a2b9fa616c67a80265c07068b6b40e	Modified dispatch macros to handle #b	piplin/piplin/0.1.1/piplin/seven_segment_decoder.clj	79
+0f3d8fbfc401651e235d43d40accbee8	Modified dispatch macros	clj-integral/clj-integral/2.1.6/core_ext.clj	118
+339b0fd7b8cea6e857316f0ab8101eed	Modified dispatch macros	piplin/piplin/0.1.1/piplin/mips.clj	11
+02e9284d6d774b944e9df60881a6e642	Modified dispatch macros	piplin/piplin/0.1.1/piplin/nexys6/sw_led.clj	85
+77a2b9fa616c67a80265c07068b6b40e	Modified dispatch macros	piplin/piplin/0.1.1/piplin/seven_segment_decoder.clj	79
 6146fa0329f085f7546c73a55ab5dd7f	Partially converted file	org/pinkgorilla/ta/0.2.0/etf/equity-sector-industry.edn	53-68
 bdb693a85023c63f688cf416aeefc148	Premature end of string by double quote	lein-write-git-sha/lein-write-git-sha/0.1.2/leiningen/write_git_sha.clj	25
-0f3d8fbfc401651e235d43d40accbee8	Reader macro magic	clj-integral/clj-integral/2.1.6/core_ext.clj	118
 0151d48466c8237e68ae70b7d34d17eb	Stray characters	semantic-reagent/semantic-reagent/0.1.1/semantic_reagent/icons.cljs	3
 4cb99e1179472f6339423340f1b0a615	Stray characters	org/pinkgorilla/notebook-bundel/0.5.40/pinkgorilla/notebook_ui/datafy/test.edn	48
 2102257b42984aca9b852d4f6d1f4ad6	Template	boot-reframe-10x/boot-template/0.1.0/boot/new/boot_reframe_10x/events.cljs	1
