@@ -115,13 +115,14 @@
 (defn report-repos
   []
   (let [exists (fs/exists? (cnf/repos :root))]
-    (println "  test repos:" (cnf/repos :name))
+    (println "         test repos:" (cnf/repos :name))
     (when-not exists (reset! all-ok? false))
-    (println "        path:"
-             (if exists (cnf/repos :root) "*Not Found*"))
+    (println "samples root set to:" (cnf/repos :root))
+    (println "samples root exists:"
+             (if exists "Yes" "*No*"))
     (when (and exists
                @count-samples?)
-      (println "# of samples:" (count-samples)))))
+      (println "       # of samples:" (count-samples)))))
 
 (defn report-exception-and-exit
   [e]
