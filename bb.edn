@@ -1,7 +1,10 @@
 {:min-bb-version "0.4.0"
  :paths ["conf"
          "script"]
- :tasks {generate-parser
+ :tasks {check-setup
+         {:doc "Check setup"
+          :task check-setup/-main}
+         generate-parser
          {:doc "Generate parser.c"
           :task generate-parser/-main}
          corpus-test
