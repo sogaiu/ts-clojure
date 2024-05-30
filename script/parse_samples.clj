@@ -117,19 +117,19 @@
       (println "No parse errors.")
       (do
         (println "Counted" n-errors "paths with parse issues.")
-        (when (cnf/repos :error-tsv-path)
-          (when (fs/exists? (cnf/repos :error-tsv-path))
-            ;; compare checksums against expected error checksums
-            (let [checksums (init-error-checksums)
-                  hits (atom [])]
-              (doseq [path errors]
-                (let [checksum (format "%032x" (file-checksum (fs/file path)))]
-                  (if (get checksums checksum)
-                    (swap! hits conj checksum)
-                    (println "Unexpected error for path:" path))))
-              (println "Number of expected errors encountered:" (count @hits)))))
-        (println "See" (cnf/repos :error-file-paths)
-                 "for details or rerun verbosely.")))))
+        (when (and (cnf/repos :error-tsv-path)
+                   (fs/exists? (cnf/repos :error-tsv-path)))
+          ;; compare checksums against expected error checksums
+          (let [checksums (init-error-checksums)
+                          hits (atom [])]
+            (doseq [path errors]
+              (let [checksum (format "%032x" (file-checksum (fs/file path)))]
+                (if (get checksums checksum)
+                  (swap! hits conj checksum)
+                  (println "Unexpected error for path:" path))))
+            (println "Number of expected errors encountered:" (count @hits))))))
+    (println "See" (cnf/repos :error-file-paths)
+             "for details or rerun verbosely.")))
 
 (defn report-duration
   [duration]

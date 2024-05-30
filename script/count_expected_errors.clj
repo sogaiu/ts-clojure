@@ -21,14 +21,14 @@
 ;; $ tail -n +2 classify-parse-errors.tsv | cut -d$'\t' -f 2 | uniq -c | sort
 (defn -main
   [& _args]
-  (when (cnf/repos :error-tsv-path)
-    (when (fs/exists? (cnf/repos :error-tsv-path))
-      (let [errors (count-error-freq)
-            total (atom 0)]
-        (doseq [descr (sort (keys errors))]
-          (let [cnt (get errors descr)]
-            (swap! total + cnt)
-            (print cnt "\t" descr "\n")))
-        (println "---------------------------------------")
-        (print @total "\t" "Total" "\n")))))
+  (when (and (cnf/repos :error-tsv-path)
+             (fs/exists? (cnf/repos :error-tsv-path)))
+    (let [errors (count-error-freq)
+                 total (atom 0)]
+      (doseq [descr (sort (keys errors))]
+        (let [cnt (get errors descr)]
+          (swap! total + cnt)
+          (print cnt "\t" descr "\n")))
+      (println "---------------------------------------")
+      (print @total "\t" "Total" "\n"))))
 
