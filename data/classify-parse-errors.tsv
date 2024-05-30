@@ -20,14 +20,14 @@ ce49c138ce4cd999a3de6aec2604c61c	Extra closing paren(s)	ongair/duckling/0.4.22.3
 8f664ccdf4a486a7d50eb8d31fd706ce	Extra closing paren(s)	org/clojars/guilespi/less-awful-ssl/0.1.3/less/awful/ssl.clj	95
 7502ef3534914459d48fc10a9ea37744	Extra closing square bracket(s)	org/clojars/tristefigure/shuriken/0.14.49/shuriken/z_expression.clj	4
 89301cc478d22692248edf09f22ab9e2	Incomplete code	tcrayford_parsley/parsley/0.1.0/net/cgrand/parsley/demo.clj	162-167
-a8ddd4f9b07a352f3b26a701e9bacc86	Incomplete defmethod	ibdknox/analyze/0.1.4/analyze/examples/infer.clj	20
-8a799f30f38422df216ef7e620d48ae0	Incomplete defn	peloton/peloton/0.1.2/peloton/websocket.clj	63
-fd60ada2ce3bb6c2145ca7cb48cca525	Incomplete defn	babel/babel/3.2.9/babel/espanol/morphology/verbos/condicional.edn	58
-eb256e532562820a126d698afc01ca8b	Incomplete defn	babel/babel/3.2.9/babel/espanol/morphology/verbos/futuro.edn	56
-93efc11233e88d81f3203a1d19123f7f	Incomplete defn	babel/babel/3.2.9/babel/espanol/morphology/verbos/imperfecto.edn	87
-948b424b82b38fda388729abe1c7f32c	Incomplete defn	babel/babel/3.2.9/babel/espanol/morphology/verbos/preterito.edn	101
-4b5b7281f0b6c4154667478274f6464d	Incomplete defn	core/typed/core.typed/0.1.8/clojure/core/typed/alms_infer.clj	21
-e3ad3ffc694cd175d39ac096fea62176	Incomplete defn	incstats/incstats/0.1.4/incstats/merge.clj	9
+a8ddd4f9b07a352f3b26a701e9bacc86	Incomplete code	ibdknox/analyze/0.1.4/analyze/examples/infer.clj	20
+8a799f30f38422df216ef7e620d48ae0	Incomplete code	peloton/peloton/0.1.2/peloton/websocket.clj	63
+fd60ada2ce3bb6c2145ca7cb48cca525	Incomplete code	babel/babel/3.2.9/babel/espanol/morphology/verbos/condicional.edn	58
+eb256e532562820a126d698afc01ca8b	Incomplete code	babel/babel/3.2.9/babel/espanol/morphology/verbos/futuro.edn	56
+93efc11233e88d81f3203a1d19123f7f	Incomplete code	babel/babel/3.2.9/babel/espanol/morphology/verbos/imperfecto.edn	87
+948b424b82b38fda388729abe1c7f32c	Incomplete code	babel/babel/3.2.9/babel/espanol/morphology/verbos/preterito.edn	101
+4b5b7281f0b6c4154667478274f6464d	Incomplete code	core/typed/core.typed/0.1.8/clojure/core/typed/alms_infer.clj	21
+e3ad3ffc694cd175d39ac096fea62176	Incomplete code	incstats/incstats/0.1.4/incstats/merge.clj	9
 f9c0fa6018b2b50d48455b341318d509	Keyword with @	happygapi/happygapi/0.4.8/kgsearch_schema.edn	4
 b835c212141dbf8646067e0f7e08aa08	Metadata with no metadatee	clojure-interop/com.amazonaws.internal/1.0.0/com/amazonaws/internal/ResettableInputStream.clj	75
 94eaaab7fb98b1d9505cb7e2ff00f2a5	Mismatched number of discards	org/clojars/notid/pdfboxing/0.1.19/pdfboxing/form.clj	43
