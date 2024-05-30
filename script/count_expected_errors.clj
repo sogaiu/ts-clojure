@@ -1,0 +1,33 @@
+(ns count-expected-errors
+  (:require [babashka.fs :as fs]
+            [clojure.java.io :as cji]
+            [clojure.string :as cs]
+            [conf :as cnf]))
+
+(defn count-error-freq
+  []
+  (let [errors (atom {})]
+    (with-open [rdr (cji/reader (cnf/repos :error-tsv-path))]
+      ;; should skip first row because represents field names
+      (.readLine rdr)
+      (doseq [row (line-seq rdr)]
+        (when-let [fields (cs/split row #"\t")]
+          (let [descr (second fields)]
+            (swap! errors
+                   update descr
+                   #(if (nil? %) 1 (inc %)))))))
+    @errors))
+
+(defn -main
+  [& _args]
+  (when (cnf/repos :error-tsv-path)
+    (when (fs/exists? (cnf/repos :error-tsv-path))
+      (let [errors (count-error-freq)
+            total (atom 0)]
+        (doseq [descr (sort (keys errors))]
+          (let [cnt (get errors descr)]
+            (swap! total + cnt)
+            (print cnt "\t" descr "\n")))
+        (println "---------------------------------------")
+        (print @total "\t" "Total" "\n")))))
+
