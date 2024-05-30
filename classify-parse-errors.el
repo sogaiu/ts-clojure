@@ -61,40 +61,33 @@ Optional argument PATH specifies a path to a file with paths in it."
   ;; XXX: read in past reasons from cpe-file-path?
   ;; XXX: should prune tab characters from reason
   (interactive "sReason: ")
-  ;; XXX
-  (message "%s" reason)
-  (let ((file-name (dired-get-filename)))
-    (when file-name
+  (when-let* ((file-name (dired-get-filename))
+              (checksum (md5 (find-file-noselect file-name)))
+              (parent-path (file-truename (concat cpe-data-dir-path "/")))
+              (short-path (substring (file-truename file-name)
+                                     (length parent-path))))
       ;; XXX
-      (message "file name: %s" file-name)
-      (let* ((checksum (md5 (find-file-noselect file-name)))
-             ;;(parent-path (expand-file-name (concat cpe-data-dir-path "/")))
-             (parent-path (file-truename (concat cpe-data-dir-path "/")))
-             (short-name (substring (file-truename file-name)
-                                    (length parent-path))))
-        ;; XXX
-        (message "md5: %s" checksum)
-        (message "parent-path: %s" parent-path)
-        (message "short-name: %s" short-name)
-        (append-to-file (concat checksum "\t"
-                                reason "\t"
-                                ;; XXX: may be want jar / zip url?
-                                short-name "\n")
-                        nil cpe-file-path)))))
+    (message "reason: %s" reason)
+    (message "file name: %s" file-name)
+    (message "checksum: %s" checksum)
+    (message "parent-path: %s" parent-path)
+    (message "short-path: %s" short-path)
+    (append-to-file (concat checksum "\t"
+                            reason "\t"
+                            short-path "\n")
+                    nil cpe-file-path)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defun cpe--parse-current-row ()
   "Parse current row."
   (save-excursion
-    (let ((start nil) (end nil)
-          (row nil))
+    (let ((start nil) (end nil))
       (beginning-of-line)
       (setq start (point))
       (end-of-line)
       (setq end (point))
-      (setq row (buffer-substring-no-properties start end))
-      (string-split row "\t"))))
+      (string-split (buffer-substring-no-properties start end) "\t"))))
 
 (defun cpe--first-number-from-location (location)
   "Extract first number from LOCATION."
@@ -107,7 +100,7 @@ Optional argument PATH specifies a path to a file with paths in it."
   (interactive)
   (when-let* ((row (cpe--parse-current-row))
               (path (nth 2 row))
-              (location (nth 3 row))
+              (location (or (nth 3 row) "1"))
               (first-line (cpe--first-number-from-location location))
               (file-path (concat cpe-data-dir-path
                                  "/../clojars-samples/data/clojars-repos/"
