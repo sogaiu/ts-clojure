@@ -52,10 +52,16 @@ ad4b5156fc84eeedbe82350bdda43eb0	Missing closing paren(s)	zvs/onyx-java/0.1.9/on
 1dfd7111789cacfa73d0752734dac2c4	Missing closing square bracket(s)	lilactown/hx-frisk/0.0.1/hx_frisk/spec.cljs	4
 1348feafedac2f6d9c9ca16c6fda3080	Missing closing square bracket(s)	org/clojars/karolisl/lein-npm/0.6.3/leiningen/npm.clj	73
 fdcfb75e3238a9f1d23ef6ed9eaec6bb	Missing closing square bracket(s)	prabhasp/osmtogeojson-cljs/2.2.5/deps.cljs	3
-0f3d8fbfc401651e235d43d40accbee8	Modified dispatch macros	clj-integral/clj-integral/2.1.6/core_ext.clj	118
-339b0fd7b8cea6e857316f0ab8101eed	Modified dispatch macros	piplin/piplin/0.1.1/piplin/mips.clj	11
-02e9284d6d774b944e9df60881a6e642	Modified dispatch macros	piplin/piplin/0.1.1/piplin/nexys6/sw_led.clj	85
-77a2b9fa616c67a80265c07068b6b40e	Modified dispatch macros	piplin/piplin/0.1.1/piplin/seven_segment_decoder.clj	79
+0f3d8fbfc401651e235d43d40accbee8	Dispatch macro hackery	clj-integral/clj-integral/2.1.6/core_ext.clj	118
+339b0fd7b8cea6e857316f0ab8101eed	Dispatch macro hackery	piplin/piplin/0.1.1/piplin/mips.clj	11
+02e9284d6d774b944e9df60881a6e642	Dispatch macro hackery	piplin/piplin/0.1.1/piplin/nexys6/sw_led.clj	85
+77a2b9fa616c67a80265c07068b6b40e	Dispatch macro hackery	piplin/piplin/0.1.1/piplin/seven_segment_decoder.clj	79
+d383d1116b3345359c99384c46e82939	Dispatch macro hackery via chiara	mynx/mynx/2.0.0/reddit.clj	15
+0f2247b7948cd18347bc8d13ed00d664	Dispatch macro hackery via chiara	mynx/mynx/2.0.0/reddit/core.clj	22
+934d58ff6d87cbaf540b1860a8a207f7	Dispatch macro hackery via $, clarity	clj-mma/clj-mma/0.1.0/mma/dictionary.clj	26
+0c7a8658bedbc1acf35f121f51dea3c5	Dispatch macro hackery via clarity	clj-mma/clj-mma/0.1.0/mma/conversion.clj	9
+523dbc82d7815cc26e3aa31458bac380	Dispatch macro hackery via clarity	clj-mma/clj-mma/0.1.0/mma/core.clj	17
+ee8ef0604a5e8064bebeed41e9fd673a	Dispatch macro hackery via clarity	clj-mma/clj-mma/0.1.0/primes.clj	27
 6146fa0329f085f7546c73a55ab5dd7f	Partially converted file	org/pinkgorilla/ta/0.2.0/etf/equity-sector-industry.edn	53-68
 bdb693a85023c63f688cf416aeefc148	Premature end of string by double quote	lein-write-git-sha/lein-write-git-sha/0.1.2/leiningen/write_git_sha.clj	25
 0151d48466c8237e68ae70b7d34d17eb	Stray characters	semantic-reagent/semantic-reagent/0.1.1/semantic_reagent/icons.cljs	3
@@ -106,11 +112,5 @@ e5b0b3319683f980c9ddd1e64e81a1a0	Template	re-frame-template/clj-template/0.1.4/c
 50ae1459c938823fb02ff0aa1d064319	Template	hydrogen/cljs/duct-template/0.1.2/hydrogen/cljs/view.cljs	5
 1a84b6ba0c687a48852b455385505f34	Template	hydrogen/duct-template/0.5.15/core/api/example.clj	5
 6c9b6472e40adc1ee17e0c41ffb6f4a1	Unescaped backslashes in string	org/clojars/jcsims/riemann/0.2.17/streams/pure.clj	81,83
-d383d1116b3345359c99384c46e82939	Use of chiara	mynx/mynx/2.0.0/reddit.clj	15
-0f2247b7948cd18347bc8d13ed00d664	Use of chiara	mynx/mynx/2.0.0/reddit/core.clj	22
-934d58ff6d87cbaf540b1860a8a207f7	Use of mma $	clj-mma/clj-mma/0.1.0/mma/dictionary.clj	26
-0c7a8658bedbc1acf35f121f51dea3c5	Use of mma clarity	clj-mma/clj-mma/0.1.0/mma/conversion.clj	9
-523dbc82d7815cc26e3aa31458bac380	Use of mma clarity	clj-mma/clj-mma/0.1.0/mma/core.clj	17
-ee8ef0604a5e8064bebeed41e9fd673a	Use of mma clarity	clj-mma/clj-mma/0.1.0/primes.clj	27
 8e898d13c3930434c632123585193742	Zero byte	clj-dbase/clj-dbase/0.1.0/clj_dbase/core.clj	121
 15e5def60cd1b488f12f48e46dd7b1d8	Zero byte	ont-app/vocabulary/0.2.1/uri-escapes.edn	1
