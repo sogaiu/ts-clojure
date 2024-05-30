@@ -14,8 +14,8 @@ There is some one-time (mostly) setup necessary before tests can be
 executed.  This includes:
 
 * Verifying / installing prerequisites
-* Verifying tree-sitter setup
 * Cloning this repository
+* Verifying tree-sitter setup
 * Cloning tree-sitter-clojure
 * Fetching source code samples
 * Tweaking ts-clojure's settings
@@ -38,17 +38,25 @@ Strictly speaking, `git` is also necessary.
 
 See [here](doc/prerequisites.md) for more details.
 
+### Clone ts-clojure
+
+Clone [ts-clojure](https://github.com/sogaiu/ts-clojure) (this
+repository) somewhere local.
+
+Once Babashka is available, you can repeatedly use:
+
+```
+bb check-setup
+```
+
+as you follow the steps below to see how well things are progressing.
+
 ### Verify tree-sitter setup
 
 Verify what version of `tree-sitter` you have installed and confirm
 that you know where it looks to find parser repositories.
 
 See [here](doc/verify-tree-sitter-setup.md) for more details.
-
-### Clone ts-clojure
-
-Clone [ts-clojure](https://github.com/sogaiu/ts-clojure) (this
-repository) somewhere local.
 
 ### Clone tree-sitter-clojure
 
