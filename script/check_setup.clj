@@ -2,6 +2,7 @@
   (:require [babashka.fs :as fs]
             [babashka.process :as proc]
             [clojure.string :as cs]
+            [utils :as u]
             [conf :as cnf]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -64,19 +65,6 @@
                       no-quotes)))))
             (fs/read-all-lines (fs/file out-file-path))))))
 
-(defn count-samples
-  []
-  (let [samples (atom [])]
-    (fs/walk-file-tree
-     (cnf/repos :root)
-     {:visit-file
-      (fn [path _]
-        (when ((cnf/repos :extensions) (fs/extension path))
-          (swap! samples conj path))
-        :continue)
-      :follow-links true})
-    (count @samples)))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defn print-separator
@@ -122,16 +110,11 @@
              (if exists "Yes" "*No*"))
     (when (and exists
                @count-samples?)
-      (println "       # of samples:" (count-samples)))))
-
-(defn report-exception-and-exit
-  [e]
-  (println "Exception:" e)
-  (System/exit 1))
+      (println "       # of samples:" (count (u/collect-samples))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; basic outline:
+;; outline:
 ;;
 ;; * report paths of tree-sitter, git, c compiler, and node
 ;; * report path of tree-sitter-clojure found by tree-sitter
@@ -166,5 +149,5 @@
         (println "Setup looks ok.")
         (println "*Something isn't right, please review the output*")))
     (catch Exception e
-      (report-exception-and-exit e))))
+      (u/report-exception-and-exit e))))
 

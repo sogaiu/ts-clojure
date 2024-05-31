@@ -4,6 +4,8 @@
             [clojure.string :as cs]
             [conf :as cnf]))
 
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defn count-error-freq
   []
   (let [errors (atom {})]

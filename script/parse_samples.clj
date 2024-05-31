@@ -5,6 +5,7 @@
             [babashka.process :as proc]
             [clojure.java.io :as cji]
             [clojure.string :as cs]
+            [utils :as u]
             [conf :as cnf]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -39,19 +40,6 @@
       @checksums)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defn collect-samples
-  []
-  (let [samples (atom [])]
-    (fs/walk-file-tree
-     (cnf/repos :root)
-     {:visit-file
-      (fn [path _]
-        (when ((cnf/repos :extensions) (fs/extension path))
-          (swap! samples conj path))
-        :continue)
-      :follow-links true})
-    @samples))
 
 (defn save-sample-paths
   [samples]
@@ -116,18 +104,22 @@
     (if (zero? n-errors)
       (println "No parse errors.")
       (do
-        (println "Counted" n-errors "paths with parse issues.")
+        (println "Number of errors encountered:" n-errors)
         (when (and (cnf/repos :error-tsv-path)
                    (fs/exists? (cnf/repos :error-tsv-path)))
           ;; compare checksums against expected error checksums
           (let [checksums (init-error-checksums)
-                          hits (atom [])]
+                hits (atom [])]
             (doseq [path errors]
               (let [checksum (format "%032x" (file-checksum (fs/file path)))]
                 (if (get checksums checksum)
                   (swap! hits conj checksum)
                   (println "Unexpected error for path:" path))))
-            (println "Number of expected errors encountered:" (count @hits))))))
+            (println "Number of expected errors encountered:" (count @hits))
+            (println "Percent of expected errors met:" 
+                     (str (* 100 
+                             (/ (count @hits) n-errors))
+                          "%"))))))
     (println "See" (cnf/repos :error-file-paths)
              "for details or rerun verbosely.")))
 
@@ -144,14 +136,9 @@
       (System/exit 1))
     (System/exit 0)))
 
-(defn report-exception-and-exit
-  [e]
-  (println "Exception:" e)
-  (System/exit 1))
-
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-;; basic outline:
+;; outline:
 ;;
 ;; 1. collect files to parse
 ;; 2. save file paths to file (to hand to tree-sitter)
@@ -160,18 +147,14 @@
 (defn -main
   [& _args]
   ;; precautions
-  (when-not (fs/exists? cnf/grammar-dir)
-    (println "Directory for" cnf/grammar-dir "not found")
-    (System/exit 1))
-  (when-not (fs/exists? (cnf/repos :root))
-    (println "Directory for" (cnf/repos :root) "not found")
-    (System/exit 1))
+  (u/exit-unless-grammar-dir-exists)
+  (u/exit-unless-repos-root-exists)
   ;; back to our regularly scheduled programming
   (try
     (let [start-time (System/currentTimeMillis)
           _ (report-looking)
           ;; 1. find all relevant clojure-related files
-          samples (collect-samples)
+          samples (u/collect-samples)
           _ (report-found samples start-time)
           ;; 2. save file paths to be parsed to a file
           to-be-parsed (save-sample-paths samples)
@@ -183,7 +166,7 @@
           errors (save-error-paths out-file-path)]
       (report-errors errors)
       (report-duration duration)
-      (report-exit-code-and-exit exit-code))
+      (u/exit-unless-error-code-is exit-code #{0 1} "tree-sitter-parse"))
     (catch Exception e
-      (report-exception-and-exit e))))
+      (u/report-exception-and-exit e))))
 

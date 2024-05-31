@@ -1,5 +1,6 @@
 {:min-bb-version "0.4.0"
  :paths ["conf"
+         "lib"
          "script"]
  :tasks {check-setup
          {:doc "Check setup"
