@@ -19,10 +19,10 @@
   (format "%s" (fs/which name)))
 
 (def prereq-paths
-  {:tree-sitter (or (which cnf/ts-bin-path) "*Not Found*")
-   :git (or (which "git") "*Not Found*")
-   :cc (or (which "cc") "*Not Found*")
-   :node (or (which "node") "*Not Found*")})
+  {:tree-sitter (which cnf/ts-bin-path)
+   :git (which "git")
+   :cc (which "cc")
+   :node (which "node")})
 
 (defn absolute-path
   [path]
@@ -53,17 +53,17 @@
                          :out-file (fs/file out-file-path)}
                         (str cnf/ts-bin-path " dump-languages"))
         exit-code (:exit @p)]
-    (if-not (zero? exit-code)
-      (do
-        (reset! all-ok? false)
-        nil)
-      (keep (fn [line]
-              (when (pos? (count line))
-                (let [[name value] (cs/split line #": ")]
-                  (when (= name "parser")
-                    (let [no-quotes (subs value 1 (dec (count value)))]
-                      no-quotes)))))
-            (fs/read-all-lines (fs/file out-file-path))))))
+    (u/exit-unless
+     (zero? exit-code)
+     (format "tree-sitter dump-languages exited non-zero: %d"
+             exit-code))
+    (keep (fn [line]
+            (when (pos? (count line))
+              (let [[name value] (cs/split line #": ")]
+                (when (= name "parser")
+                  (let [no-quotes (subs value 1 (dec (count value)))]
+                    no-quotes)))))
+          (fs/read-all-lines (fs/file out-file-path)))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -73,18 +73,30 @@
 
 (defn report-prereq-paths
   []
-  (println "tree-sitter:" (get prereq-paths :tree-sitter))
-  (println "        git:" (get prereq-paths :git))
-  (println "         cc:" (get prereq-paths :cc))
-  (println "       node:" (get prereq-paths :node)))
+  (let [ts (get prereq-paths :tree-sitter)
+        git (get prereq-paths :git)
+        cc (get prereq-paths :cc)
+        node (get prereq-paths :node)]
+    (println "Checking prerequisities...")
+    (u/exit-unless ts "tree-sitter not found")
+    (u/exit-unless git "git not found")
+    (u/exit-unless cc "cc not found")
+    (u/exit-unless node "node not found")
+    ;;
+    (println "tree-sitter:" ts)
+    (println "        git:" git)
+    (println "         cc:" cc)
+    (println "       node:" node)))
 
 (defn report-grammar-dir
   []
+  (println "Checking grammar-dir...")
   (let [exists (fs/exists? cnf/grammar-dir)]
     (println "           grammar-dir set to:" cnf/grammar-dir)
-    (when-not exists (reset! all-ok? false))
-    (println "           grammar-dir exists:"
-             (if exists "Yes" "*No*")))
+    (u/exit-unless exists
+                   (format "grammar-dir (%s) does not exist"
+                           cnf/grammar-dir))
+    (println "           grammar-dir exists: Yes"))
   (let [parsers (parsers-from-dump-languages)]
     ;; XXX: probably there's a better way to do this
     (let [found (atom false)]
@@ -92,24 +104,33 @@
         (when (= (absolute-path p)
                  (absolute-path cnf/grammar-dir))
           (reset! found true)))
-      (when-not @found (reset! all-ok? false))
-      (println "tree-sitter found grammar-dir:"
-               (if @found "Yes" "*No*")))))
+      (u/exit-unless @found
+                     (format "tree-sitter did not find grammar-dir (%s)"
+                             cnf/grammar-dir))
+      (println "tree-sitter found grammar-dir: Yes"))))
 
 (defn report-abi
   []
+  (println "Checking ABI setting...")
+  (u/exit-unless (number? cnf/abi)
+                 (format "abi was not a number: %s %s"
+                         cnf/abi (type cnf/abi)))
   (println "abi:" cnf/abi))
 
 (defn report-repos
   []
+  (println "Checking sample repos...")
   (let [exists (fs/exists? (cnf/repos :root))]
-    (println "         test repos:" (cnf/repos :name))
-    (when-not exists (reset! all-ok? false))
+    (println "      samples repos:" (cnf/repos :name))
     (println "samples root set to:" (cnf/repos :root))
-    (println "samples root exists:"
-             (if exists "Yes" "*No*"))
+    (u/exit-unless exists
+                   (format "repos (%s) does not exist"
+                           (cnf/repos :root)))
+    (println "samples root exists: Yes")
     (when (and exists
                @count-samples?)
+      (println "[Counting samples too...this might take a while.]")
+      (println "[Hint: Invoke with -1 as argument to skip sample counting.]")
       (println "       # of samples:" (count (u/collect-samples))))))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -127,14 +148,8 @@
   (println "ts-clojure: checking setup")
   (print-separator)
   ;;
-  (if (= "-1" (first *command-line-args*))
-    (do
-      (println "Not counting samples.")
-      (reset! count-samples? false))
-    (do
-      (println "Counting samples too...this might take a while.")
-      (println "Hint: Invoke with -1 as argument to skip sample counting.")))
-  (print-separator)
+  (when (= "-1" (first *command-line-args*))
+    (reset! count-samples? false))
   ;;
   (try
     (let [_ (report-prereq-paths)
@@ -145,9 +160,7 @@
           _ (print-separator)
           _ (report-repos)
           _ (print-separator)]
-      (if @all-ok?
-        (println "Setup looks ok.")
-        (println "*Something isn't right, please review the output*")))
+      (println "Setup looks ok."))
     (catch Exception e
       (u/report-exception-and-exit e))))
 

@@ -38,6 +38,12 @@
              exit-code)
     (System/exit 1)))
 
+(defn exit-unless
+  [condition message]
+  (when-not condition
+    (println message)
+    (System/exit 1)))
+
 (defn report-exception-and-exit
   [e]
   (println "Exception:" e)
