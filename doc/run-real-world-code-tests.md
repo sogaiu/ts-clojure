@@ -35,11 +35,13 @@ about expected errors.  It has four fields:
 * path - relative path to source file
 * location - describes location of error
 
-Because deduplication can lead to different "survivors" / "originals"
-remaining depending on the method chosen, the path of a file is
-problematic as something that can be used to compare between tests
-being run under different conditions.  The checksum field is an
-attempt to address this issue.
+As detailed elsewhere, an effort is made to keep the source samples
+deduplicated.  Because deduplication can lead to different "survivors"
+/ "originals" remaining depending on the method chosen, the path of a
+file is problematic as something that can be used to compare between
+tests being run under different conditions (e.g. if two different
+users perform deduplication differently or on somewhat different sets
+of samples).  The checksum field is an attempt to address this issue.
 
 The location indicates where in the file to look for evidence of the
 error.  It can be one of:
