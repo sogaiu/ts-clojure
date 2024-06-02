@@ -14,9 +14,9 @@ There is some one-time (mostly) setup necessary before tests can be
 executed.  This includes:
 
 * Verifying / installing prerequisites
-* Cloning this repository
+* Ensure this repository is available
 * Verifying tree-sitter setup
-* Cloning tree-sitter-clojure
+* Ensure tree-sitter-clojure is available
 * Fetching source code samples
 * Tweaking ts-clojure's settings
 
@@ -38,18 +38,23 @@ Probably, you'll want to have `git` too (^^;
 
 See [here](doc/prerequisites.md) for more details.
 
-### Clone ts-clojure
+### Ensure ts-clojure is Available
 
-Clone [ts-clojure](https://github.com/sogaiu/ts-clojure) (this
-repository) somewhere local.
-
-Once Babashka is available, you can repeatedly use:
+If you are reading this by looking in ts-clojure as a subdirectory of
+tree-sitter-clojure, nothing special needs to be done and you can skip
+the rest of this step.  Note that once Babashka is available, you can
+repeatedly use:
 
 ```
 bb check-setup
 ```
 
-as you follow the steps below to see how well things are progressing.
+from within the ts-clojure directory as you follow the steps below to
+see how well things are progressing.
+
+Otherwise, clone [ts-clojure](https://github.com/sogaiu/ts-clojure)
+(this repository) somewhere local.
+
 
 ### Verify tree-sitter setup
 
@@ -58,7 +63,7 @@ that you know where it looks to find parser repositories.
 
 See [here](doc/verify-tree-sitter-setup.md) for more details.
 
-### Clone tree-sitter-clojure
+### Ensure tree-sitter-clojure is Available
 
 There are a few ways to set up ts-clojure to be used with
 tree-sitter-clojure:
@@ -67,8 +72,12 @@ tree-sitter-clojure:
 2. tree-sitter-clojure is a subdirectory of ts-clojure
 3. no particular direct relationship
 
+#### Default
+
 Method 1 is the default and if this is chosen, nothing needs to be
-changed and you can skip to the next step.
+changed and you can skip the rest of this step.
+
+#### Non-default
 
 For the other two methods, clone
 [tree-sitter-clojure](https://github.com/sogaiu/tree-sitter-clojure)
