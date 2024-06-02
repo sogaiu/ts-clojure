@@ -119,9 +119,9 @@
             (println "Percent of expected errors met:" 
                      (str (* 100 
                              (/ (count @hits) n-errors))
-                          "%"))))))
-    (println "See" (cnf/repos :error-file-paths)
-             "for details or rerun verbosely.")))
+                          "%"))))
+        (println "See" (cnf/repos :error-file-paths)
+                 "for details or rerun verbosely.")))))
 
 (defn report-duration
   [duration]
