@@ -1,0 +1,12 @@
+; DO NOT EDIT (unless you know what you are doing)
+;
+; This subdirectory is a git "subrepo", and this file is maintained by the
+; git-subrepo command. See https://github.com/ingydotnet/git-subrepo#readme
+;
+[subrepo]
+	remote = https://github.com/sogaiu/clojars-samples
+	branch = master
+	commit = e1e608e304d86b27f34b8600a6d42ab04804a4b4
+	parent = 36dd3ba34fa99c522017f1eee1765fbc4295c4a1
+	method = merge
+	cmdver = 0.4.6
