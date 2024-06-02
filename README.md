@@ -60,7 +60,17 @@ See [here](doc/verify-tree-sitter-setup.md) for more details.
 
 ### Clone tree-sitter-clojure
 
-Clone
+There are a few ways to set up ts-clojure to be used with
+tree-sitter-clojure:
+
+1. ts-clojure is a subdirectory of tree-sitter-clojure
+2. tree-sitter-clojure is a subdirectory of ts-clojure
+3. no particular direct relationship
+
+Method 1 is the default and if this is chosen, nothing needs to be
+changed and you can skip to the next step.
+
+For the other two methods, clone
 [tree-sitter-clojure](https://github.com/sogaiu/tree-sitter-clojure)
 to a location such that the `tree-sitter` cli can find the resulting
 directory.  Check out an appropriate branch, tag, or commit as

@@ -9,9 +9,9 @@
 ;; tree-sitter-clojure
 
 ;; if ts-clojure is a subdir of tree-sitter-clojure
-;(def grammar-dir (fs/absolutize ".."))
+(def grammar-dir (fs/absolutize ".."))
 ;; if tree-sitter-clojure is a subdir of ts-clojure
-(def grammar-dir "tree-sitter-clojure")
+;(def grammar-dir "tree-sitter-clojure")
 
 ;; tree-sitter
 
