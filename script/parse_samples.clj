@@ -145,28 +145,39 @@
 ;; 3. parse files using tree-sitter
 ;; 4. examine output to determine file paths with errors and save to file
 (defn -main
-  [& _args]
+  [& args]
   ;; precautions
   (u/exit-unless-grammar-dir-exists)
   (u/exit-unless-repos-root-exists)
   ;; back to our regularly scheduled programming
-  (try
-    (let [start-time (System/currentTimeMillis)
-          _ (report-looking)
-          ;; 1. find all relevant clojure-related files
-          samples (u/collect-samples)
-          _ (report-found samples start-time)
-          ;; 2. save file paths to be parsed to a file
-          to-be-parsed (save-sample-paths samples)
-          _ (report-parsing)
-          ;; 3. parse with tree-sitter via the paths file
-          [duration exit-code out-file-path] (parse-samples to-be-parsed)
-          _ (when (= 1 exit-code) (println))
-          ;; 4. save and print error file info
-          errors (save-error-paths out-file-path)]
-      (report-errors errors)
-      (report-duration duration)
-      (u/exit-unless-error-code-is exit-code #{0 1} "tree-sitter-parse"))
-    (catch Exception e
-      (u/report-exception-and-exit e))))
+  (let [repos (first args)]
+    ;; convenience for setting samples set to test against
+    (when repos
+      ;; XXX: may be there's a better way to do this?
+      (if-let [repos-var (find-var (symbol (str "conf/" repos)))]
+        ;; https://stackoverflow.com/a/10987054
+        (alter-var-root #'cnf/repos (constantly repos-var))
+        (do
+          (println "Unexpected samples repos name:" repos)
+          (System/exit 1))))
+    ;;
+    (try
+      (let [start-time (System/currentTimeMillis)
+            _ (report-looking)
+            ;; 1. find all relevant clojure-related files
+            samples (u/collect-samples)
+            _ (report-found samples start-time)
+            ;; 2. save file paths to be parsed to a file
+            to-be-parsed (save-sample-paths samples)
+            _ (report-parsing)
+            ;; 3. parse with tree-sitter via the paths file
+            [duration exit-code out-file-path] (parse-samples to-be-parsed)
+            _ (when (= 1 exit-code) (println))
+            ;; 4. save and print error file info
+            errors (save-error-paths out-file-path)]
+        (report-errors errors)
+        (report-duration duration)
+        (u/exit-unless-error-code-is exit-code #{0 1} "tree-sitter-parse"))
+      (catch Exception e
+        (u/report-exception-and-exit e)))))
 
