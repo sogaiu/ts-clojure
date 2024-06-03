@@ -13,5 +13,5 @@
           exit-code (:exit @p)]
       (u/exit-unless-error-code-is exit-code #{0} "tree-sitter test"))
     (catch Exception e
-      (u/report-exception-and-exit))))
+      (u/report-exception-and-exit e))))
 
