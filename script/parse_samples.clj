@@ -155,10 +155,14 @@
     (when repos
       ;; XXX: may be there's a better way to do this?
       (if-let [repos-var (find-var (symbol (str "conf/" repos)))]
-        ;; https://stackoverflow.com/a/10987054
-        (alter-var-root #'cnf/repos (constantly repos-var))
         (do
-          (println "Unexpected samples repos name:" repos)
+          (when-not (u/valid-repos? @repos-var)
+            (println "Not a valid repos:" repos)
+            (System/exit 1))
+          ;; https://stackoverflow.com/a/10987054
+          (alter-var-root #'cnf/repos (constantly repos-var)))
+        (do
+          (println "Did not find samples repos with name:" repos)
           (System/exit 1))))
     ;;
     (try

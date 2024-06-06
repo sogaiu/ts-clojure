@@ -4,6 +4,16 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defn valid-repos?
+  [repos]
+  (and (map? repos)
+       (contains? repos :name)
+       (contains? repos :root)
+       (contains? repos :extensions)
+       (contains? repos :error-file-paths)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defn collect-samples
   []
   (let [samples (atom [])]
