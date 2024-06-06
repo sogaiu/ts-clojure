@@ -20,10 +20,8 @@ number of `tree-sitter` cli versions).
 `grammar-dir` specifies a filesystem path to where tree-sitter-clojure
 has been cloned to.
 
-It's unlikely the default value will work for most folks' setups, but
-making a symlink with name `tree-sitter-clojure` from within this
-project's repository root to where tree-sitter-clojure has been cloned
-to may work.
+Note that making an appropriate symlink to where tree-sitter-clojure
+lives may work too.
 
 ## repos
 

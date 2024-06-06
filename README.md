@@ -3,28 +3,12 @@
 Testing and development bits for
 [tree-sitter-clojure](https://github.com/sogaiu/tree-sitter-clojure)
 
-This repository houses bits to aid in performing tests on real-world
-Clojure code along with some associated instructions.
+Bits to aid in performing tests on real-world Clojure code along with
+some associated instructions.
 
 See [here](doc/background.md) for some background.
 
-## One-time (Mostly) Setup
-
-There is some one-time (mostly) setup necessary before tests can be
-executed.  This includes:
-
-* Verifying / installing prerequisites
-* Ensure this repository is available
-* Verifying tree-sitter setup
-* Ensure tree-sitter-clojure is available
-* Fetching source code samples
-* Tweaking ts-clojure's settings
-
-Consider working with this repository in a new user account.  This is
-not required, but you might want to read near the end of the document
-for potential consequences of not doing so.
-
-### Prerequisites
+## Prerequisites
 
 The prerequisites are what you typically need to work with
 tree-sitter, with the exception of Babashka which is used for task
@@ -38,23 +22,53 @@ Probably, you'll want to have `git` too (^^;
 
 See [here](doc/prerequisites.md) for more details.
 
-### Ensure ts-clojure is Available
+## Tweak settings
 
-If you are reading this by looking in ts-clojure as a subdirectory of
-tree-sitter-clojure, nothing special needs to be done and you can skip
-the rest of this step.  Note that once Babashka is available, you can
-repeatedly use:
+ts-clojure's scripts can be configured a bit via the file
+`conf/conf.clj`.
+
+Some included settings are:
+
+* `abi` - ABI number to use when generating `parser.c` from
+  `grammar.js`
+* `grammar-dir` - path to cloned tree-sitter-clojure directory
+* `repos` - which set of source samples to test against
+* `ts-bin-path` - path to or name of `tree-sitter` cli binary
+
+See [here](doc/tweak-settings.md) for more details.
+
+## Checking the Setup
+
+Note that once Babashka is available, you can repeatedly use:
 
 ```
 bb check-setup
 ```
 
-from within the ts-clojure directory as you follow the steps below to
-see how well things are progressing.
+as you follow the setup instructions to get some help regarding
+whether settings are appropriate.
 
-Otherwise, clone [ts-clojure](https://github.com/sogaiu/ts-clojure)
-(this repository) somewhere local.
+## One-time (Mostly) Setup
 
+### A Brief Warning
+
+Consider working in a new user account.  This is not required, but you
+might want to read near the end of the document for potential
+consequences of not doing so.
+
+### A Fork in the Road...Sort Of
+
+Although it is possible to use ts-clojure in a variety of ways:
+
+1. ts-clojure is a subdirectory of tree-sitter-clojure
+2. tree-sitter-clojure is a subdirectory of ts-clojure
+3. no particular parent-child relationship
+
+The currently favored approach is option 1 - i.e. ts-clojure being a
+subdirectory of tree-sitter-clojure.
+
+For the other approaches, there is some documentation
+[here](doc/tsc-not-parent-dir.md).
 
 ### Verify tree-sitter setup
 
@@ -63,41 +77,11 @@ that you know where it looks to find parser repositories.
 
 See [here](doc/verify-tree-sitter-setup.md) for more details.
 
-### Ensure tree-sitter-clojure is Available
-
-There are a few ways to set up ts-clojure to be used with
-tree-sitter-clojure:
-
-1. ts-clojure is a subdirectory of tree-sitter-clojure
-2. tree-sitter-clojure is a subdirectory of ts-clojure
-3. no particular direct relationship
-
-#### Default
-
-Method 1 is the default and if this is chosen, nothing needs to be
-changed and you can skip the rest of this step.
-
-#### Non-default
-
-For the other two methods, clone
-[tree-sitter-clojure](https://github.com/sogaiu/tree-sitter-clojure)
-to a location such that the `tree-sitter` cli can find the resulting
-directory.  Check out an appropriate branch, tag, or commit as
-desired.
-
-Note that the `grammar-dir` setting in `conf/conf.clj` should be a
-filesystem path that resolves to or is the tree-sitter-clojure
-directory.  So either change the setting or make an appropriate
-symlink.
-
-See [here](doc/clone-tree-sitter-clojure.md) for more
-details.
-
 ### Prepare source samples
 
-This repository does not contain source code samples.  To get
-meaningful testing over real-world code, it's necessary to arrange for
-some samples.
+The source code samples do not come bundled.  To get meaningful
+testing over real-world code, it's necessary to arrange for some
+samples.
 
 To fetch some source code samples:
 
@@ -118,20 +102,10 @@ please consider getting more jars.
 
 See [here](doc/prepare-source-samples.md) for more details.
 
-### Tweak settings
+### Final Steps
 
-ts-clojure's scripts can be configured a bit via the file
-`conf/conf.clj`.
-
-Some included settings are:
-
-* `abi` - ABI number to use when generating `parser.c` from
-  `grammar.js`
-* `grammar-dir` - path to cloned tree-sitter-clojure directory
-* `repos` - which set of source samples to test against
-* `ts-bin-path` - path to or name of `tree-sitter` cli binary
-
-See [here](doc/tweak-settings.md) for more details.
+Consider using the `bb check-setup` task to get a sense of whether
+your setup has any obvious issues.
 
 ## Things You Can Do
 
