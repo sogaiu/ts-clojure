@@ -364,4 +364,9 @@
                             (ce/read-string
                              (str "[" (slurp (fs/file cnf/feed-clj-path)) "]"))))
       ;; XXX: not cross-platform...
-      (proc/process "sort" "--output" cnf/clojars-jar-list-path out-file-path))))
+      (let [p (proc/process "sort" "--output"
+                            cnf/clojars-jar-list-path out-file-path)
+            exit-code (:exit @p)]
+        (when-not (zero? exit-code)
+          (println "sort exited non-zero:" exit-code)
+          (System/exit 1))))))
