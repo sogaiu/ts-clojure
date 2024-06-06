@@ -13,8 +13,8 @@ The steps that differ from the default arrangement include:
 
 ### Ensure ts-clojure is Available
 
-Clone [ts-clojure](https://github.com/sogaiu/ts-clojure)
-(this repository) somewhere local.
+Clone [ts-clojure](https://github.com/sogaiu/ts-clojure) somewhere
+local.
 
 ### Ensure tree-sitter-clojure is Available
 
