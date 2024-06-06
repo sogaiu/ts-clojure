@@ -178,14 +178,16 @@ No idea about WSL, not a fan and haven't tested.
 
 ### Isolation
 
-I had trouble at various points with `tree-sitter` using things that I
-was unaware of.  I believe this was the result of a combination of
-testing with different versions of `tree-sitter` (various
-configuration and operation file paths changed between versions),
-having multiple versions of grammars under my home directory, along
-with [tree-sitter's automatic
+I had trouble at various points with `tree-sitter` behavior being
+influenced by things that I was unaware of.  I believe this was the
+result of a combination of:
+
+* testing with different versions of `tree-sitter` (various
+  configuration and operation file paths changed between versions),
+* having multiple versions of grammars under my home directory,
+* not understanding the workings of [tree-sitter's automatic
 compilation](https://github.com/tree-sitter/tree-sitter/issues/2017)
-(and my not understanding how it works in detail).  If you want to
-avoid some of that kind of thing, you might want to consider some kind
-of isolation / simplification mechanism such as using a fresh user
-account when working with this repository.
+  
+One way to avoid some of this kind of thing is to use some kind of
+isolation / simplification mechanism such as a fresh user account.
+
