@@ -140,8 +140,6 @@
   ;;
   state)
 
-(def count-samples? (atom true))
-
 (defn report-repos
   [state]
   (println "samples")
@@ -153,7 +151,7 @@
                            (cnf/repos :root)))
     (println "  directory exists: Yes")
     (when (and exists
-               @count-samples?)
+               (get state :count-samples))
       (println "[Counting samples too...this might take a while.]")
       (println "[Hint: Invoke with -1 as argument to skip sample counting.]")
       (println "       # of samples:" (count (u/collect-samples)))))
@@ -173,34 +171,39 @@
 ;; * report current repos setting
 ;; * report paths of samples for current grammar
 (defn check-and-report-findings
-  []
-  (-> {}
-      check-prereq-paths
-      report-prereq-paths
-      ;;
-      check-grammar-dir
-      report-grammar-dir
-      ;;
-      check-abi
-      report-abi
-      ;;
-      check-repos
-      report-repos)
+  [state]
+  (println "ts-clojure: checking setup...")
+  (print-separator)
   ;;
-  (println "Setup looks ok."))
+  (let [new-state
+        (-> state
+            ;;
+            check-prereq-paths
+            report-prereq-paths
+            ;;
+            check-grammar-dir
+            report-grammar-dir
+            ;;
+            check-abi
+            report-abi
+            ;;
+            check-repos
+            report-repos)]
+    ;;
+    (println "Setup looks ok.")
+    ;;
+    new-state))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 (defn -main
   [& _args]
-  (println "ts-clojure: checking setup...")
-  (print-separator)
-  ;;
-  (when (= "-1" (first *command-line-args*))
-    (reset! count-samples? false))
   ;;
   (try
-    (check-and-report-findings)
+    (let [state (if (= "-1" (first *command-line-args*))
+                  {}
+                  {:count-samples true})]
+      (check-and-report-findings state))
     (catch Exception e
       (u/report-exception-and-exit e))))
 
