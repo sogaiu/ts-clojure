@@ -14,7 +14,8 @@
 (defn which
   [name]
   ;; XXX: probably a better way...
-  (format "%s" (fs/which name)))
+  (when-let [path (fs/which name)]
+    (format "%s" (fs/which name))))
 
 (def prereq-paths
   {:tree-sitter (which cnf/ts-bin-path)
