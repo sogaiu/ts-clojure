@@ -63,12 +63,9 @@
   []
   (which "node"))
 
-(defn check-prereq-paths
-  [state]
-  (merge state {:tree-sitter (tree-sitter-available?)
-                :git (git-available?)
-                :cc (cc-available?)
-                :node (node-available?)}))
+(defn grammar-dir-exists?
+  []
+  (fs/exists? cnf/grammar-dir))
 
 ;; sample output from tree-sitter dump-languages
 ;;
@@ -106,10 +103,6 @@
                     no-quotes)))))
           (fs/read-all-lines (fs/file out-file-path)))))
 
-(defn grammar-dir-exists?
-  []
-  (fs/exists? cnf/grammar-dir))
-
 (defn tree-sitter-sees-parser?
   []
   (when (grammar-dir-exists?)
@@ -124,27 +117,13 @@
         :default
         (recur (rest parsers))))))
 
-(defn check-grammar-dir
-  [state]
-  (-> state
-      (merge {:grammar-dir-exists (grammar-dir-exists?)})
-      (merge {:tree-sitter-sees-parser (tree-sitter-sees-parser?)})))
-
 (defn valid-abi?
   []
   (number? cnf/abi))
 
-(defn check-abi
-  [state]
-  (merge state {:abi-is-number (valid-abi?)}))
-
 (defn repos-root-exists?
   []
   (fs/exists? (cnf/repos :root)))
-
-(defn check-repos
-  [state]
-  (merge state {:repos-root-exists (repos-root-exists?)}))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

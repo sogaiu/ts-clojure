@@ -7,6 +7,29 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defn check-prereq-paths
+  [state]
+  (merge state {:tree-sitter (u/tree-sitter-available?)
+                :git (u/git-available?)
+                :cc (u/cc-available?)
+                :node (u/node-available?)}))
+
+(defn check-grammar-dir
+  [state]
+  (-> state
+      (merge {:grammar-dir-exists (u/grammar-dir-exists?)})
+      (merge {:tree-sitter-sees-parser (u/tree-sitter-sees-parser?)})))
+
+(defn check-abi
+  [state]
+  (merge state {:abi-is-number (u/valid-abi?)}))
+
+(defn check-repos
+  [state]
+  (merge state {:repos-root-exists (u/repos-root-exists?)}))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defn print-separator
   []
   (println "------------------------------------------------------------------"))
@@ -101,16 +124,16 @@
   (let [new-state
         (-> state
             ;;
-            u/check-prereq-paths
+            check-prereq-paths
             report-prereq-paths
             ;;
-            u/check-grammar-dir
+            check-grammar-dir
             report-grammar-dir
             ;;
-            u/check-abi
+            check-abi
             report-abi
             ;;
-            u/check-repos
+            check-repos
             report-repos)]
     ;;
     (println "Setup looks ok.")
