@@ -7,21 +7,16 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(def count-samples? (atom true))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defn which
-  [name]
-  ;; XXX: probably a better way...
-  (when-let [path (fs/which name)]
-    (format "%s" (fs/which name))))
-
-(def prereq-paths
-  {:tree-sitter (which cnf/ts-bin-path)
-   :git (which "git")
-   :cc (which "cc")
-   :node (which "node")})
+(defn check-prereq-paths
+  [state]
+  (let [which (fn [name]
+                ;; XXX: probably a better way...
+                (when-let [path (fs/which name)]
+                  (format "%s" (fs/which name))))]
+    (merge state {:tree-sitter (which cnf/ts-bin-path)
+                  :git (which "git")
+                  :cc (which "cc")
+                  :node (which "node")})))
 
 ;; sample output from tree-sitter dump-languages
 ;;
@@ -59,18 +54,6 @@
                     no-quotes)))))
           (fs/read-all-lines (fs/file out-file-path)))))
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defn print-separator
-  []
-  (println "------------------------------------------------------------------"))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defn check-prereq-paths
-  [state]
-  (merge state prereq-paths))
-
 (defn tree-sitter-sees-parser?
   []
   (when (fs/exists? cnf/grammar-dir)
@@ -100,6 +83,10 @@
   (merge state {:repos-root-exists (fs/exists? (cnf/repos :root))}))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn print-separator
+  []
+  (println "------------------------------------------------------------------"))
 
 (defn report-prereq-paths
   [state]
@@ -152,6 +139,8 @@
   (print-separator)
   ;;
   state)
+
+(def count-samples? (atom true))
 
 (defn report-repos
   [state]
