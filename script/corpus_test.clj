@@ -6,7 +6,13 @@
 
 (defn -main
   [& _args]
+  ;; precautions
+  (u/exit-unless-tree-sitter-available)
+  (u/exit-unless (u/cc-available?) "cc not found")
+  (u/exit-unless (u/node-available?) "node not found")
   (u/exit-unless-grammar-dir-exists)
+  ;; back to our regularly scheduled program
+  (println "Running corpus tests")
   (try
     (let [p (proc/shell {:dir cnf/grammar-dir}
                         (str cnf/ts-bin-path " test"))

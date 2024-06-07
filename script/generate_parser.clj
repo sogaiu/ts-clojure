@@ -6,7 +6,11 @@
 
 (defn -main
   [& _args]
+  ;; precautions
+  (u/exit-unless-tree-sitter-available)
+  (u/exit-unless (u/valid-abi?) "invalid abi value in configuration")
   (u/exit-unless-grammar-dir-exists)
+  ;; back to our regularly scheduled program
   (println "Generating parser.c")
   (try
     (let [p (proc/shell {:dir cnf/grammar-dir}

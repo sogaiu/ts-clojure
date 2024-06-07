@@ -1,4 +1,4 @@
-(ns count-expected-errors
+(ns show-expected-errors
   (:require [babashka.fs :as fs]
             [clojure.java.io :as cji]
             [clojure.string :as cs]
@@ -25,8 +25,10 @@
   [& _args]
   (when (and (cnf/repos :error-tsv-path)
              (fs/exists? (cnf/repos :error-tsv-path)))
+    (println "Showing expected errors")
     (let [errors (count-error-freq)
-                 total (atom 0)]
+          total (atom 0)]
+      ;; XXX: could write with reduce but that would be more cryptic
       (doseq [descr (sort (keys errors))]
         (let [cnt (get errors descr)]
           (swap! total + cnt)

@@ -6,16 +6,6 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defn valid-repos?
-  [repos]
-  (and (map? repos)
-       (contains? repos :name)
-       (contains? repos :root)
-       (contains? repos :extensions)
-       (contains? repos :error-file-paths)))
-
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
 (defn collect-samples
   []
   (let [samples (atom [])]
@@ -30,18 +20,6 @@
     @samples))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-
-(defn exit-unless-repos-root-exists
-  []
-  (when-not (fs/exists? (cnf/repos :root))
-    (println "Directory for" (cnf/repos :root) "not found")
-    (System/exit 1)))
-
-(defn exit-unless-grammar-dir-exists
-  []
-  (when-not (fs/exists? cnf/grammar-dir)
-    (println "Directory for" cnf/grammar-dir "not found")
-    (System/exit 1)))
 
 (defn exit-unless-error-code-is
   [exit-code code-set cmd-str]
@@ -63,16 +41,34 @@
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(defn which
+  [name]
+  ;; XXX: probably a better way...
+  (when-let [path (fs/which name)]
+    (format "%s" (fs/which name))))
+
+(defn tree-sitter-available?
+  []
+  (which cnf/ts-bin-path))
+
+(defn git-available?
+  []
+  (which "git"))
+
+(defn cc-available?
+  []
+  (which "cc"))
+
+(defn node-available?
+  []
+  (which "node"))
+
 (defn check-prereq-paths
   [state]
-  (let [which (fn [name]
-                ;; XXX: probably a better way...
-                (when-let [path (fs/which name)]
-                  (format "%s" (fs/which name))))]
-    (merge state {:tree-sitter (which cnf/ts-bin-path)
-                  :git (which "git")
-                  :cc (which "cc")
-                  :node (which "node")})))
+  (merge state {:tree-sitter (tree-sitter-available?)
+                :git (git-available?)
+                :cc (cc-available?)
+                :node (node-available?)}))
 
 ;; sample output from tree-sitter dump-languages
 ;;
@@ -110,9 +106,13 @@
                     no-quotes)))))
           (fs/read-all-lines (fs/file out-file-path)))))
 
+(defn grammar-dir-exists?
+  []
+  (fs/exists? cnf/grammar-dir))
+
 (defn tree-sitter-sees-parser?
   []
-  (when (fs/exists? cnf/grammar-dir)
+  (when (grammar-dir-exists?)
     (loop [parsers (parsers-from-dump-languages)]
       (cond
         (empty? parsers)
@@ -127,14 +127,56 @@
 (defn check-grammar-dir
   [state]
   (-> state
-      (merge {:grammar-dir-exists (fs/exists? cnf/grammar-dir)})
+      (merge {:grammar-dir-exists (grammar-dir-exists?)})
       (merge {:tree-sitter-sees-parser (tree-sitter-sees-parser?)})))
+
+(defn valid-abi?
+  []
+  (number? cnf/abi))
 
 (defn check-abi
   [state]
-  (merge state {:abi-is-number (number? cnf/abi)}))
+  (merge state {:abi-is-number (valid-abi?)}))
+
+(defn repos-root-exists?
+  []
+  (fs/exists? (cnf/repos :root)))
 
 (defn check-repos
   [state]
-  (merge state {:repos-root-exists (fs/exists? (cnf/repos :root))}))
+  (merge state {:repos-root-exists (repos-root-exists?)}))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+;; XXX: check other conf.clj values?
+
+(defn valid-repos?
+  [repos]
+  (and (map? repos)
+       (contains? repos :name)
+       (contains? repos :root)
+       (contains? repos :extensions)
+       (contains? repos :error-file-paths)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn exit-unless-tree-sitter-available
+  []
+  (exit-unless (tree-sitter-available?)
+               "tree-sitter not found"))
+
+(defn exit-unless-repos-root-exists
+  []
+  (exit-unless (repos-root-exists?)
+               (str "Directory for" (cnf/repos :root) "not found")))
+
+(defn exit-unless-grammar-dir-exists
+  []
+  (exit-unless (grammar-dir-exists?)
+               (str "Directory for" cnf/grammar-dir "not found")))
+
+(defn exit-unless-valid-repos
+  [repos]
+  (exit-unless (valid-repos? repos)
+               (str "Not a valid repos: for" repos)))
 

@@ -150,15 +150,14 @@
   (u/exit-unless-grammar-dir-exists)
   (u/exit-unless-repos-root-exists)
   ;; back to our regularly scheduled programming
+  (println "Parsing samples")
   (let [repos (first args)]
     ;; convenience for setting samples set to test against
     (when repos
       ;; XXX: may be there's a better way to do this?
       (if-let [repos-var (find-var (symbol (str "conf/" repos)))]
         (do
-          (when-not (u/valid-repos? @repos-var)
-            (println "Not a valid repos:" repos)
-            (System/exit 1))
+          (u/exit-unless-valid-repos @repos-var)
           ;; https://stackoverflow.com/a/10987054
           (alter-var-root #'cnf/repos (constantly repos-var)))
         (do
