@@ -61,7 +61,7 @@ but there is Emacs Lisp code that can aid in working with the file
 To see a frequency table of the expected errors:
 
 ```
-bb count-expected-errors
+bb show-expected-errors
 ```
 
 This should produce output like:
