@@ -23,11 +23,6 @@
    :cc (which "cc")
    :node (which "node")})
 
-(defn absolute-path
-  [path]
-  ;; XXX: probably a better way...
-  (format "%s" (fs/absolutize (fs/normalize (fs/file path)))))
-
 ;; sample output from tree-sitter dump-languages
 ;;
 ;;   scope: source.janet
@@ -70,67 +65,113 @@
   []
   (println "------------------------------------------------------------------"))
 
-(defn report-prereq-paths
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn check-prereq-paths
+  [state]
+  (merge state prereq-paths))
+
+(defn tree-sitter-sees-parser?
   []
-  (let [ts (get prereq-paths :tree-sitter)
-        git (get prereq-paths :git)
-        cc (get prereq-paths :cc)
-        node (get prereq-paths :node)]
-    (println "Checking prerequisities...")
+  (when (fs/exists? cnf/grammar-dir)
+    (loop [parsers (parsers-from-dump-languages)]
+      (cond
+        (empty? parsers)
+        false
+        ;;
+        (fs/same-file? (first parsers) cnf/grammar-dir)
+        true
+        ;;
+        :default
+        (recur (rest parsers))))))
+
+(defn check-grammar-dir
+  [state]
+  (-> state
+      (merge {:grammar-dir-exists (fs/exists? cnf/grammar-dir)})
+      (merge {:tree-sitter-sees-parser (tree-sitter-sees-parser?)})))
+
+(defn check-abi
+  [state]
+  (merge state {:abi-is-number (number? cnf/abi)}))
+
+(defn check-repos
+  [state]
+  (merge state {:repos-root-exists (fs/exists? (cnf/repos :root))}))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defn report-prereq-paths
+  [state]
+  (println "prerequisities")
+  (let [ts (get state :tree-sitter)
+        git (get state :git)
+        cc (get state :cc)
+        node (get state :node)]
     (u/exit-unless ts "tree-sitter not found")
+    (println "  tree-sitter:" ts)
     (u/exit-unless git "git not found")
+    (println "          git:" git)
     (u/exit-unless cc "cc not found")
+    (println "           cc:" cc)
     (u/exit-unless node "node not found")
+    (println "         node:" node)
     ;;
-    (println "tree-sitter:" ts)
-    (println "        git:" git)
-    (println "         cc:" cc)
-    (println "       node:" node)))
+    (print-separator)
+    ;;
+    state))
 
 (defn report-grammar-dir
-  []
-  (println "Checking grammar-dir...")
-  (let [exists (fs/exists? cnf/grammar-dir)]
-    (println "           grammar-dir set to:" cnf/grammar-dir)
+  [state]
+  (println "grammar-dir")
+  (println "        directory set to:" cnf/grammar-dir)
+  (let [exists (get state :grammar-dir-exists)]
     (u/exit-unless exists
                    (format "grammar-dir (%s) does not exist"
                            cnf/grammar-dir))
-    (println "           grammar-dir exists: Yes"))
-  (let [parsers (parsers-from-dump-languages)]
-    ;; XXX: probably there's a better way to do this
-    (let [found (atom false)]
-      (doseq [p parsers]
-        (when (= (absolute-path p)
-                 (absolute-path cnf/grammar-dir))
-          (reset! found true)))
-      (u/exit-unless @found
-                     (format "tree-sitter did not find grammar-dir (%s)"
-                             cnf/grammar-dir))
-      (println "tree-sitter found grammar-dir: Yes"))))
+    (println "        directory exists: Yes"))
+  (let [parser-visible (get state :tree-sitter-sees-parser)]
+    (u/exit-unless parser-visible
+                   (format "tree-sitter did not find grammar-dir (%s)"
+                           cnf/grammar-dir))
+    (println "  visible to tree-sitter: Yes"))
+  ;;
+  (print-separator)
+  ;;
+  state)
 
 (defn report-abi
-  []
-  (println "Checking ABI setting...")
-  (u/exit-unless (number? cnf/abi)
-                 (format "abi was not a number: %s %s"
-                         cnf/abi (type cnf/abi)))
-  (println "abi:" cnf/abi))
+  [state]
+  (println "abi number")
+  (let [abi-is-number (get state :abi-is-number)]
+    (u/exit-unless abi-is-number
+                   (format "abi was not a number: %s %s"
+                           cnf/abi (type cnf/abi)))
+    (println "  abi:" cnf/abi))
+  ;;
+  (print-separator)
+  ;;
+  state)
 
 (defn report-repos
-  []
-  (println "Checking sample repos...")
-  (let [exists (fs/exists? (cnf/repos :root))]
-    (println "      samples repos:" (cnf/repos :name))
-    (println "samples root set to:" (cnf/repos :root))
+  [state]
+  (println "samples")
+  (println "     samples repos:" (cnf/repos :name))
+  (println "  directory set to:" (cnf/repos :root))
+  (let [exists (get state :repos-root-exists)]
     (u/exit-unless exists
                    (format "repos (%s) does not exist"
                            (cnf/repos :root)))
-    (println "samples root exists: Yes")
+    (println "  directory exists: Yes")
     (when (and exists
                @count-samples?)
       (println "[Counting samples too...this might take a while.]")
       (println "[Hint: Invoke with -1 as argument to skip sample counting.]")
-      (println "       # of samples:" (count (u/collect-samples))))))
+      (println "       # of samples:" (count (u/collect-samples)))))
+  ;;
+  (print-separator)
+  ;;
+  state)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -142,24 +183,35 @@
 ;; * report abi number from conf
 ;; * report current repos setting
 ;; * report paths of samples for current grammar
+(defn check-and-report-findings
+  []
+  (-> {}
+      check-prereq-paths
+      report-prereq-paths
+      ;;
+      check-grammar-dir
+      report-grammar-dir
+      ;;
+      check-abi
+      report-abi
+      ;;
+      check-repos
+      report-repos)
+  ;;
+  (println "Setup looks ok."))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 (defn -main
   [& _args]
-  (println "ts-clojure: checking setup")
+  (println "ts-clojure: checking setup...")
   (print-separator)
   ;;
   (when (= "-1" (first *command-line-args*))
     (reset! count-samples? false))
   ;;
   (try
-    (let [_ (report-prereq-paths)
-          _ (print-separator)
-          _ (report-grammar-dir)
-          _ (print-separator)
-          _ (report-abi)
-          _ (print-separator)
-          _ (report-repos)
-          _ (print-separator)]
-      (println "Setup looks ok."))
+    (check-and-report-findings)
     (catch Exception e
       (u/report-exception-and-exit e))))
 
