@@ -1,7 +1,6 @@
 (ns extract-jars
   (:require [babashka.fs :as fs]
             [babashka.process :as proc]
-            [clojure.java.io :as cji]
             [conf :as cnf]))
 
 (defn parse-jar-path

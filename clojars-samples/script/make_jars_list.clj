@@ -357,16 +357,13 @@
   (when (and (fs/exists? cnf/feed-clj-path)
              (not (fs/exists? cnf/clojars-jar-list-path)))
     (println "Writing latest release jars url list...")
-    (let [out-file-path (fs/create-temp-file)]
-      (fs/delete-on-exit out-file-path)
-      (fs/write-lines out-file-path
-                      (keep feed-map->jar-url
-                            (ce/read-string
-                             (str "[" (slurp (fs/file cnf/feed-clj-path)) "]"))))
-      ;; XXX: not cross-platform...
-      (let [p (proc/process "sort" "--output"
-                            cnf/clojars-jar-list-path out-file-path)
-            exit-code (:exit @p)]
-        (when-not (zero? exit-code)
-          (println "sort exited non-zero:" exit-code)
-          (System/exit 1))))))
+    (try
+      (fs/write-lines cnf/clojars-jar-list-path
+                      (sort
+                       (keep feed-map->jar-url
+                             (ce/read-string
+                              (str "[" (slurp (fs/file cnf/feed-clj-path)) "]")))))
+      (catch Exception e
+        (println "Problem writing jars list:" e)
+        (System/exit 1)))))
+
