@@ -151,9 +151,12 @@ bb parse-samples
 This will invoke `tree-sitter`'s `parse` command across a set of
 source code samples.
 
-Which set of samples is tested against is chosen by adjusting the
-`repos` value in `conf/conf.clj` appropriately.  Assuming the samples
-have been obtained, the value can be one of:
+Which set of samples is tested against can be specified by:
+
+* adjusting the `repos` value in `conf/conf.clj`, or
+* passing an extra argument to the task, e.g. `bb parse-samples clojars`
+
+Assuming the samples have been obtained, the value can be one of:
 
 * `clojars`
 * `clojuredart`
