@@ -1,7 +1,9 @@
 (ns make-jars-list
   (:require [babashka.fs :as fs]
+            [babashka.http-client :as hc]
             [babashka.process :as proc]
             [clojure.edn :as ce]
+            [clojure.java.io :as cji]
             [clojure.string :as cs]
             [conf :as cnf]))
 
@@ -13,25 +15,6 @@
 ;; https://github.com/clojars/clojars-web/wiki/Data#useful-extracts-from-the-poms
 (def feed-url
   "http://clojars.org/repo/feed.clj.gz")
-
-;; XXX: factor out logging?
-(defn fetch-to-file
-  [url out-fpath]
-  ;; XXX: what to use for fetching web stuff seems to be in flux so
-  ;;      until that settles down...
-  (let [p (proc/process "curl" url "--location" "--output" out-fpath)
-        exit-code (:exit @p)]
-    ;; XXX: clean up if no errors?
-    '(spit "log.txt"
-          (str exit-code ":" url "\n")
-          :append true)
-    exit-code))
-
-(comment
-
-  (fetch-to-file feed-url "feed.clj.gz")
-
-  )
 
 ;; XXX: this will only handle things with versions that look like:
 ;;
@@ -334,9 +317,11 @@
   ;; if there's no feed.clj, fetch feed.clj.gz
   (when (not (fs/exists? cnf/feed-clj-path))
     (println "Fetching feed.clj.gz from clojars...")
-    (let [exit-code (fetch-to-file feed-url cnf/feed-clj-gz-path)]
-      (when-not (zero? exit-code)
-        (println "Problem fetching feed.clj.gz, exit code:" exit-code)
+    (try
+      (cji/copy (:body (hc/get feed-url {:as :stream}))
+                (cji/file cnf/feed-clj-gz-path))
+      (catch Exception e
+        (println "fetching feed.clj.gz failed:" e)
         (System/exit 1))))
   ;; if there is a feed.clj.gz, uncompress it
   (when (fs/exists? cnf/feed-clj-gz-path)
