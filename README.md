@@ -61,7 +61,7 @@ consequences of not doing so.
 
 ### A Fork in the Road...Sort Of
 
-Although it is possible to use ts-clojure in a variety of ways:
+It is possible to use ts-clojure in a variety of ways:
 
 1. ts-clojure is a subdirectory of tree-sitter-clojure
 2. tree-sitter-clojure is a subdirectory of ts-clojure
