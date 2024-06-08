@@ -23,7 +23,7 @@ automation:
   1](https://book.babashka.org/#_terminal_tab_completion), [Option
   2](https://github.com/babashka/babashka/discussions/1615)
 
-Probably, you'll want to have `git`, `gzip`, and `sort` too.
+Probably, you'll want to have `git` and `gzip` too.
 
 See [here](doc/prerequisites.md) for more details.
 
