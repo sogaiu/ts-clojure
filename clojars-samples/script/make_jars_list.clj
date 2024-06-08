@@ -1,7 +1,6 @@
 (ns make-jars-list
   (:require [babashka.fs :as fs]
             [babashka.http-client :as hc]
-            [babashka.process :as proc]
             [clojure.edn :as ce]
             [clojure.java.io :as cji]
             [clojure.string :as cs]
@@ -325,18 +324,20 @@
         (System/exit 1))))
   ;; if there is a feed.clj.gz, uncompress it
   (when (fs/exists? cnf/feed-clj-gz-path)
+    (println "Uncompressing feed.clj.gz...")
     (try
-      (println "Uncompressing feed.clj.gz...")
-      ;; XXX: not cross-platform?
-      ;; using gzip instead of gunzip works better in more environments
-      (let [p (proc/process {:dir "data"}
-                            "gzip" "--decompress" cnf/feed-clj-gz-path)
-            exit-code (:exit @p)]
-        (when-not (zero? exit-code)
-          (println "gzip exited non-zero:" exit-code)
-          (System/exit 1)))
+      (fs/gunzip cnf/feed-clj-gz-path (fs/parent cnf/feed-clj-path))
+      ;; XXX: this may no longer be necesary
+      (print "Waiting for feed.clj to become visible")
+      (let [start-time (System/currentTimeMillis)]
+        (while (and (zero? (fs/size cnf/feed-clj-path))
+                    ;; don't wait more than 10 seconds
+                    (< (- (System/currentTimeMillis) start-time) 10000))
+          (Thread/sleep 500)
+          (print ".")))
+      (println)
       (catch Exception e
-        (println "Problem uncompressing:" (.getMessage e))
+        (println "Problem uncompressing:" e)
         (System/exit 1))))
   ;; if there is a feed.clj, process it
   (when (and (fs/exists? cnf/feed-clj-path)
@@ -347,7 +348,9 @@
                       (sort
                        (keep feed-map->jar-url
                              (ce/read-string
-                              (str "[" (slurp (fs/file cnf/feed-clj-path)) "]")))))
+                              (str "["
+                                   (slurp (fs/file cnf/feed-clj-path))
+                                   "]")))))
       (catch Exception e
         (println "Problem writing jars list:" e)
         (System/exit 1)))))
