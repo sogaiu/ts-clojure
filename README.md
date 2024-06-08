@@ -16,9 +16,12 @@ automation:
 
 * [tree-sitter](https://github.com/tree-sitter/tree-sitter) cli
 * [tree-sitter dependencies](https://tree-sitter.github.io/tree-sitter/creating-parsers#dependencies)
-* [babashka](https://github.com/babashka/babashka)
+* [babashka](https://github.com/babashka/babashka) - shell completion
+  setup highly recommended [Option
+  1](https://book.babashka.org/#_terminal_tab_completion), [Option
+  2](https://github.com/babashka/babashka/discussions/1615)
 
-Probably, you'll want to have `git` too (^^;
+Probably, you'll want to have `git`, `gzip`, and `sort` too.
 
 See [here](doc/prerequisites.md) for more details.
 
@@ -187,7 +190,7 @@ result of a combination of:
 * having multiple versions of grammars under my home directory,
 * not understanding the workings of [tree-sitter's automatic
 compilation](https://github.com/tree-sitter/tree-sitter/issues/2017)
-  
+
 One way to avoid some of this kind of thing is to use some kind of
 isolation / simplification mechanism such as a fresh user account.
 
