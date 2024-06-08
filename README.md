@@ -19,11 +19,13 @@ automation:
 * [tree-sitter](https://github.com/tree-sitter/tree-sitter) cli
 * [tree-sitter dependencies](https://tree-sitter.github.io/tree-sitter/creating-parsers#dependencies)
 * [babashka](https://github.com/babashka/babashka) - shell completion
-  setup highly recommended [Option
+  setup highly recommended: [Option
   1](https://book.babashka.org/#_terminal_tab_completion), [Option
   2](https://github.com/babashka/babashka/discussions/1615)
 
-Probably, you'll want to have `git` too.
+If you want to test against ClojureDart samples, the `git` cli program
+is needed for fetching the samples.  Perhaps it is likely it's already
+available for other reasons :)
 
 See [here](doc/prerequisites.md) for more details.
 
