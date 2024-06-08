@@ -1,10 +1,12 @@
 # ts-clojure
 
 Testing and development bits for
-[tree-sitter-clojure](https://github.com/sogaiu/tree-sitter-clojure)
+[tree-sitter-clojure](https://github.com/sogaiu/tree-sitter-clojure),
+including:
 
-Bits to aid in performing tests on real-world Clojure code along with
-some associated instructions.
+* Fetching and testing of real-world code sample sets
+* Intentional generation of `src/parser.c` and friends
+* Related instructions
 
 See [here](doc/background.md) for some background.
 
