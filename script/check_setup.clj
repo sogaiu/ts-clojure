@@ -2,8 +2,8 @@
   (:require [babashka.fs :as fs]
             [babashka.process :as proc]
             [clojure.string :as cs]
-            [utils :as u]
-            [conf :as cnf]))
+            [conf :as cnf]
+            [utils :as u]))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 

@@ -1,8 +1,8 @@
 (ns corpus-test
   (:require [babashka.fs :as fs]
             [babashka.process :as proc]
-            [utils :as u]
-            [conf :as cnf]))
+            [conf :as cnf]
+            [utils :as u]))
 
 (defn -main
   [& _args]
