@@ -146,10 +146,8 @@
 ;; 4. examine output to determine file paths with errors and save to file
 (defn -main
   [& args]
-  ;; precautions
   (u/exit-unless-grammar-dir-exists)
-  (u/exit-unless-repos-root-exists)
-  ;; back to our regularly scheduled programming
+  ;;
   (println "Parsing samples")
   (let [repos (first args)]
     ;; convenience for setting samples set to test against
@@ -163,6 +161,8 @@
         (do
           (println "Did not find samples repos with name:" repos)
           (System/exit 1))))
+    ;;
+    (u/exit-unless-repos-root-exists)
     ;;
     (try
       (let [start-time (System/currentTimeMillis)
