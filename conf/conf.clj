@@ -55,9 +55,31 @@
                  "edn"}
    :error-file-paths (str proj-root "/data/clojuredart-error-files.txt")})
 
+;; core_regression
+
+(def core-regression
+  {:name "core-regression"
+   :root (str proj-root "/core-regression-samples/data/core-regression-repos")
+   :extensions #{"bb" "nbb"
+                 "clj" "cljc" "cljd" "cljr" "cljs" "cljx"
+                 "dtm" "edn"}
+   :error-file-paths (str proj-root "/data/core-regression-error-files.txt")})
+
+;; test.regression
+
+(def test-regression
+  {:name "test-regression"
+   :root (str proj-root "/test-regression-samples/data/test-regression-repos")
+   :extensions #{"bb" "nbb"
+                 "clj" "cljc" "cljd" "cljr" "cljs" "cljx"
+                 "dtm" "edn"}
+   :error-file-paths (str proj-root "/data/test-regression-error-files.txt")})
+
 ;; current repos setting
 
 (def ^:dynamic repos
   #_ clojuredart
-  clojars)
+  core-regression
+  #_ test-regression
+  #_ clojars)
 
