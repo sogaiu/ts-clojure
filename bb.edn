@@ -14,6 +14,9 @@
          parse-samples
          {:doc "Parse current repos code samples"
           :task parse-samples/-main}
+         count-repos-files
+         {:doc "Show repos content statistics"
+          :task count-repos-files/-main}
          show-expected-errors
          {:doc "Show expected error frequency table"
           :task show-expected-errors/-main}
