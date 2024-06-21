@@ -101,6 +101,14 @@ To fetch some source code samples:
   * Change working directory to the `clojuredart-samples` subdirectory
   * Fetch some clojuredart code by: `bb fetch-samples`
 
+* For core_regression samples:
+  * Change working directory to the `core-regression-samples` subdirectory
+  * Fetch samples by: `bb fetch-samples`
+
+* For test.regression samples:
+  * Change working directory to the `test-regression-samples` subdirectory
+  * Fetch samples by: `bb fetch-samples`
+
 Change the value of `repos` in `conf/conf.clj` to specify which set of
 samples to test against.
 
@@ -164,6 +172,8 @@ Assuming the samples have been obtained, the value can be one of:
 
 * `clojars`
 * `clojuredart`
+* `core-regression`
+* `test-regression`
 
 See [here](doc/run-real-world-code-tests.md) for more
 details.
