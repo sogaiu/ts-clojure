@@ -147,12 +147,12 @@
 (defn exit-unless-repos-root-exists
   []
   (exit-unless (repos-root-exists?)
-               (str "Directory for" (cnf/repos :root) "not found")))
+               (str "Directory for " (cnf/repos :root) " not found")))
 
 (defn exit-unless-grammar-dir-exists
   []
   (exit-unless (grammar-dir-exists?)
-               (str "Directory for" cnf/grammar-dir "not found")))
+               (str "Directory for " cnf/grammar-dir " not found")))
 
 (defn exit-unless-valid-repos
   [repos]
