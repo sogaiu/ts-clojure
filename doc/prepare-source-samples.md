@@ -18,7 +18,7 @@ That is, `clojars` refers to a map with information about:
 
 * where on the local filesystem to look for files
 * which files to parse based on file extension
-* where to store the names of files that yielded errors
+* where to store the paths of files that yielded errors
 
 You can define your own map along with an appropriate directory and
 set of files / directories, and then point `repos` at it.
