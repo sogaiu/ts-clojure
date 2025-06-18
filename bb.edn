@@ -17,6 +17,9 @@
          count-repos-files
          {:doc "Show repos content statistics"
           :task count-repos-files/-main}
+         dump-target-file-paths
+         {:doc "Dump target file paths"
+          :task dump-target-file-paths/-main}
          show-expected-errors
          {:doc "Show expected error frequency table"
           :task show-expected-errors/-main}
