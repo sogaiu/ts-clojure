@@ -117,7 +117,7 @@
                   (println "Unexpected error for path:" path))))
             (println "Number of expected errors encountered:" (count @hits))
             (println "Percent of expected errors met:"
-                     (str (* 100
+                     (str (* 100.0
                              (/ (count @hits) n-errors))
                           "%"))))
         (println "See" (cnf/repos :error-file-paths)
