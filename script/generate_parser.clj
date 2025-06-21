@@ -15,7 +15,7 @@
   (try
     (let [p (proc/shell {:dir cnf/grammar-dir}
                         (str cnf/ts-bin-path
-                             " generate --abi " cnf/abi " --no-bindings"))
+                             " generate --abi " cnf/abi))
           exit-code (:exit @p)]
       (u/exit-unless-error-code-is exit-code #{0} "tree-sitter generate"))
     (catch Exception e
