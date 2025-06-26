@@ -1,8 +1,7 @@
 # tree-sitter-clojure Not Parent Directory
 
-As mentioned elsewhere, ts-clojure's default use case is to be used as
-a subdirectory of tree-sitter-clojure.  This document briefly touches
-on alternative arrangements.
+This document briefly touches on using `ts-clojure` without it being a
+subdirectory of `tree-sitter-clojure`.
 
 ## Setup
 
@@ -20,9 +19,8 @@ local.
 
 Clone
 [tree-sitter-clojure](https://github.com/sogaiu/tree-sitter-clojure)
-such that the `tree-sitter` cli can find the resulting directory.  As
-this document has to do with alternate arrangements, your setup
-should be one of:
+such that the `tree-sitter` cli can find the resulting directory.  The
+setup should be one of:
 
 1. tree-sitter-clojure is a subdirectory of ts-clojure
 2. no particular parent-child relationship
