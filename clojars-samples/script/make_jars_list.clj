@@ -13,7 +13,7 @@
 
 ;; https://github.com/clojars/clojars-web/wiki/Data#useful-extracts-from-the-poms
 (def feed-url
-  "http://clojars.org/repo/feed.clj.gz")
+  "https://repo.clojars.org/feed.clj.gz")
 
 ;; XXX: this will only handle things with versions that look like:
 ;;
