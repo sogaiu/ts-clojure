@@ -28,3 +28,8 @@
 (def clojars-skip-urls
   (str proj-root "/data/clojars-skip-urls.txt"))
 
+(def extensions
+  #{"bb" "nbb"
+    "clj" "cljc" "cljd" "cljr" "cljs" "cljx"
+    "dtm" "edn"})
+
