@@ -76,6 +76,7 @@ https://repo.clojars.org/io/revolver/dropwizard-revolver/2.0.12/dropwizard-revol
 https://repo.clojars.org/io/riemann/riemann-java-client-parent/0.5.3/riemann-java-client-parent-0.5.3.jar
 https://repo.clojars.org/io/xapix/capbac-umbrella/1.0/capbac-umbrella-1.0.jar
 https://repo.clojars.org/listora/ring-cache-buster/0.3.0/ring-cache-buster-0.3.0.jar
+https://repo.clojars.org/lux/stdlib/0.3.2/stdlib-0.3.2.jar
 https://repo.clojars.org/net/mikera/clojure-pom/0.6.0/clojure-pom-0.6.0.jar
 https://repo.clojars.org/net/mikera/mikera-pom/0.0.4/mikera-pom-0.0.4.jar
 https://repo.clojars.org/orderly/orderly-parent/0.12.0/orderly-parent-0.12.0.jar

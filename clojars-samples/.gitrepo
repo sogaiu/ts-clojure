@@ -6,7 +6,7 @@
 [subrepo]
 	remote = https://github.com/sogaiu/clojars-samples
 	branch = master
-	commit = 74f97b0881b54a9e736d6bf58a33cf5d52c28b76
-	parent = 76b15554674bd5d2296e9a875c3106a92390554d
+	commit = 0f8338c29f731d099cd59f8805510c391c28b8a9
+	parent = 4c94305ab3c4354fe24d042751330d538bb6cc60
 	method = merge
 	cmdver = 0.4.9
