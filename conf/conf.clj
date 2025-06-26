@@ -82,7 +82,7 @@
 
 (def ^:dynamic repos
   #_ clojuredart
-  core-regression
+  #_ core-regression
   #_ test-regression
-  #_ clojars)
+  clojars)
 
