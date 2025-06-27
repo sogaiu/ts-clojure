@@ -14,7 +14,7 @@ If this is not the version you want to use, arrange for another one.
 It's possible to configure things via `conf/conf.clj` so that this
 repository's scripts make use of a different `tree-sitter` by
 specifying a full path or changing a binary name.  See the top-level
-document for info on changing settings.
+document for hints on where to look for changing such settings.
 
 ## Determine where parser repositories are looked for
 
@@ -38,3 +38,4 @@ document](https://github.com/sogaiu/ts-questions/blob/master/questions/what-path
 
 You want to know this information because you'll want to clone
 tree-sitter-clojure to a location that `tree-sitter` can find.
+

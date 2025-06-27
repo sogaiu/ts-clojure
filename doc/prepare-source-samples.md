@@ -40,8 +40,8 @@ on a list in `data/clojars-jar-list.txt`.  This list already lives in
 this repository, but a new one (which may end up with different
 content) can be generated via a Babashka task.
 
-The Babashka task fetches `data/feed.clj` from Clojars and creates a
-list of URLs of "latest release" jars and saves this in the
+The Babashka task arranges for `data/feed.clj` from Clojars and
+creates a list of URLs of "latest release" jars and saves this in the
 aforementioned `data/clojars-jar-list.txt`.
 
 Using a new list is not recommended unless you're willing to comb
@@ -74,12 +74,35 @@ To fetch the maximum number of jars that makes sense to [1], try:
 bb fetch-jars -1
 ```
 
-Note that after fetching jars, the content needs to be extracted.
-This can be done manually, but it's likely more convenient to do:
+Note that after fetching jars, appropriate content needs to be
+extracted.  This can be done manually, but it's likely more convenient
+to do:
 
 ```
 bb extract-jars
 ```
+
+Which files to extract can be configured based on file extension by
+modifying the value for `extensions` within
+`clojars-samples/conf/conf.clj`.
+
+By default, it's the set:
+
+```clojure
+#{"bb" "nbb"
+  "clj" "cljc" "cljd" "cljr" "cljs" "cljx"
+  "dtm" "edn"}
+```
+
+Everything used to be extracted but this would typically lead to
+around 18-19 GB of data, a lot of which wasn't being used for our
+testing.  It also slowed our testing down (because more files needed
+to be scanned to determine precisely which files to parse) so now we
+only extract files with specific extensions.
+
+Note that there is no longer a convenient way to extract all content
+via `bb extract-jars`...for that, probably manual invocation of an
+appropriate extraction command may be an option.
 
 ### Misc Info
 

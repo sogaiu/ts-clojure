@@ -65,17 +65,19 @@ consequences of not doing so.
 
 ### A Fork in the Road...Sort Of
 
-It is possible to use ts-clojure in a variety of ways:
+It used to be possible to use ts-clojure in a variety of ways such as:
 
-1. ts-clojure is a subdirectory of tree-sitter-clojure
-2. tree-sitter-clojure is a subdirectory of ts-clojure
+1. tree-sitter-clojure is a subdirectory of ts-clojure
+2. ts-clojure is a subdirectory of tree-sitter-clojure
 3. no particular parent-child relationship
 
-The currently favored approach is option 1 - i.e. ts-clojure being a
-subdirectory of tree-sitter-clojure.
+but in recent times a specific configuration has come to be favored.
 
-For the other approaches, there is some documentation
-[here](doc/tsc-not-parent-dir.md).
+The currently favored approach is option 1 - i.e. tree-sitter-clojure
+being a subdirectory of ts-clojure.
+
+Support for options 2 and 3 are no longer actively being maintained
+and may or may not work.
 
 ### Verify tree-sitter setup
 
@@ -186,10 +188,6 @@ At this time, `tree-sitter` cli subcommand backward compatibility does
 not appear to be a high priority, so it may be good to expect to have
 to adjust some `tree-sitter` invocations in the various Babashka
 (`.clj`) scripts.
-
-As a specific example of a potential backward incompatibility, at the
-time of this writing, [there are plans to phase out the `build-wasm`
-subcommand](https://github.com/tree-sitter/tree-sitter/blob/fc146ad5101334cb316f905657e79fe5e4fe7876/cli/src/main.rs#L522).
 
 ### Windows Support
 
